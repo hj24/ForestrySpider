@@ -4,9 +4,12 @@ class ParseConfig:
     """
     解析爬虫接口
 
-    Parameters:
+    属性:
         PATH - 配置文件位置
         init_url_list - 用于保存爬虫接口的url列表
+
+    方法:
+        parser - 解析配置文件的函数
     """
 
     PATH = None

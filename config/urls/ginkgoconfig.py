@@ -6,7 +6,7 @@ class GinkgoConfig(configer.ParseConfig):
     """
     解析爬虫接口
 
-    Parameters:
+    属性:
         PATH - 配置文件位置
     """
 
