@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
 from bs4 import BeautifulSoup
+import re
 
-class BaseParser(ABC):
+class ArticleBaseParser(ABC):
     """
     文章解析器基类，定义了一些解析器通用的方法
 
@@ -20,6 +21,14 @@ class BaseParser(ABC):
 
     def __init__(self, content):
         self.content = content
+
+    @property
+    def soup(self):
+        return BeautifulSoup(self.content, self.PARSER_TYPE)
+
+    @property
+    def link_pattern(self):
+        return re.compile('.*?本文地址:<a.*?href="(.*?)">.*?</a>')
 
     @abstractmethod
     def parse_title(self, *args, **kwargs):
@@ -44,7 +53,3 @@ class BaseParser(ABC):
     @abstractmethod
     def parse_link(self, *args, **kwargs):
         pass
-
-    @property
-    def soup(self):
-        return BeautifulSoup(self.content, self.PARSER_TYPE)
