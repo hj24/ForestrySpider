@@ -1,5 +1,6 @@
-# encoding=gbk
+# encoding=utf-8
 import re
+from parser import ginkgoparser
 
 content = """
 
@@ -7,10 +8,10 @@ content = """
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<TITLE>ÒøÐÓ¹ûµÄ¹¦Ð§Óë×÷ÓÃ_ÒøÐÓÍø¶¯Ì¬_ÒøÐÓÍø-ÖÐ¹úÒøÐÓÍø</TITLE>
-<META NAME="copyright" CONTENT="ÖÐ¹úÒøÐÓÍø>
-<META NAME="Author" CONTENT="ÖÐ¹úÒøÐÓÍø">
-<META NAME="Keywords" CONTENT="ÒøÐÓ¹ûµÄ¹¦Ð§Óë×÷ÓÃ,ÒøÐÓÍø¶¯Ì¬,ÎÞ">
+<TITLE>é“¶ææžœçš„åŠŸæ•ˆä¸Žä½œç”¨_é“¶æç½‘åŠ¨æ€_é“¶æç½‘-ä¸­å›½é“¶æç½‘</TITLE>
+<META NAME="copyright" CONTENT="ä¸­å›½é“¶æç½‘>
+<META NAME="Author" CONTENT="ä¸­å›½é“¶æç½‘">
+<META NAME="Keywords" CONTENT="é“¶ææžœçš„åŠŸæ•ˆä¸Žä½œç”¨,é“¶æç½‘åŠ¨æ€,æ— ">
 <META NAME="Robots" CONTENT="all">
 <META http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link rel="icon" href="http://www.cnyxs.com/favicon.ico"/>
@@ -28,46 +29,46 @@ if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
 
 
 <UL class="quick-menu">
-  <LI class="sitenav-mobile">ÄúºÃ£¬»¶Ó­À´µ½<a href=http://www.cnyxs.com/>ÖÐ¹úÒøÐÓÍø</a> </LI>
+  <LI class="sitenav-mobile">æ‚¨å¥½ï¼Œæ¬¢è¿Žæ¥åˆ°<a href=http://www.cnyxs.com/>ä¸­å›½é“¶æç½‘</a> </LI>
   <LI><A style="color: rgb(255, 102, 0);" 
-  href="http://www.cnyxs.com/user_dl.asp">ÇëµÇÂ¼ </A></LI>
-  <LI><A href="http://www.cnyxs.com/user_zc.asp" target="_blank">Ãâ·Ñ×¢²á</A></LI>
-  <LI class="remove"><A href="http://www.cnyxs.com/fabu.asp">·¢²¼ÐÅÏ¢</A></LI>
-   <LI class="remove"><A href="http://www.cnyxs.com/zhuomian.asp">ÏÂÔØµ½×ÀÃæ</A></LI>
+  href="http://www.cnyxs.com/user_dl.asp">è¯·ç™»å½• </A></LI>
+  <LI><A href="http://www.cnyxs.com/user_zc.asp" target="_blank">å…è´¹æ³¨å†Œ</A></LI>
+  <LI class="remove"><A href="http://www.cnyxs.com/fabu.asp">å‘å¸ƒä¿¡æ¯</A></LI>
+   <LI class="remove"><A href="http://www.cnyxs.com/zhuomian.asp">ä¸‹è½½åˆ°æ¡Œé¢</A></LI>
   </UL>
 
 
 <UL class="weibo">
-<a href="http://e.weibo.com/zgyxcom" target="_blank"><img src="images/ico_t_sina.gif" alt="ÐÂÀËÎ¢²©" vspace="0" border="0"></a>
-<a href="http://e.weibo.com/zgyxcom" target="_blank" ref="nofollow">ÖÐ¹úÒøÐÓÍø</a><a href="http://e.weibo.com/zgyxcom" target="_blank"><img src="images/ico_t_sinav.gif" border="0"></a>   
- <a href="http://t.qq.com/zgyxcom/" target="_blank" ref="nofollow"><img src="images/ico_t_qq.gif" alt="ÌÚÑ¸Î¢²©" border="0"></a>
+<a href="http://e.weibo.com/zgyxcom" target="_blank"><img src="images/ico_t_sina.gif" alt="æ–°æµªå¾®åš" vspace="0" border="0"></a>
+<a href="http://e.weibo.com/zgyxcom" target="_blank" ref="nofollow">ä¸­å›½é“¶æç½‘</a><a href="http://e.weibo.com/zgyxcom" target="_blank"><img src="images/ico_t_sinav.gif" border="0"></a>   
+ <a href="http://t.qq.com/zgyxcom/" target="_blank" ref="nofollow"><img src="images/ico_t_qq.gif" alt="è…¾è¿…å¾®åš" border="0"></a>
 </UL>
 
 </DIV>
 </DIV>  
 <DIV class="header">
 <DIV class="masthead">
-<DIV class="logo"><A title="ÖÐ¹úÒøÐÓÐÐÒµÃÅ»§ÍøÕ¾" href="http://www.cnyxs.com/" target="_blank"><IMG src="http://www.cnyxs.com/images/logo.gif" 
-alt="ÖÐ¹úÒøÐÓÍø" border="0"></A></DIV>
+<DIV class="logo"><A title="ä¸­å›½é“¶æè¡Œä¸šé—¨æˆ·ç½‘ç«™" href="http://www.cnyxs.com/" target="_blank"><IMG src="http://www.cnyxs.com/images/logo.gif" 
+alt="ä¸­å›½é“¶æç½‘" border="0"></A></DIV>
 
 <DIV class="sj">
-<a href="http://www.cnyxs.com/yinxingshu/" target="_blank">ÒøÐÓÊ÷</a>  <a href="http://www.cnyxs.com/yinxingguo/" target="_blank">ÒøÐÓ¹û</a> 
+<a href="http://www.cnyxs.com/yinxingshu/" target="_blank">é“¶ææ ‘</a>  <a href="http://www.cnyxs.com/yinxingguo/" target="_blank">é“¶ææžœ</a> 
 
-              <a href="http://www.cnyxs.com/yinxingye/" target="_blank">ÒøÐÓÒ¶</a> <a href="http://www.cnyxs.com/yinxingcha/" target="_blank">ÒøÐÓ²è</a> <a href="http://www.cnyxs.com/yinxingjiu/" target="_blank">ÒøÐÓ¾Æ</a>  <a href="http://www.cnyxs.com/baiguo/">°×¹û</a><br />
+              <a href="http://www.cnyxs.com/yinxingye/" target="_blank">é“¶æå¶</a> <a href="http://www.cnyxs.com/yinxingcha/" target="_blank">é“¶æèŒ¶</a> <a href="http://www.cnyxs.com/yinxingjiu/" target="_blank">é“¶æé…’</a>  <a href="http://www.cnyxs.com/baiguo/">ç™½æžœ</a><br />
 			  
-         <a href="http://www.cnyxs.com/yinxingpenjing/" target="_blank">ÒøÐÓÅè¾°</a>   <a href="http://www.cnyxs.com/yinxinghuangtong/" target="_blank">ÒøÐÓ»ÆÍª</a> <a href="http://www.cnyxs.com/yinxingyepian/" target="_blank">ÒøÐÓÒ¶Æ¬</a> <a href="http://www.cnyxs.com/" target="_blank">ÒøÐÓÒ¶ÌáÈ¡Îï</a>
+         <a href="http://www.cnyxs.com/yinxingpenjing/" target="_blank">é“¶æç›†æ™¯</a>   <a href="http://www.cnyxs.com/yinxinghuangtong/" target="_blank">é“¶æé»„é…®</a> <a href="http://www.cnyxs.com/yinxingyepian/" target="_blank">é“¶æå¶ç‰‡</a> <a href="http://www.cnyxs.com/" target="_blank">é“¶æå¶æå–ç‰©</a>
 </DIV>
 
 
 
 <DIV class="zx">
-<a href="http://www.cnyxs.com/xw.asp?lb=ÒøÐÓÐÂÎÅ" target="_blank">ÒøÐÓÐÂÎÅ</a> <a href="http://www.cnyxs.com/xw.asp?lb=ÒøÐÓÎÄ»¯" target="_blank">ÒøÐÓÎÄ»¯</a> <a href="http://www.cnyxs.com/xw.asp?lb=ÒøÐÓ¿Æ¼¼" target="_blank">ÒøÐÓ¿Æ¼¼</a>  <a href="http://www.cnyxs.com/xw.asp?lb=ÒøÐÓÑ§Ôº" target="_blank">ÒøÐÓÑ§Ôº</a> <a href="http://www.cnyxs.com/xw.asp?lb=°ïÖúÖÐÐÄ" target="_blank">°ïÖúÖÐÐÄ</a><br /> 
-<a href="http://www.cnyxs.com/zp.asp" target="_blank">ÕÐÆ¸ÆµµÀ</a> <a href="http://www.cnyxs.com/rc.asp" target="_blank">ÈË²ÅÆµµÀ</a>  <a href="http://www.cnyxs.com/tougao.asp" target="_blank">ÔÚÏßÍ¶¸å</a>  <a href="http://www.cnyxs.com/xw.asp?lb=ÒøÐÓ¼Û¸ñ" target="_blank">ÒøÐÓ¼Û¸ñ</a> <a href="http://www.cnyxs.com/xw.asp?lb=ÒøÐÓÍø" target="_blank">±¾Õ¾¶¯Ì¬</a> 
+<a href="http://www.cnyxs.com/xw.asp?lb=é“¶ææ–°é—»" target="_blank">é“¶ææ–°é—»</a> <a href="http://www.cnyxs.com/xw.asp?lb=é“¶ææ–‡åŒ–" target="_blank">é“¶ææ–‡åŒ–</a> <a href="http://www.cnyxs.com/xw.asp?lb=é“¶æç§‘æŠ€" target="_blank">é“¶æç§‘æŠ€</a>  <a href="http://www.cnyxs.com/xw.asp?lb=é“¶æå­¦é™¢" target="_blank">é“¶æå­¦é™¢</a> <a href="http://www.cnyxs.com/xw.asp?lb=å¸®åŠ©ä¸­å¿ƒ" target="_blank">å¸®åŠ©ä¸­å¿ƒ</a><br /> 
+<a href="http://www.cnyxs.com/zp.asp" target="_blank">æ‹›è˜é¢‘é“</a> <a href="http://www.cnyxs.com/rc.asp" target="_blank">äººæ‰é¢‘é“</a>  <a href="http://www.cnyxs.com/tougao.asp" target="_blank">åœ¨çº¿æŠ•ç¨¿</a>  <a href="http://www.cnyxs.com/xw.asp?lb=é“¶æä»·æ ¼" target="_blank">é“¶æä»·æ ¼</a> <a href="http://www.cnyxs.com/xw.asp?lb=é“¶æç½‘" target="_blank">æœ¬ç«™åŠ¨æ€</a> 
 </DIV>
 
 <DIV class="fz">
-<a href="http://www.cnyxs.com/pizhou/" target="_blank">½­ËÕÚüÖÝ</a> <a href="http://www.cnyxs.com/tancheng/" target="_blank">É½¶«Û°³Ç</a><br />
- <a href="http://www.cnyxs.com/taixing/" target="_blank">½­ËÕÌ©ÐË</a> <a href="http://www.cnyxs.com/anlu/" target="_blank">ºþ±±°²Â½</a> 
+<a href="http://www.cnyxs.com/pizhou/" target="_blank">æ±Ÿè‹é‚³å·ž</a> <a href="http://www.cnyxs.com/tancheng/" target="_blank">å±±ä¸œéƒ¯åŸŽ</a><br />
+ <a href="http://www.cnyxs.com/taixing/" target="_blank">æ±Ÿè‹æ³°å…´</a> <a href="http://www.cnyxs.com/anlu/" target="_blank">æ¹–åŒ—å®‰é™†</a> 
  <br />
 </DIV>
 
@@ -75,22 +76,22 @@ alt="ÖÐ¹úÒøÐÓÍø" border="0"></A></DIV>
 </DIV>
 
 </DIV>
-<!--µ¼º½¿ªÊ¼-->
+<!--å¯¼èˆªå¼€å§‹-->
 <DIV class="gb_nav">
-<LI><A class="ahover1" href="http://www.cnyxs.com/">Ê×Ò³</A>
-<LI><A href="http://www.cnyxs.com/gqxx.asp?lb=¹©Ó¦">¹©Ó¦</A>
-<LI><A href="http://www.cnyxs.com/gqxx.asp?lb=Çó¹º">Çó¹º</A>
-<LI><A href="http://www.cnyxs.com/qy.asp">ÆóÒµ</A>
-<LI><A href="http://www.cnyxs.com/cp.asp">²úÆ·</A>
-<LI><A href="http://www.cnyxs.com/jg.asp">ÐÐÇé</A>
-<LI><A href="http://www.cnyxs.com/zh.asp">Õ¹»á</A>
-<LI><A href="http://www.cnyxs.com/ztbd.asp">×¨Ìâ</A>
-<LI><A href="http://www.cnyxs.com/photo.asp">Í¼Æ¬</A>
-<LI><A href="http://www.cnyxs.com/blog/">²©¿Í</A>
-<LI><A href="http://hao.cnyxs.com/">ÍøÖ·</A>
-<LI><A href="http://www.cnyxs.com/qq/">QQÈº</A>
-<LI><A href="http://www.cnyxs.com/cnyxs/">¾É°æ</A></LI></DIV>
-  <!--µ¼º½½áÊø-->
+<LI><A class="ahover1" href="http://www.cnyxs.com/">é¦–é¡µ</A>
+<LI><A href="http://www.cnyxs.com/gqxx.asp?lb=ä¾›åº”">ä¾›åº”</A>
+<LI><A href="http://www.cnyxs.com/gqxx.asp?lb=æ±‚è´­">æ±‚è´­</A>
+<LI><A href="http://www.cnyxs.com/qy.asp">ä¼ä¸š</A>
+<LI><A href="http://www.cnyxs.com/cp.asp">äº§å“</A>
+<LI><A href="http://www.cnyxs.com/jg.asp">è¡Œæƒ…</A>
+<LI><A href="http://www.cnyxs.com/zh.asp">å±•ä¼š</A>
+<LI><A href="http://www.cnyxs.com/ztbd.asp">ä¸“é¢˜</A>
+<LI><A href="http://www.cnyxs.com/photo.asp">å›¾ç‰‡</A>
+<LI><A href="http://www.cnyxs.com/blog/">åšå®¢</A>
+<LI><A href="http://hao.cnyxs.com/">ç½‘å€</A>
+<LI><A href="http://www.cnyxs.com/qq/">QQç¾¤</A>
+<LI><A href="http://www.cnyxs.com/cnyxs/">æ—§ç‰ˆ</A></LI></DIV>
+  <!--å¯¼èˆªç»“æŸ-->
  <SCRIPT src="http://www.cnyxs.com/top.js?v=1"></SCRIPT>
 
 <div align=center>
@@ -103,17 +104,17 @@ alt="ÖÐ¹úÒøÐÓÍø" border="0"></A></DIV>
             <tr>
               <td width="2%" height="29"><img src="images/detail_c1_02.jpg" width="12" height="12" hspace="6" /></td>
               <td width="98%" height="29" align="left">
-                Äãµ±Ç°µÄÎ»ÖÃ£º<a href="http://www.cnyxs.com" target="_blank">ÖÐ¹úÒøÐÓÍø</a>&gt;&gt;
+                ä½ å½“å‰çš„ä½ç½®ï¼š<a href="http://www.cnyxs.com" target="_blank">ä¸­å›½é“¶æç½‘</a>&gt;&gt;
                 
-                <a href="http://www.cnyxs.com/xw.asp?lb=ÒøÐÓÍø" target="_blank"><b>ÒøÐÓÍø</b></a>
+                <a href="http://www.cnyxs.com/xw.asp?lb=é“¶æç½‘" target="_blank"><b>é“¶æç½‘</b></a>
                 
-                &gt;&gt; <a href="http://www.cnyxs.com/news.asp?lb=ÒøÐÓÍø¶¯Ì¬" target="_blank">ÒøÐÓÍø¶¯Ì¬</a> </td>
+                &gt;&gt; <a href="http://www.cnyxs.com/news.asp?lb=é“¶æç½‘åŠ¨æ€" target="_blank">é“¶æç½‘åŠ¨æ€</a> </td>
             </tr>
           </table>
           </td>
       </tr>
       <tr>
-        <td align="center" style="PADDING-LEFT: 10px; PADDING-TOP: 10px; PADDING-bottom: 10px;line-height:400%;"><h1>ÒøÐÓ¹ûµÄ¹¦Ð§Óë×÷ÓÃ</h1>
+        <td align="center" style="PADDING-LEFT: 10px; PADDING-TOP: 10px; PADDING-bottom: 10px;line-height:400%;"><h1>é“¶ææžœçš„åŠŸæ•ˆä¸Žä½œç”¨</h1>
           <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td><hr size="1" /></td>
@@ -122,11 +123,11 @@ alt="ÖÐ¹úÒøÐÓÍø" border="0"></A></DIV>
       </tr>
       
       <tr>
-        <td align="center"><a href="http://www.cnyxs.com/tougao.asp"><font color="red"><b>ÎÒÒªÍ¶¸å</b></font></a> ×÷Õß£º<font color="#990000">ÖÐ¹úÒøÐÓÍø</font> ³ö´¦£º<font color="#990000">ÖÐ¹úÒøÐÓÍø </font> Ê±¼ä£º<font color="#990000">2019/5/31</font>¡¡ Àà±ð£º<a href="http://www.cnyxs.com/news.asp?lb=ÒøÐÓÍø¶¯Ì¬" target="_blank"><font color="#990000">ÒøÐÓÍø¶¯Ì¬</font></a> ÈËÆø£º<font color="#990000">150 </font></td>
+        <td align="center"><a href="http://www.cnyxs.com/tougao.asp"><font color="red"><b>æˆ‘è¦æŠ•ç¨¿</b></font></a> ä½œè€…ï¼š<font color="#990000">ä¸­å›½é“¶æç½‘</font> å‡ºå¤„ï¼š<font color="#990000">ä¸­å›½é“¶æç½‘ </font> æ—¶é—´ï¼š<font color="#990000">2019/5/31</font>ã€€ ç±»åˆ«ï¼š<a href="http://www.cnyxs.com/news.asp?lb=é“¶æç½‘åŠ¨æ€" target="_blank"><font color="#990000">é“¶æç½‘åŠ¨æ€</font></a> äººæ°”ï¼š<font color="#990000">150 </font></td>
       </tr>
       <tr>
-        <td height="480" valign="top" style="PADDING-LEFT: 10px; PADDING-TOP: 10px;line-height:200%;font-size:15px;text-align:left;"><p>¡¡¡¡<a href=http://www.cnyxs.com/ target=_blank title=ÒøÐÓ alt=ÒøÐÓ><font color=#ff0000><b>ÒøÐÓ</b></font></a>¹ûË×³ÆÉú<a href=http://www.cnyxs.com/baiguo/ target=_blank title=°×¹û alt=°×¹û><font color=#ff0000><b>°×¹û</b></font></a>£¬Ò²ÊÇ<a href=http://www.cnyxs.com/yinxingshu/ target=_blank title=ÒøÐÓÊ÷ alt=ÒøÐÓÊ÷>ÒøÐÓÊ÷</a>µÄÖÖ×Ó¡£<a href=http://www.cnyxs.com/yinxingshu/ target=_blank title=°×¹ûÊ÷ alt=°×¹ûÊ÷>°×¹ûÊ÷</a>´ÆÐÛÒìÖê£¬µ¥ÐÔ»¨£¬°×¹ûÊ÷¿ÉÒÔÓÃÇ¤²å·±Ö³£¬Ò²¿ÉÒÔÖÖ×Ó·±Ö³£¬ÓÃÖÖ×Ó·±Ö³µÄ°×¹ûÊ÷Òª20-30Äê²ÅÄÜ½á¹û£¬ËùÒÔ°×¹ûÊ÷ÓÖ½Ð¹«ËïÊ÷¡£°×¹ûÊ÷ÊÇÎÒ¹úÌØÓÐÆ·ÖÖ£¬±»³ÆÎªµØÇòÉÏµÄ»î»¯Ê¯£¬ÎÒ¹ú½­ËÕÌ©ÐËÊÇ°×¹ûÖ®Ïç¡£</p><p>¡¡¡¡<a href=http://www.cnyxs.com/yinxingguo/ target=_blank title=ÒøÐÓ¹û alt=ÒøÐÓ¹û>ÒøÐÓ¹û</a>µÄÓªÑø¼ÛÖµ</p><p>¡¡¡¡ÒøÐÓ¹ûº¬ÓÐ¶àÖÖÓªÑøÔªËØ£¬³ýµí·Û¡¢µ°°×ÖÊ¡¢Ö¬·¾¡¢ÌÇÀàÖ®Íâ£¬»¹º¬ÓÐÎ¬ÉúËØc£¬ºË»ÆËØ¡¢ºúÂÜ²·ËØ¡¢¸Æ¡¢Á×¡¢Ìú¡¢¼Ø¡¢Ã¾µÈÎ¢Á¿ÔªËØ£¬ÒÔ¼°ÒøÐÓËá¡¢°×¹û·Ó¡¢ÎåÌ¼¶àÌÇ¡¢Ö¬¹Ì´¼µÈ³É·Ö¡£¾ßÓÐÒæ·ÎÆø¡¢ÖÎ¿È´­¡¢Ö¹´ø³æ¡¢ËõÐ¡±ã¡¢Æ½ñåÖå¡¢»¤Ñª¹Ü¡¢Ôö¼ÓÑªÁ÷Á¿µÈÊ³ÁÆ×÷ÓÃºÍÒ½ÓÃÐ§¹û¡£</p><p>¡¡¡¡ÓªÑø³É·Ö</p><p>¡¡¡¡Ã¿100¿Ë°×¹ûÖÐº¬µ°°×ÖÊ6.4¿Ë£¬Ö¬·¾2.4¿Ë£¬Ì¼Ë®»¯ºÏÎï36¿Ë£¬´ÖÏËÎ¬1.2¿Ë£¬ºúÂÜ²·ËØ320Î¢¿Ë£¬ºË»ÆËØ50Î¢¿Ë£¬ÕáÌÇ5.2¿Ë£¬»¹Ô­ÌÇ1.1¿Ë£¬¼Ø19ºÁ¿Ë£¬¸Æ10ºÁ¿Ë£¬Á×218ºÁ¿Ë£¬ÌúlºÁ¿Ë¡£</p><p>¡¡¡¡°×¹ûÊÇÓªÑø¼ÛÖµ·á¸»µÄÊ³Îï£¬¿ÉÈó·Î£¬¶¨´­£¬É¬¾«£¬Ö¹´ø£¬º®ÈÈ½ÔÒË¡£</p><p>¡¡¡¡ÒøÐÓ¹ûµÄ¹¦Ð§Óë×÷ÓÃ</p><p>¡¡¡¡1¡¢´Ù½øÑªÒºÑ­»·£¬Òò´ËÄÜÔ¤·ÀÐÄÄÔÑª¹Ü¼²²¡¡¢ÄÔÑªË¨ÓëÖÐ·ç;</p><p>¡¡¡¡2¡¢Ô¤·À¹ÚÐÄ²¡¡¢ÐÄ½ÊÍ´¡¢¸ßÑªÑ¹¡¢¸ßÑªÖ¬¡¢¸ßÑªÌÇ;</p><p>¡¡¡¡3¡¢ÔöÇ¿¼ÇÒäÁ¦Ô¤·ÀÀÏÄê³Õ´ôÖ¢;</p><p>¡¡¡¡4¡¢ÑÓ»ºË¥ÀÏÔöÇ¿Ï¸°û·±Ö³Á¦£¬ÑÓ³¤Ï¸°ûÊÙÃü;</p><p>¡¡¡¡5¡¢µÖ¿¹·øÉä£¬Ôö¼Ó»úÌåÃâÒßÁ¦£¬ÄÜÓÐÐ§»º½â·øÉä¶Ô¹Ç÷ÀÏ¸°ûÔöÖ³µÄÒÖÖÆ×÷ÓÃ;</p><p>¡¡¡¡6¡¢º¬·á¸»µÄÎ¬ÉúËØºÍÓÅÖÊµÄË®ÈÜµ°°×£¬ÓÐÁ¼ºÃµÄ»¤¸Î½â¶¾¡¢ÐÞ¸´¸Î×éÖ¯ËðÉËµÄ¹¦Ð§;</p><p>¡¡¡¡7¡¢ÒÖÖÆºÍÉ±ÉËÖ×ÁöÏ¸°û£¬¼õÇáÖ×Áö»¼ÕßÔÚ»¯ÁÆ¡¢·ÅÁÆºóµÄ¸±×÷ÓÃ£¬¶ÔÉý¸ß°×Ï¸°ûÓÐÈ·ÇÐÐ§¹û;</p><p>¡¡¡¡8¡¢³¦Î¸²¡µÄ¡°¾È¡±ÐÇ£¬¼õ·ÊµÄÌìÈ»ÕäÆ·;</p><p>¡¡¡¡9¡¢ÑøÑÕ»¤·ô£¬ÃÀÈÝ¼ÑÆ·£¬ÈáÄÛ¼¡·ô£¬·ÀÖ¹Æ¤·ô´Ö²Ú£¬ÑÓ»ºÏ¸°ûË¥ÀÏ£¬±£³ÖÇà´º÷ÈÁ¦;¡¡¡¡10¡¢¼õÇáÍ·Í´¡¢¶úÃù¡¢ÔÎÑ£¡¢½¡Íü¡¢¶àÃÎ¡¢ÊÖ½Å±ùµÈÖ¢×´¡£ 
-Ö÷ÖÎÏø´­£¬ÌµËÔ£¬°×´ø£¬°××Ç£¬ÒÅ¾«£¬ÁÜ²¡£¬Ð¡±ãÆµÊý¡£</p><p>¡¡¡¡ÒøÐÓ¹û³£ÓÃ³Ô·¨</p><p>¡¡¡¡Ò»¡¢´ø¿Ç³´Õ¨Àà£º</p><p>¡¡¡¡1¡¢½·ÑÎ°×¹û£º</p><p>¡¡¡¡×ö·¨£º È¡´ø¿Ç°×¹ûÒ»µú£¬ÓÃ½·ÑÎºÍ°×¹ûÒ»Æð·ÅÔÚ¹øÄÚ³´Õ¨ÖÁÊì£¬¼´¿ÉÈ¥¿ÇÊ³ÓÃ¡£</p><p>¡¡¡¡Òª¼´³´¼´³Ô¡¢³ÃÈÈÊ³ÓÃ¡£ÈÈÊ³Ê³Ö®¿É¿ÚÇåÏã£¬ÀäÊ³Ê³Ö®¸É¿àÎÞÎ¶¡£ÕÐ´ý¿ÍÈËÊ±£¬Ã¿×ÀÒ»µú£¬150-200¿ËÎªÒË¡£</p><p>¡¡¡¡2¡¢¼òµ¥µÄÊÇÓÃÊªÃ«½í»òÐÅ·â½«°×¹û°ü×¡£¬·ÅÈëÎ¢²¨Â¯Ð¡»ð¶þÈý·ÖÖÓ£¬Ìýµ½Å¾Å¾Ïì£¬½«Æä±¬¿ª¾Í¿ÉÊ³ÓÃ£¬ÇåÓ¨ÈçÓñ£¬ÆøÎ¶ºÜÏã£¬¿Ú¸ÐÈíÅ´¡£</p><p>¡¡¡¡¶þ¡¢È¥¿ÇÌðÊ³Àà£º</p><p>¡¡¡¡1¡¢°×¹ûÖà£ºÒæÔªÆø¡¢²¹ÎåÔà¡¢¿¹Ë¥ÀÏ£¬ÀÏÄê¡¢ÌåÈõ¶à²¡ÕßÓÈ¼Ñ¡£Õý³£ÈËÊ³Ö®½¡Ìå¡£ÒË¼ÒÍ¥Ê³ÓÃ¡£</p><p>¡¡¡¡×ö·¨£º °×¹ûÈÊ(È¥¿ÇºóÓÃ·ÐË®ÌÌÈ¥ÄÚÖÖÆ¤)6-10Á££¬±ùÌÇÉÙÁ¿£¬¾¬Ã×2Á½£¬Ë®ÊÊÁ¿£¬Í¬Ê±·ÅÈë¹øÖÐ£¬ÎÄ»ðÖóÊì¼´³É¡£ÒÔ¾¬Ã×³ÉºýÃÓ×´¼´¿É¡£</p><p>¡¡¡¡°×¹ûÒËÓëÆäËûµ­ÌðµÍÌÇµÄÃ×ÖàÀàÏàÅä£¬Èç°×¹û°Ë±¦Öà¡¢°×¹ûÂÌ¶¹Öà¡¢°×¹ûÉ³²ÎÁ«×ÓÖàµÈ£¬ÌÇÒÔ±ùÌÇ¡¢°×ÌÇÎªÒË¡£</p><p>¡¡¡¡2¡¢Ð¡³ÔÖÐÓÃÀ´×öÌð²Ë£¬¹ð»¨°×¹û£¬±ùÌÇ°×¹û¡£</p><p>¡¡¡¡Èý¡¢°×¹ûÌÀÔ²£º</p><p>¡¡¡¡×ö·¨£º ½«°×¹ûÈÊ25¿Ëºæ´à£¬ÑÐ·Û£¬¼¦ÓÍ°¾Êì£¬Ãæ·Û³´»Æ£¬ºÚÖ¥Âé³´Ïãµ·ÀÃ¡£</p><p>¡¡¡¡½«·äÃÛÑ¹³ÉÄà×´£¬¼ÓÈë°×ÌÇ¡¢°×¹û·Û¡¢ºÚÖ¥Âé£¬ºÍÉÏ¼¦ÓÍ¼Ó³´Ãæ£¬Èà³ÉÏÚ¶ù¡£</p><p>¡¡¡¡½«Å´Ã×·ÛºÏÔÈ£¬·Ö³ÉÐ¡ÍÅ£¬°üÉÏÏÚ¶ù£¬×÷³ÉÌÀÔ²¡£</p><p>¡¡¡¡´ý¹øÄÚË®¿ªÖÁ·Ð£¬½«ÌÀÔ²ÏÂ¹ø£¬ÎÄ»ðÖóÖÁÌÀÔ²¸¡ÔÚË®ÃæÉÏ3-5·ÖÖÓ¼´³É¡£</p><p>¡¡¡¡ÌØµã£º ÏÚÄÚ¼ÓÈë°×¹û£¬ÓÐ×£¸£&quot;Ç§Çï³¤´æ&quot;Ö®Òâ¡£</p><p><br/></p>
+        <td height="480" valign="top" style="PADDING-LEFT: 10px; PADDING-TOP: 10px;line-height:200%;font-size:15px;text-align:left;"><p>ã€€ã€€<a href=http://www.cnyxs.com/ target=_blank title=é“¶æ alt=é“¶æ><font color=#ff0000><b>é“¶æ</b></font></a>æžœä¿—ç§°ç”Ÿ<a href=http://www.cnyxs.com/baiguo/ target=_blank title=ç™½æžœ alt=ç™½æžœ><font color=#ff0000><b>ç™½æžœ</b></font></a>ï¼Œä¹Ÿæ˜¯<a href=http://www.cnyxs.com/yinxingshu/ target=_blank title=é“¶ææ ‘ alt=é“¶ææ ‘>é“¶ææ ‘</a>çš„ç§å­ã€‚<a href=http://www.cnyxs.com/yinxingshu/ target=_blank title=ç™½æžœæ ‘ alt=ç™½æžœæ ‘>ç™½æžœæ ‘</a>é›Œé›„å¼‚æ ªï¼Œå•æ€§èŠ±ï¼Œç™½æžœæ ‘å¯ä»¥ç”¨æ‰¦æ’ç¹æ®–ï¼Œä¹Ÿå¯ä»¥ç§å­ç¹æ®–ï¼Œç”¨ç§å­ç¹æ®–çš„ç™½æžœæ ‘è¦20-30å¹´æ‰èƒ½ç»“æžœï¼Œæ‰€ä»¥ç™½æžœæ ‘åˆå«å…¬å­™æ ‘ã€‚ç™½æžœæ ‘æ˜¯æˆ‘å›½ç‰¹æœ‰å“ç§ï¼Œè¢«ç§°ä¸ºåœ°çƒä¸Šçš„æ´»åŒ–çŸ³ï¼Œæˆ‘å›½æ±Ÿè‹æ³°å…´æ˜¯ç™½æžœä¹‹ä¹¡ã€‚</p><p>ã€€ã€€<a href=http://www.cnyxs.com/yinxingguo/ target=_blank title=é“¶ææžœ alt=é“¶ææžœ>é“¶ææžœ</a>çš„è¥å…»ä»·å€¼</p><p>ã€€ã€€é“¶ææžœå«æœ‰å¤šç§è¥å…»å…ƒç´ ï¼Œé™¤æ·€ç²‰ã€è›‹ç™½è´¨ã€è„‚è‚ªã€ç³–ç±»ä¹‹å¤–ï¼Œè¿˜å«æœ‰ç»´ç”Ÿç´ cï¼Œæ ¸é»„ç´ ã€èƒ¡èåœç´ ã€é’™ã€ç£·ã€é“ã€é’¾ã€é•ç­‰å¾®é‡å…ƒç´ ï¼Œä»¥åŠé“¶æé…¸ã€ç™½æžœé…šã€äº”ç¢³å¤šç³–ã€è„‚å›ºé†‡ç­‰æˆåˆ†ã€‚å…·æœ‰ç›Šè‚ºæ°”ã€æ²»å’³å–˜ã€æ­¢å¸¦è™«ã€ç¼©å°ä¾¿ã€å¹³çš´çš±ã€æŠ¤è¡€ç®¡ã€å¢žåŠ è¡€æµé‡ç­‰é£Ÿç–—ä½œç”¨å’ŒåŒ»ç”¨æ•ˆæžœã€‚</p><p>ã€€ã€€è¥å…»æˆåˆ†</p><p>ã€€ã€€æ¯100å…‹ç™½æžœä¸­å«è›‹ç™½è´¨6.4å…‹ï¼Œè„‚è‚ª2.4å…‹ï¼Œç¢³æ°´åŒ–åˆç‰©36å…‹ï¼Œç²—çº¤ç»´1.2å…‹ï¼Œèƒ¡èåœç´ 320å¾®å…‹ï¼Œæ ¸é»„ç´ 50å¾®å…‹ï¼Œè”—ç³–5.2å…‹ï¼Œè¿˜åŽŸç³–1.1å…‹ï¼Œé’¾19æ¯«å…‹ï¼Œé’™10æ¯«å…‹ï¼Œç£·218æ¯«å…‹ï¼Œé“læ¯«å…‹ã€‚</p><p>ã€€ã€€ç™½æžœæ˜¯è¥å…»ä»·å€¼ä¸°å¯Œçš„é£Ÿç‰©ï¼Œå¯æ¶¦è‚ºï¼Œå®šå–˜ï¼Œæ¶©ç²¾ï¼Œæ­¢å¸¦ï¼Œå¯’çƒ­çš†å®œã€‚</p><p>ã€€ã€€é“¶ææžœçš„åŠŸæ•ˆä¸Žä½œç”¨</p><p>ã€€ã€€1ã€ä¿ƒè¿›è¡€æ¶²å¾ªçŽ¯ï¼Œå› æ­¤èƒ½é¢„é˜²å¿ƒè„‘è¡€ç®¡ç–¾ç—…ã€è„‘è¡€æ “ä¸Žä¸­é£Ž;</p><p>ã€€ã€€2ã€é¢„é˜²å† å¿ƒç—…ã€å¿ƒç»žç—›ã€é«˜è¡€åŽ‹ã€é«˜è¡€è„‚ã€é«˜è¡€ç³–;</p><p>ã€€ã€€3ã€å¢žå¼ºè®°å¿†åŠ›é¢„é˜²è€å¹´ç—´å‘†ç—‡;</p><p>ã€€ã€€4ã€å»¶ç¼“è¡°è€å¢žå¼ºç»†èƒžç¹æ®–åŠ›ï¼Œå»¶é•¿ç»†èƒžå¯¿å‘½;</p><p>ã€€ã€€5ã€æŠµæŠ—è¾å°„ï¼Œå¢žåŠ æœºä½“å…ç–«åŠ›ï¼Œèƒ½æœ‰æ•ˆç¼“è§£è¾å°„å¯¹éª¨éª¼ç»†èƒžå¢žæ®–çš„æŠ‘åˆ¶ä½œç”¨;</p><p>ã€€ã€€6ã€å«ä¸°å¯Œçš„ç»´ç”Ÿç´ å’Œä¼˜è´¨çš„æ°´æº¶è›‹ç™½ï¼Œæœ‰è‰¯å¥½çš„æŠ¤è‚è§£æ¯’ã€ä¿®å¤è‚ç»„ç»‡æŸä¼¤çš„åŠŸæ•ˆ;</p><p>ã€€ã€€7ã€æŠ‘åˆ¶å’Œæ€ä¼¤è‚¿ç˜¤ç»†èƒžï¼Œå‡è½»è‚¿ç˜¤æ‚£è€…åœ¨åŒ–ç–—ã€æ”¾ç–—åŽçš„å‰¯ä½œç”¨ï¼Œå¯¹å‡é«˜ç™½ç»†èƒžæœ‰ç¡®åˆ‡æ•ˆæžœ;</p><p>ã€€ã€€8ã€è‚ èƒƒç—…çš„â€œæ•‘â€æ˜Ÿï¼Œå‡è‚¥çš„å¤©ç„¶çå“;</p><p>ã€€ã€€9ã€å…»é¢œæŠ¤è‚¤ï¼Œç¾Žå®¹ä½³å“ï¼ŒæŸ”å«©è‚Œè‚¤ï¼Œé˜²æ­¢çš®è‚¤ç²—ç³™ï¼Œå»¶ç¼“ç»†èƒžè¡°è€ï¼Œä¿æŒé’æ˜¥é­…åŠ›;ã€€ã€€10ã€å‡è½»å¤´ç—›ã€è€³é¸£ã€æ™•çœ©ã€å¥å¿˜ã€å¤šæ¢¦ã€æ‰‹è„šå†°ç­‰ç—‡çŠ¶ã€‚ 
+ä¸»æ²»å“®å–˜ï¼Œç—°å—½ï¼Œç™½å¸¦ï¼Œç™½æµŠï¼Œé—ç²¾ï¼Œæ·‹ç—…ï¼Œå°ä¾¿é¢‘æ•°ã€‚</p><p>ã€€ã€€é“¶ææžœå¸¸ç”¨åƒæ³•</p><p>ã€€ã€€ä¸€ã€å¸¦å£³ç‚’ç‚¸ç±»ï¼š</p><p>ã€€ã€€1ã€æ¤’ç›ç™½æžœï¼š</p><p>ã€€ã€€åšæ³•ï¼š å–å¸¦å£³ç™½æžœä¸€ç¢Ÿï¼Œç”¨æ¤’ç›å’Œç™½æžœä¸€èµ·æ”¾åœ¨é”…å†…ç‚’ç‚¸è‡³ç†Ÿï¼Œå³å¯åŽ»å£³é£Ÿç”¨ã€‚</p><p>ã€€ã€€è¦å³ç‚’å³åƒã€è¶çƒ­é£Ÿç”¨ã€‚çƒ­é£Ÿé£Ÿä¹‹å¯å£æ¸…é¦™ï¼Œå†·é£Ÿé£Ÿä¹‹å¹²è‹¦æ— å‘³ã€‚æ‹›å¾…å®¢äººæ—¶ï¼Œæ¯æ¡Œä¸€ç¢Ÿï¼Œ150-200å…‹ä¸ºå®œã€‚</p><p>ã€€ã€€2ã€ç®€å•çš„æ˜¯ç”¨æ¹¿æ¯›å·¾æˆ–ä¿¡å°å°†ç™½æžœåŒ…ä½ï¼Œæ”¾å…¥å¾®æ³¢ç‚‰å°ç«äºŒä¸‰åˆ†é’Ÿï¼Œå¬åˆ°å•ªå•ªå“ï¼Œå°†å…¶çˆ†å¼€å°±å¯é£Ÿç”¨ï¼Œæ¸…èŽ¹å¦‚çŽ‰ï¼Œæ°”å‘³å¾ˆé¦™ï¼Œå£æ„Ÿè½¯ç³¯ã€‚</p><p>ã€€ã€€äºŒã€åŽ»å£³ç”œé£Ÿç±»ï¼š</p><p>ã€€ã€€1ã€ç™½æžœç²¥ï¼šç›Šå…ƒæ°”ã€è¡¥äº”è„ã€æŠ—è¡°è€ï¼Œè€å¹´ã€ä½“å¼±å¤šç—…è€…å°¤ä½³ã€‚æ­£å¸¸äººé£Ÿä¹‹å¥ä½“ã€‚å®œå®¶åº­é£Ÿç”¨ã€‚</p><p>ã€€ã€€åšæ³•ï¼š ç™½æžœä»(åŽ»å£³åŽç”¨æ²¸æ°´çƒ«åŽ»å†…ç§çš®)6-10ç²’ï¼Œå†°ç³–å°‘é‡ï¼Œç²³ç±³2ä¸¤ï¼Œæ°´é€‚é‡ï¼ŒåŒæ—¶æ”¾å…¥é”…ä¸­ï¼Œæ–‡ç«ç…®ç†Ÿå³æˆã€‚ä»¥ç²³ç±³æˆç³Šç³œçŠ¶å³å¯ã€‚</p><p>ã€€ã€€ç™½æžœå®œä¸Žå…¶ä»–æ·¡ç”œä½Žç³–çš„ç±³ç²¥ç±»ç›¸é…ï¼Œå¦‚ç™½æžœå…«å®ç²¥ã€ç™½æžœç»¿è±†ç²¥ã€ç™½æžœæ²™å‚èŽ²å­ç²¥ç­‰ï¼Œç³–ä»¥å†°ç³–ã€ç™½ç³–ä¸ºå®œã€‚</p><p>ã€€ã€€2ã€å°åƒä¸­ç”¨æ¥åšç”œèœï¼Œæ¡‚èŠ±ç™½æžœï¼Œå†°ç³–ç™½æžœã€‚</p><p>ã€€ã€€ä¸‰ã€ç™½æžœæ±¤åœ†ï¼š</p><p>ã€€ã€€åšæ³•ï¼š å°†ç™½æžœä»25å…‹çƒ˜è„†ï¼Œç ”ç²‰ï¼Œé¸¡æ²¹ç†¬ç†Ÿï¼Œé¢ç²‰ç‚’é»„ï¼Œé»‘èŠéº»ç‚’é¦™æ£çƒ‚ã€‚</p><p>ã€€ã€€å°†èœ‚èœœåŽ‹æˆæ³¥çŠ¶ï¼ŒåŠ å…¥ç™½ç³–ã€ç™½æžœç²‰ã€é»‘èŠéº»ï¼Œå’Œä¸Šé¸¡æ²¹åŠ ç‚’é¢ï¼Œæ‰æˆé¦…å„¿ã€‚</p><p>ã€€ã€€å°†ç³¯ç±³ç²‰åˆåŒ€ï¼Œåˆ†æˆå°å›¢ï¼ŒåŒ…ä¸Šé¦…å„¿ï¼Œä½œæˆæ±¤åœ†ã€‚</p><p>ã€€ã€€å¾…é”…å†…æ°´å¼€è‡³æ²¸ï¼Œå°†æ±¤åœ†ä¸‹é”…ï¼Œæ–‡ç«ç…®è‡³æ±¤åœ†æµ®åœ¨æ°´é¢ä¸Š3-5åˆ†é’Ÿå³æˆã€‚</p><p>ã€€ã€€ç‰¹ç‚¹ï¼š é¦…å†…åŠ å…¥ç™½æžœï¼Œæœ‰ç¥ç¦&quot;åƒç§‹é•¿å­˜&quot;ä¹‹æ„ã€‚</p><p><br/></p>
         </span></td>
       </tr>
       
@@ -136,7 +137,7 @@ alt="ÖÐ¹úÒøÐÓÍø" border="0"></A></DIV>
             <td width="18%"></td>
             <td width="82%"></td>
           </tr>
-        </table> ±¾ÎÄµØÖ·:<a href="http://www.cnyxs.com/news_type.asp?id=34946">http://www.cnyxs.com/news_type.asp?id=34946</a>
+        </table> æœ¬æ–‡åœ°å€:<a href="http://www.cnyxs.com/news_type.asp?id=34946">http://www.cnyxs.com/news_type.asp?id=34946</a>
         <br />
         
  </td>
@@ -171,21 +172,21 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
       </tr>
       <tr>
         <td align=left>
-          <b>ÉÏÒ»Æª<a href="http://www.cnyxs.com/news.asp?lb=ÒøÐÓÍø¶¯Ì¬" target="_blank">ÒøÐÓÍø¶¯Ì¬</a>ÎÄÕÂ£º</b>
-          <a href=http://www.cnyxs.com/news_type.asp?id=34924  target=_blank>ÒøÐÓÊ÷Âä¹ûÔ­ÒòÓë·ÀÖÎ</a>
+          <b>ä¸Šä¸€ç¯‡<a href="http://www.cnyxs.com/news.asp?lb=é“¶æç½‘åŠ¨æ€" target="_blank">é“¶æç½‘åŠ¨æ€</a>æ–‡ç« ï¼š</b>
+          <a href=http://www.cnyxs.com/news_type.asp?id=34924  target=_blank>é“¶ææ ‘è½æžœåŽŸå› ä¸Žé˜²æ²»</a>
           <br />
-          <b>ÏÂÒ»Æª<a href="http://www.cnyxs.com/news.asp?lb=ÒøÐÓÍø¶¯Ì¬" target="_blank">ÒøÐÓÍø¶¯Ì¬</a>ÎÄÕÂ£º</b>
-          Ã»ÓÐÏÂÒ»Ìõ<a href=http://www.cnyxs.com/news.asp?lb=ÒøÐÓÍø¶¯Ì¬>ÒøÐÓÍø¶¯Ì¬</a>ÎÄÕÂÁË£¡</td>
+          <b>ä¸‹ä¸€ç¯‡<a href="http://www.cnyxs.com/news.asp?lb=é“¶æç½‘åŠ¨æ€" target="_blank">é“¶æç½‘åŠ¨æ€</a>æ–‡ç« ï¼š</b>
+          æ²¡æœ‰ä¸‹ä¸€æ¡<a href=http://www.cnyxs.com/news.asp?lb=é“¶æç½‘åŠ¨æ€>é“¶æç½‘åŠ¨æ€</a>æ–‡ç« äº†ï¼</td>
       </tr>
       <tr>
-        <td align="right"><font color="#990000">¡¾<a href="http://www.cnyxs.com/tougao.asp">ÎÒÒªÍ¶¸å</a>¡¿¡¾½øÈë<a href="http://bbs.cnyxs.com/" target="_blank">ÒøÐÓÂÛÌ³</a>¡¿¡¾ÍÆ¼ö¸øÅóÓÑ¡¿¡¾<a href="http://bbs.cnyxs.com/"><font color="#990000">·¢±íÆÀÂÛ</font></a>¡¿¡¾<a href="javascript:window.close()"><font color="#990000">¹Ø±Õ´°¿Ú</font></a>¡¿</font></td>
+        <td align="right"><font color="#990000">ã€<a href="http://www.cnyxs.com/tougao.asp">æˆ‘è¦æŠ•ç¨¿</a>ã€‘ã€è¿›å…¥<a href="http://bbs.cnyxs.com/" target="_blank">é“¶æè®ºå›</a>ã€‘ã€æŽ¨èç»™æœ‹å‹ã€‘ã€<a href="http://bbs.cnyxs.com/"><font color="#990000">å‘è¡¨è¯„è®º</font></a>ã€‘ã€<a href="javascript:window.close()"><font color="#990000">å…³é—­çª—å£</font></a>ã€‘</font></td>
       </tr>
     </table></td>
     <td width="206" valign="top"><table width="238" border="0" cellpadding="0" cellspacing="1" bgcolor="#D9D9D9">
       <tr>
         <td height="150" valign="top" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-              <td height="25" align="left" background="images/left_bg1.jpg">¡¡<a href="http://www.cnyxs.com/photo.asp" target="_blank"><font color="#ffffff"><b>ÒøÐÓÍ¼Æ¬</b></font></a></td>
+              <td height="25" align="left" background="images/left_bg1.jpg">ã€€<a href="http://www.cnyxs.com/photo.asp" target="_blank"><font color="#ffffff"><b>é“¶æå›¾ç‰‡</b></font></a></td>
             </tr>
           </table>
             
@@ -193,12 +194,12 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
               <tr>
                 <td align="center"><a href="http://www.cnyxs.com/news_type.asp?id=30839" target="_blank"><img src="ginkgo/edit/UploadFile/2015410144315664.jpg" width="85" height="75" hspace="2" vspace="4" border="0" 
                   align="absmiddle" /></a><br />
-                    <a href="http://www.cnyxs.com/news_type.asp?id=30839" target="_blank">ºØ£ºÚüÖÝÊÐÍõ¼¾</a>
+                    <a href="http://www.cnyxs.com/news_type.asp?id=30839" target="_blank">è´ºï¼šé‚³å·žå¸‚çŽ‹å­£</a>
                     </td>
                 <td align="center">
                     <a href="http://www.cnyxs.com/news_type.asp?id=30578" target="_blank"><img src="ginkgo/edit/UploadFile/2015116134642270.jpg" width="85" height="75" hspace="2" vspace="4" border="0" 
                   align="absmiddle" /></a><br />
-                    <a href="http://www.cnyxs.com/news_type.asp?id=30578" target="_blank">ºØ£ºÚüÖÝÊÐ´ó¹Û</a>
+                    <a href="http://www.cnyxs.com/news_type.asp?id=30578" target="_blank">è´ºï¼šé‚³å·žå¸‚å¤§è§‚</a>
                 </td>
               </tr>
             </table>
@@ -207,12 +208,12 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
               <tr>
                 <td align="center"><a href="http://www.cnyxs.com/news_type.asp?id=30549" target="_blank"><img src="ginkgo/edit/UploadFile/20151993755443.jpg" width="85" height="75" hspace="2" vspace="4" border="0" 
                   align="absmiddle" /></a><br />
-                    <a href="http://www.cnyxs.com/news_type.asp?id=30549" target="_blank">ºØ£ºÚüÖÝÊÐ½õºè</a>
+                    <a href="http://www.cnyxs.com/news_type.asp?id=30549" target="_blank">è´ºï¼šé‚³å·žå¸‚é”¦é¸¿</a>
                     </td>
                 <td align="center">
                     <a href="http://www.cnyxs.com/news_type.asp?id=30529" target="_blank"><img src="ginkgo/edit/UploadFile/201515141840900.jpg" width="85" height="75" hspace="2" vspace="4" border="0" 
                   align="absmiddle" /></a><br />
-                    <a href="http://www.cnyxs.com/news_type.asp?id=30529" target="_blank">ºØ£ºË¶ÑôÑóÂÌ»¯</a>
+                    <a href="http://www.cnyxs.com/news_type.asp?id=30529" target="_blank">è´ºï¼šç¡•é˜³æ´‹ç»¿åŒ–</a>
                 </td>
               </tr>
             </table>
@@ -228,11 +229,11 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
         <tr>
           <td height="150" align="center" valign="top" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td height="25" align="left" background="images/left_bg1.jpg">¡¡
+                <td height="25" align="left" background="images/left_bg1.jpg">ã€€
                     
-                    <a href="http://www.cnyxs.com/xw.asp?lb=ÒøÐÓÍø" target="_blank"><font color="#ffffff"><b>ÒøÐÓÍø</b></font></a>
+                    <a href="http://www.cnyxs.com/xw.asp?lb=é“¶æç½‘" target="_blank"><font color="#ffffff"><b>é“¶æç½‘</b></font></a>
                     
-                    <font color="#ffffff">Ïà¹ØÖ÷Ìâ</font></td>
+                    <font color="#ffffff">ç›¸å…³ä¸»é¢˜</font></td>
               </tr>
             </table>
               <table width="100%" border="0" cellspacing="1" cellpadding="0">
@@ -249,7 +250,7 @@ border="0">
                 </tr>
                 
                 <tr>
-                  <td align="left" valign="top"> ¡¤ <a href="http://www.cnyxs.com/ztt.asp?id=193" target="_blank">ÖÐ¹úÒøÐÓÍøÒøÐÓ¹©ÇóÐÅÏ¢Æ½Ì¨</a>
+                  <td align="left" valign="top"> Â· <a href="http://www.cnyxs.com/ztt.asp?id=193" target="_blank">ä¸­å›½é“¶æç½‘é“¶æä¾›æ±‚ä¿¡æ¯å¹³å°</a>
                       </td>
                 </tr>
                 </td>
@@ -598,7 +599,7 @@ border="0">
                 </tr>
                 
                 <tr>
-                  <td align="left" valign="top"> ¡¤ <a href="http://www.cnyxs.com/ztt.asp?id=12" target="_blank">ÖÐ¹úÒøÐÓÍø»î¶¯×¨Ìâ</a>
+                  <td align="left" valign="top"> Â· <a href="http://www.cnyxs.com/ztt.asp?id=12" target="_blank">ä¸­å›½é“¶æç½‘æ´»åŠ¨ä¸“é¢˜</a>
                       </td>
                 </tr>
                 </td>
@@ -621,8 +622,8 @@ border="0">
         <tr>
           <td height="150" align="center" valign="top" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td height="25" align="left" background="images/left_bg1.jpg">¡¡
-                    <a href="http://www.cnyxs.com/news.asp?lb=ÒøÐÓÍø¶¯Ì¬" target="_blank"><font color="#ffffff"><b>ÒøÐÓÍø¶¯Ì¬</b></font></a>
+                <td height="25" align="left" background="images/left_bg1.jpg">ã€€
+                    <a href="http://www.cnyxs.com/news.asp?lb=é“¶æç½‘åŠ¨æ€" target="_blank"><font color="#ffffff"><b>é“¶æç½‘åŠ¨æ€</b></font></a>
            
 </td>
               </tr>
@@ -637,32 +638,32 @@ border="0">
 border="0">
                 
                 <tr>
-                  <td align="left" valign="top"> ¡¤ <a href="http://www.cnyxs.com/news_type.asp?id=34946" target="_blank">ÒøÐÓ¹ûµÄ¹¦Ð§Óë×÷ÓÃ</a>
+                  <td align="left" valign="top"> Â· <a href="http://www.cnyxs.com/news_type.asp?id=34946" target="_blank">é“¶ææžœçš„åŠŸæ•ˆä¸Žä½œç”¨</a>
                       </td>
                 </tr>
                 
                 <tr>
-                  <td align="left" valign="top"> ¡¤ <a href="http://www.cnyxs.com/news_type.asp?id=34924" target="_blank">ÒøÐÓÊ÷Âä¹ûÔ­ÒòÓë·ÀÖÎ</a>
+                  <td align="left" valign="top"> Â· <a href="http://www.cnyxs.com/news_type.asp?id=34924" target="_blank">é“¶ææ ‘è½æžœåŽŸå› ä¸Žé˜²æ²»</a>
                       </td>
                 </tr>
                 
                 <tr>
-                  <td align="left" valign="top"> ¡¤ <a href="http://www.cnyxs.com/news_type.asp?id=34923" target="_blank">ÒøÐÓÊ÷ÔÚÖÖÖ²ÉÏÐèÒª×¢ÒâÊ²Ã´</a>
+                  <td align="left" valign="top"> Â· <a href="http://www.cnyxs.com/news_type.asp?id=34923" target="_blank">é“¶ææ ‘åœ¨ç§æ¤ä¸Šéœ€è¦æ³¨æ„ä»€ä¹ˆ</a>
                       </td>
                 </tr>
                 
                 <tr>
-                  <td align="left" valign="top"> ¡¤ <a href="http://www.cnyxs.com/news_type.asp?id=30268" target="_blank">Ç¿»¯´ëÊ©£¬È·±£ÒøÐÓ±£½¡Ê³Æ·¿ª·¢ÖÊÁ¿</a>
+                  <td align="left" valign="top"> Â· <a href="http://www.cnyxs.com/news_type.asp?id=30268" target="_blank">å¼ºåŒ–æŽªæ–½ï¼Œç¡®ä¿é“¶æä¿å¥é£Ÿå“å¼€å‘è´¨é‡</a>
                       </td>
                 </tr>
                 
                 <tr>
-                  <td align="left" valign="top"> ¡¤ <a href="http://www.cnyxs.com/news_type.asp?id=30224" target="_blank">ÒøÐÓÃçÊ÷ÐÎ ÔÚÊÐ³¡½»Ò×ÖÐµÄÊµ¼ÊÒâÒå</a>
+                  <td align="left" valign="top"> Â· <a href="http://www.cnyxs.com/news_type.asp?id=30224" target="_blank">é“¶æè‹—æ ‘å½¢ åœ¨å¸‚åœºäº¤æ˜“ä¸­çš„å®žé™…æ„ä¹‰</a>
                       </td>
                 </tr>
                 
                 <tr>
-                  <td align="left" valign="top"> ¡¤ <a href="http://www.cnyxs.com/news_type.asp?id=30187" target="_blank">ÒøÐÓÊ÷µÄÄ¾²Ä±»µÃµ½ÁË´Ó·ÖµÄÀûÓÃ</a>
+                  <td align="left" valign="top"> Â· <a href="http://www.cnyxs.com/news_type.asp?id=30187" target="_blank">é“¶ææ ‘çš„æœ¨æè¢«å¾—åˆ°äº†ä»Žåˆ†çš„åˆ©ç”¨</a>
                       </td>
                 </tr>
                 
@@ -679,33 +680,33 @@ border="0">
         <tr>
           <td height="150" align="left" valign="top" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td height="25" align="left" background="images/left_bg1.jpg">¡¡<b><font color="#fffffff">×îÐÂÒøÐÓ±¨µÀ</font></b></td>
+                <td height="25" align="left" background="images/left_bg1.jpg">ã€€<b><font color="#fffffff">æœ€æ–°é“¶ææŠ¥é“</font></b></td>
               </tr>
             </table>
               
-            ¡¤<a href="http://www.cnyxs.com/news_type.asp?id=34949" title="ÒøÐÓÊ÷¼Û¸ñ°´Ê²Ã´¼ÆËã?ÔõÃ´¼ÆËãÒøÐÓÊ÷¼Û¸ñ?" target="_blank">ÒøÐÓÊ÷¼Û¸ñ°´Ê²Ã´¼ÆËã?ÔõÃ´</a><br />
+            Â·<a href="http://www.cnyxs.com/news_type.asp?id=34949" title="é“¶ææ ‘ä»·æ ¼æŒ‰ä»€ä¹ˆè®¡ç®—?æ€Žä¹ˆè®¡ç®—é“¶ææ ‘ä»·æ ¼?" target="_blank">é“¶ææ ‘ä»·æ ¼æŒ‰ä»€ä¹ˆè®¡ç®—?æ€Žä¹ˆ</a><br />
             
-            ¡¤<a href="http://www.cnyxs.com/news_type.asp?id=34948" title="ÒøÐÓÒ¶Ò²ÄÜ×öÕíÍ·ÁË£¿ºÃ´¦»¹²»ÉÙ" target="_blank">ÒøÐÓÒ¶Ò²ÄÜ×öÕíÍ·ÁË£¿ºÃ´¦»¹</a><br />
+            Â·<a href="http://www.cnyxs.com/news_type.asp?id=34948" title="é“¶æå¶ä¹Ÿèƒ½åšæž•å¤´äº†ï¼Ÿå¥½å¤„è¿˜ä¸å°‘" target="_blank">é“¶æå¶ä¹Ÿèƒ½åšæž•å¤´äº†ï¼Ÿå¥½å¤„è¿˜</a><br />
             
-            ¡¤<a href="http://www.cnyxs.com/news_type.asp?id=34947" title="ÒøÐÓÊ÷µÄ¼¸ÖÖ·±Ö³·½·¨£¬ÄãÖªµÀ¶àÉÙ£¿" target="_blank">ÒøÐÓÊ÷µÄ¼¸ÖÖ·±Ö³·½·¨£¬ÄãÖª</a><br />
+            Â·<a href="http://www.cnyxs.com/news_type.asp?id=34947" title="é“¶ææ ‘çš„å‡ ç§ç¹æ®–æ–¹æ³•ï¼Œä½ çŸ¥é“å¤šå°‘ï¼Ÿ" target="_blank">é“¶ææ ‘çš„å‡ ç§ç¹æ®–æ–¹æ³•ï¼Œä½ çŸ¥</a><br />
             
-            ¡¤<a href="http://www.cnyxs.com/news_type.asp?id=34946" title="ÒøÐÓ¹ûµÄ¹¦Ð§Óë×÷ÓÃ" target="_blank">ÒøÐÓ¹ûµÄ¹¦Ð§Óë×÷ÓÃ</a><br />
+            Â·<a href="http://www.cnyxs.com/news_type.asp?id=34946" title="é“¶ææžœçš„åŠŸæ•ˆä¸Žä½œç”¨" target="_blank">é“¶ææžœçš„åŠŸæ•ˆä¸Žä½œç”¨</a><br />
             
-            ¡¤<a href="http://www.cnyxs.com/news_type.asp?id=34945" title="ÈçºÎ¹ºÂòÒøÐÓÊ÷£¬ÒøÐÓÊ÷¼Û¸ñÔõÃ´Ñù?" target="_blank">ÈçºÎ¹ºÂòÒøÐÓÊ÷£¬ÒøÐÓÊ÷¼Û¸ñ</a><br />
+            Â·<a href="http://www.cnyxs.com/news_type.asp?id=34945" title="å¦‚ä½•è´­ä¹°é“¶ææ ‘ï¼Œé“¶ææ ‘ä»·æ ¼æ€Žä¹ˆæ ·?" target="_blank">å¦‚ä½•è´­ä¹°é“¶ææ ‘ï¼Œé“¶ææ ‘ä»·æ ¼</a><br />
             
-            ¡¤<a href="http://www.cnyxs.com/news_type.asp?id=34944" title="ÒøÐÓÊ÷ÔÚÄÄÀï·çË®ºÃ£¬ÎÝºóºÍÔº×ÓÄÚÄÜÔÔÖÖÂð" target="_blank">ÒøÐÓÊ÷ÔÚÄÄÀï·çË®ºÃ£¬ÎÝºóºÍ</a><br />
+            Â·<a href="http://www.cnyxs.com/news_type.asp?id=34944" title="é“¶ææ ‘åœ¨å“ªé‡Œé£Žæ°´å¥½ï¼Œå±‹åŽå’Œé™¢å­å†…èƒ½æ ½ç§å—" target="_blank">é“¶ææ ‘åœ¨å“ªé‡Œé£Žæ°´å¥½ï¼Œå±‹åŽå’Œ</a><br />
             
-            ¡¤<a href="http://www.cnyxs.com/news_type.asp?id=34943" title="ÒøÐÓÊ÷ÊÐ³¡¼Û¸ñ½ñÄêÔõÃ´Ñù£¿" target="_blank">ÒøÐÓÊ÷ÊÐ³¡¼Û¸ñ½ñÄêÔõÃ´Ñù£¿</a><br />
+            Â·<a href="http://www.cnyxs.com/news_type.asp?id=34943" title="é“¶ææ ‘å¸‚åœºä»·æ ¼ä»Šå¹´æ€Žä¹ˆæ ·ï¼Ÿ" target="_blank">é“¶ææ ‘å¸‚åœºä»·æ ¼ä»Šå¹´æ€Žä¹ˆæ ·ï¼Ÿ</a><br />
             
-            ¡¤<a href="http://www.cnyxs.com/news_type.asp?id=34942" title="ÌýÑøÀÏÁìÓò×¨¼ÒÍõ½õÌ¸ÖÐ¹úÈËÈçºÎÑøÀÏ" target="_blank">ÌýÑøÀÏÁìÓò×¨¼ÒÍõ½õÌ¸ÖÐ¹úÈË</a><br />
+            Â·<a href="http://www.cnyxs.com/news_type.asp?id=34942" title="å¬å…»è€é¢†åŸŸä¸“å®¶çŽ‹é”¦è°ˆä¸­å›½äººå¦‚ä½•å…»è€" target="_blank">å¬å…»è€é¢†åŸŸä¸“å®¶çŽ‹é”¦è°ˆä¸­å›½äºº</a><br />
             
-            ¡¤<a href="http://www.cnyxs.com/news_type.asp?id=34941" title="ÓëÒøÐÓÊ÷µÄÊ®ÄêÖ®Ô¼ Çàµº¹«½»Ö¾Ô¸ÕßÈÏÑøÊ÷Ä¾ÒÑ³É²Ä" target="_blank">ÓëÒøÐÓÊ÷µÄÊ®ÄêÖ®Ô¼ Çàµº¹«</a><br />
+            Â·<a href="http://www.cnyxs.com/news_type.asp?id=34941" title="ä¸Žé“¶ææ ‘çš„åå¹´ä¹‹çº¦ é’å²›å…¬äº¤å¿—æ„¿è€…è®¤å…»æ ‘æœ¨å·²æˆæ" target="_blank">ä¸Žé“¶ææ ‘çš„åå¹´ä¹‹çº¦ é’å²›å…¬</a><br />
             
-            ¡¤<a href="http://www.cnyxs.com/news_type.asp?id=34940" title="21ÖÐÊ¦Éú»ÓÇÂÖÖÏÂÒøÐÓÊ÷ Ñ§ÉúÓë181¿ÃÐ¡Ê÷¹²³É³¤" target="_blank">21ÖÐÊ¦Éú»ÓÇÂÖÖÏÂÒøÐÓÊ÷ </a><br />
+            Â·<a href="http://www.cnyxs.com/news_type.asp?id=34940" title="21ä¸­å¸ˆç”ŸæŒ¥é”¹ç§ä¸‹é“¶ææ ‘ å­¦ç”Ÿä¸Ž181æ£µå°æ ‘å…±æˆé•¿" target="_blank">21ä¸­å¸ˆç”ŸæŒ¥é”¹ç§ä¸‹é“¶ææ ‘ </a><br />
             
-            ¡¤<a href="http://www.cnyxs.com/news_type.asp?id=34939" title="ÏëÒªÒøÐÓÊ÷¾¡¿ì½á¹û£¬ÕâÐ©ÖªÊ¶µÃ¼ÇÀÎ£¡" target="_blank">ÏëÒªÒøÐÓÊ÷¾¡¿ì½á¹û£¬ÕâÐ©Öª</a><br />
+            Â·<a href="http://www.cnyxs.com/news_type.asp?id=34939" title="æƒ³è¦é“¶ææ ‘å°½å¿«ç»“æžœï¼Œè¿™äº›çŸ¥è¯†å¾—è®°ç‰¢ï¼" target="_blank">æƒ³è¦é“¶ææ ‘å°½å¿«ç»“æžœï¼Œè¿™äº›çŸ¥</a><br />
             
-            ¡¤<a href="http://www.cnyxs.com/news_type.asp?id=34938" title="ÒøÐÓÊ÷±»¡°ÌêÍ·¡± º¼ÖÝµÂÊ¤¶«´åµÄ¾ÓÃñÎªÉ¶·×·×µãÔÞ" target="_blank">ÒøÐÓÊ÷±»¡°ÌêÍ·¡± º¼ÖÝµÂÊ¤</a><br />
+            Â·<a href="http://www.cnyxs.com/news_type.asp?id=34938" title="é“¶ææ ‘è¢«â€œå‰ƒå¤´â€ æ­å·žå¾·èƒœä¸œæ‘çš„å±…æ°‘ä¸ºå•¥çº·çº·ç‚¹èµž" target="_blank">é“¶ææ ‘è¢«â€œå‰ƒå¤´â€ æ­å·žå¾·èƒœ</a><br />
             </td>
         </tr>
       </table></td>
@@ -723,24 +724,24 @@ border="0">
 <div align=center>
   <table width="980" border="0" align="center" cellpadding="0" cellspacing="0">
     <tr>
-      <td width="34" height="30" align="right"><img src="images/icon_warning_24x24.gif" alt="ÒøÐÓ" width="24" height="24" hspace="5" /></td>
-      <td width="946" class="font7"><a href="http://www.cnyxs.com/" target="_blank"><b><font color="red">ÖÐ¹úÒøÐÓÍø</font></b></a><b>ÃâÔðÉùÃ÷£º</b> ÒÔÉÏËùÕ¹Ê¾µÄÐÅÏ¢ÓÉÆóÒµ»ò¸öÈË×ÔÐÐÌá¹©£¬ÄÚÈÝµÄÕæÊµÐÔ¡¢×¼È·ÐÔºÍºÏ·¨ÐÔÓÉ·¢²¼ÆóÒµ»ò¸öÈË¸ºÔð¡£<a href="http://www.cnyxs.com/" target="_blank">ÖÐ¹úÒøÐÓÍø</a>¶Ô´Ë²»³Ðµ£ÈÎºÎ±£Ö¤ÔðÈÎ¡£±¾Õ¾ÐÅÏ¢À´×Ô»¥ÁªÍø,¿É¹©²Î¿¼²»ÄÜ×÷ÎªÕæÊµÒÀ¾Ý,Áí±¾Õ¾ÈçÓÐ×ªÔØ»òÒýÓÃÎÄÕÂÉæ¼°°æÈ¨ÎÊÌâ,ÇëËÙÓëÎÒÃÇÁªÏµ QQ:18708455</td>
+      <td width="34" height="30" align="right"><img src="images/icon_warning_24x24.gif" alt="é“¶æ" width="24" height="24" hspace="5" /></td>
+      <td width="946" class="font7"><a href="http://www.cnyxs.com/" target="_blank"><b><font color="red">ä¸­å›½é“¶æç½‘</font></b></a><b>å…è´£å£°æ˜Žï¼š</b> ä»¥ä¸Šæ‰€å±•ç¤ºçš„ä¿¡æ¯ç”±ä¼ä¸šæˆ–ä¸ªäººè‡ªè¡Œæä¾›ï¼Œå†…å®¹çš„çœŸå®žæ€§ã€å‡†ç¡®æ€§å’Œåˆæ³•æ€§ç”±å‘å¸ƒä¼ä¸šæˆ–ä¸ªäººè´Ÿè´£ã€‚<a href="http://www.cnyxs.com/" target="_blank">ä¸­å›½é“¶æç½‘</a>å¯¹æ­¤ä¸æ‰¿æ‹…ä»»ä½•ä¿è¯è´£ä»»ã€‚æœ¬ç«™ä¿¡æ¯æ¥è‡ªäº’è”ç½‘,å¯ä¾›å‚è€ƒä¸èƒ½ä½œä¸ºçœŸå®žä¾æ®,å¦æœ¬ç«™å¦‚æœ‰è½¬è½½æˆ–å¼•ç”¨æ–‡ç« æ¶‰åŠç‰ˆæƒé—®é¢˜,è¯·é€Ÿä¸Žæˆ‘ä»¬è”ç³» QQ:18708455</td>
     </tr>
   </table>
 </div>
-<!--µ×²¿¿ªÊ¼-->
+<!--åº•éƒ¨å¼€å§‹-->
 <DIV class="foot">
 <SCRIPT type="text/javascript" src="images/foot.js"></SCRIPT><p>
-<a href="http://www.cnyxs.com">ÖÐ¹úÒøÐÓÍø</a>¹Ø¼ü×Ö:<a href="http://www.cnyxs.com" target="_blank">ÒøÐÓ</a>-<a href="http://www.cnyxs.com/yinxingshu/" target="_blank">ÒøÐÓÊ÷</a>-<a href="http://www.cnyxs.com" target="_blank">ÒøÐÓÊ÷¼Û¸ñ</a>-<a href="http://www.cnyxs.com/yinxingguo/" target="_blank">ÒøÐÓ¹û</a> - <a href="http://www.cnyxs.com/yinxingye/" target="_blank">ÒøÐÓÒ¶</a> - <a href="http://www.cnyxs.com/yinxingcha/" target="_blank">ÒøÐÓ²è</a> - <a href="http://www.cnyxs.com/baiguo/" target="_blank">°×¹û</a></p>
+<a href="http://www.cnyxs.com">ä¸­å›½é“¶æç½‘</a>å…³é”®å­—:<a href="http://www.cnyxs.com" target="_blank">é“¶æ</a>-<a href="http://www.cnyxs.com/yinxingshu/" target="_blank">é“¶ææ ‘</a>-<a href="http://www.cnyxs.com" target="_blank">é“¶ææ ‘ä»·æ ¼</a>-<a href="http://www.cnyxs.com/yinxingguo/" target="_blank">é“¶ææžœ</a> - <a href="http://www.cnyxs.com/yinxingye/" target="_blank">é“¶æå¶</a> - <a href="http://www.cnyxs.com/yinxingcha/" target="_blank">é“¶æèŒ¶</a> - <a href="http://www.cnyxs.com/baiguo/" target="_blank">ç™½æžœ</a></p>
 <P>
-×ÉÑ¯ÈÈÏß£º0516-<SPAN class="footkuang">81581111 </SPAN></p>
-<P>±¾ÍøÓ¢ÎÄÓòÃû:<STRONG style="color: rgb(255, 0, 0);"> <A 
-href="http://www.cnyxs.com/">www.cnyxs.com</A></STRONG> ÖÐÎÄÓòÃû:<STRONG style="color: rgb(255, 0, 0);"> <A 
-href="http://www.cnyxs.com/">ÖÐ¹úÒøÐÓÍø</A></STRONG>.com£­ÖÐ¹ú×î×¨ÒµµÄ<A style="padding: 0px;" 
-href="http://www.cnyxs.com/">ÒøÐÓ</A><a href="http://www.cnyxs.com/baiguo/" target="_blank">°×¹û</a>ÐÐÒµÃÅ»§ÍøÕ¾</P>
-<P><A href="http://www.cnyxs.com/" rel="nofollow">ÖÐ¹úÒøÐÓÍø</A>  °æÈ¨ËùÓÐ &copy; 2005-2020 ËÕICP±¸07021153ºÅ <script src="http://s22.cnzz.com/stat.php?id=3259912&web_id=3259912" language="JavaScript"></script></p>
+å’¨è¯¢çƒ­çº¿ï¼š0516-<SPAN class="footkuang">81581111 </SPAN></p>
+<P>æœ¬ç½‘è‹±æ–‡åŸŸå:<STRONG style="color: rgb(255, 0, 0);"> <A 
+href="http://www.cnyxs.com/">www.cnyxs.com</A></STRONG> ä¸­æ–‡åŸŸå:<STRONG style="color: rgb(255, 0, 0);"> <A 
+href="http://www.cnyxs.com/">ä¸­å›½é“¶æç½‘</A></STRONG>.comï¼ä¸­å›½æœ€ä¸“ä¸šçš„<A style="padding: 0px;" 
+href="http://www.cnyxs.com/">é“¶æ</A><a href="http://www.cnyxs.com/baiguo/" target="_blank">ç™½æžœ</a>è¡Œä¸šé—¨æˆ·ç½‘ç«™</P>
+<P><A href="http://www.cnyxs.com/" rel="nofollow">ä¸­å›½é“¶æç½‘</A>  ç‰ˆæƒæ‰€æœ‰ &copy; 2005-2020 è‹ICPå¤‡07021153å· <script src="http://s22.cnzz.com/stat.php?id=3259912&web_id=3259912" language="JavaScript"></script></p>
 </DIV>
-<!--µ×²¿½áÊø-->
+<!--åº•éƒ¨ç»“æŸ-->
 
 </body>
 </html>
@@ -748,8 +749,14 @@ href="http://www.cnyxs.com/">ÒøÐÓ</A><a href="http://www.cnyxs.com/baiguo/" targ
 
 
 
-LINK_PATTERN = '.*?±¾ÎÄµØÖ·:<a.*?href="(.*?)">.*?</a>'
+LINK_PATTERN = '.*?æœ¬æ–‡åœ°å€:<a.*?href="(.*?)">.*?</a>'
 pattern = re.compile(LINK_PATTERN)
 print(re.findall(pattern, content))
+
+g = ginkgoparser.GinkgoParser(content)
+
+#print(g.soup.find_all('p')[0].text)
+
+g.parse_body()
 
 
