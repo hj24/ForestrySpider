@@ -1,6 +1,6 @@
 from fetcher import basefetcher
 import requests
-from requests.exceptions import Timeout
+from bs4 import BeautifulSoup
 
 class GinkgoFetcher(basefetcher.BaseFetcher):
     """
@@ -22,6 +22,16 @@ class GinkgoFetcher(basefetcher.BaseFetcher):
         except Exception as e:
             print(e)
 
+class MainPageFetcher(GinkgoFetcher):
+    """
+    主页面下载器，获取当前母url下的主页面
+    继承 GinkgoFetcher 所有内容
+    """
+    pass
+
 if __name__ == '__main__':
     s = GinkgoFetcher()
-    s.send_requests_get('http://www.cnyxs.com/news_type.asp?id=34946')
+    m = MainPageFetcher()
+    res = m.send_requests_get('http://www.cnyxs.com/news_type.asp?id=34946')
+    # s.send_requests_get('http://www.cnyxs.com/news_type.asp?id=34946')
+    print(res.content)
