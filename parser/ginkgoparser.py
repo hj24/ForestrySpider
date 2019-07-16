@@ -60,12 +60,13 @@ class GinkgoParser(baseparser.ArticleBaseParser):
         return re.findall(self.link_pattern, self.content)[0]
 
 if __name__ == '__main__':
-    content = """
-    <h1>嘻嘻</h1>
-    <P>本网英文域名:<STRONG style="color: rgb(255, 0, 0);"> <A 
-    href="http://www.cnyxs.com/">www.cnyxs.com</A></STRONG> 中文域名:<STRONG style="color: rgb(255, 0, 0);"> <A 
-    href="http://www.cnyxs.com/">中国银杏网</A></STRONG>.com－中国最专业的<A style="padding: 0px;" 
-    href="http://www.cnyxs.com/">银杏</A><a href="http://www.cnyxs.com/baiguo/" target="_blank">白果</a>行业门户网站</P>
-    """
+    from utils.test import content
+    # content = """
+    # <h1>嘻嘻</h1>
+    # <P>本网英文域名:<STRONG style="color: rgb(255, 0, 0);"> <A
+    # href="http://www.cnyxs.com/">www.cnyxs.com</A></STRONG> 中文域名:<STRONG style="color: rgb(255, 0, 0);"> <A
+    # href="http://www.cnyxs.com/">中国银杏网</A></STRONG>.com－中国最专业的<A style="padding: 0px;"
+    # href="http://www.cnyxs.com/">银杏</A><a href="http://www.cnyxs.com/baiguo/" target="_blank">白果</a>行业门户网站</P>
+    # """
     parser = GinkgoParser(content)
-    print(parser.parse_title())
+    print(parser.parse_source())

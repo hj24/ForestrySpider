@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import asyncio
 
 class BaseFetcher(ABC):
     """
@@ -8,8 +9,13 @@ class BaseFetcher(ABC):
         send_requests_get - 发送get请求
         fetch - 获取内容的主函数
     """
+
     @abstractmethod
-    def fetch(self, url):
+    async def get(self, *args, **kwargs):
+        pass
+
+    @abstractmethod
+    async def fetch(self, *args, **kwargs):
         """
         处理fetch的主函数
 
@@ -21,7 +27,7 @@ class BaseFetcher(ABC):
         pass
 
     @abstractmethod
-    def send_requests_get(self, url):
+    async def send_requests_get(self, *args, **kwargs):
         """
         发送get请求，主要在fetch函数中调用
 
