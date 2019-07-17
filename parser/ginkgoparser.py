@@ -1,7 +1,9 @@
 # coding=utf-8
-from bs4 import BeautifulSoup
-from parser import baseparser
 import re
+import json
+
+from parser import baseparser
+
 
 class GinkgoParser(baseparser.ArticleBaseParser):
 
@@ -54,19 +56,49 @@ class GinkgoParser(baseparser.ArticleBaseParser):
             body.append(p.text.strip())
         return body
 
-
     def parse_link(self, *args, **kwargs):
         # 返回值是一个只含一个元素的列表，arr[0]取出
         return re.findall(self.link_pattern, self.content)[0]
 
+    def parse_factory(self, *args, **kwargs):
+        """
+        将解析结果封装成json
+
+        参数:
+            type    -   文章类型，区分是知网还是银杏网的内容
+            title   -   标题
+            summary -   摘要，取正文的四分之一
+            detail  -   详细全文
+            author  -   作者
+            source  -   出处
+            date    -   日期
+            link    -   原文地址
+        匿名函数:
+            summary -   截取做摘要的部分，默认取原文的1/20
+        返回:
+            json对象
+        """
+
+        content = {}
+
+        content['type'] = 1
+        content['title'] = self.parse_title()
+
+        detail = self.parse_body()
+        detail_length = len(detail)
+        summary = lambda x: x - 19 * x // 20
+
+        content['summary'] = detail[:summary(detail_length)]
+        content['detail'] = detail
+        content['author'] = self.parse_author()
+        content['source'] = self.parse_source()
+        content['date'] = self.parse_date()
+        content['link'] = self.parse_link()
+
+        return json.dumps(content, ensure_ascii=False)
+
+
 if __name__ == '__main__':
     from utils.test import content
-    # content = """
-    # <h1>嘻嘻</h1>
-    # <P>本网英文域名:<STRONG style="color: rgb(255, 0, 0);"> <A
-    # href="http://www.cnyxs.com/">www.cnyxs.com</A></STRONG> 中文域名:<STRONG style="color: rgb(255, 0, 0);"> <A
-    # href="http://www.cnyxs.com/">中国银杏网</A></STRONG>.com－中国最专业的<A style="padding: 0px;"
-    # href="http://www.cnyxs.com/">银杏</A><a href="http://www.cnyxs.com/baiguo/" target="_blank">白果</a>行业门户网站</P>
-    # """
     parser = GinkgoParser(content)
-    print(parser.parse_source())
+    print(parser.parse_factory())
