@@ -3,12 +3,17 @@ from aiohttp import web
 import asyncio
 
 from fetcher import basefetcher
+from utils.decorators import counter
 
 
 class GinkgoFetcher(basefetcher.BaseFetcher):
     """
     中国银杏网页面下载器
     """
+
+    def __init__(self, url):
+        super().__init__()
+        self.url = url
 
     async def get(self, session, url):
         # 获取网页内容，按状态码不同进行相应处理
@@ -27,8 +32,8 @@ class GinkgoFetcher(basefetcher.BaseFetcher):
                     headers=response.headers
                 )
 
-    async def fetch(self, url, semaphore):
-        response =  await self.send_requests_get(url, sem)
+    async def fetch(self, semaphore):
+        response =  await self.send_requests_get(self.url, semaphore)
         return response
 
     async def send_requests_get(self, url, semaphore):
@@ -54,24 +59,24 @@ class MainPageFetcher(GinkgoFetcher):
 if __name__ == '__main__':
     test_url = 'http://www.cnyxs.com/news_type.asp?id=34946'
     sem = asyncio.Semaphore(20)
-    s = GinkgoFetcher()
-    m = MainPageFetcher()
-    res = m.send_requests_get('http://www.cnyxs.com/news_type.asp?id=34946', sem)
-    print(res)
+    s = GinkgoFetcher(test_url)
+    # m = MainPageFetcher()
+    # res = m.send_requests_get('http://www.cnyxs.com/news_type.asp?id=34946', sem)
+    # print(res)
     # s.send_requests_get('http://www.cnyxs.com/news_type.asp?id=34946')
     import time
     st = time.time()
 
     loop = asyncio.get_event_loop()
 
-    tasks = [m.fetch(test_url, sem) for _ in range(1)]
+    tasks = [s.fetch(sem) for _ in range(10)]
 
     res, _ = loop.run_until_complete(asyncio.wait(tasks))
 
     loop.close()
 
-    for i in res:
-        print(i.result())
+    # for i in res:
+    #     print(i.result())
 
     e = time.time()
     print(e - st)

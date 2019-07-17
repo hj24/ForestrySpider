@@ -10,6 +10,9 @@ class BaseFetcher(ABC):
         fetch - 获取内容的主函数
     """
 
+    def __init__(self, *args, **kwargs):
+        pass
+
     @abstractmethod
     async def get(self, *args, **kwargs):
         pass
