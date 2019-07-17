@@ -1,4 +1,3 @@
-import json
 from config.urls.settings import GINKGO_CONFIG_FILE
 from config.urls import configer
 
@@ -15,4 +14,4 @@ class GinkgoConfig(configer.ParseConfig):
 if __name__ == '__main__':
 
     p = GinkgoConfig()
-    print(p.parser())
+    print(type(p.parser()))

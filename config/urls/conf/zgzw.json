@@ -1,5 +1,5 @@
 {
-    "url": "http://m.cnki.net/mcnki/LiteratureSearchHandler",
+    "url": "http://m.cnki.net/mcnki/LiteratureSearchHandler?t=07002008538&do=getliterature&tid=Literature{CJFD,CDFD,CMFD,CPFD}&kw=%E9%93%B6%E6%9D%8F&sf=Subject&orf=Subject&or=0&astime=undefined&start=0&len=10&otherparam=",
     "type": 2,
     "comment": "中国知网关于银杏的论文"
-  }
+}
