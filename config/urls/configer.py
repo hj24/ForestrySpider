@@ -1,5 +1,6 @@
 import json
 
+
 class ParseConfig:
     """
     解析爬虫接口
