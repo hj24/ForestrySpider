@@ -3,7 +3,6 @@ from aiohttp import web
 import asyncio
 
 from fetcher import basefetcher
-from utils.decorators import counter
 
 
 class GinkgoFetcher(basefetcher.BaseFetcher):
