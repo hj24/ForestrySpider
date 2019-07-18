@@ -60,9 +60,12 @@ if __name__ == '__main__':
     st = time.time()
 
     loop = asyncio.get_event_loop()
-    tasks = [zz.fetch(sem) for _ in range(20)]
+    tasks = [zz.fetch(sem) for _ in range(1)]
     res, _ = loop.run_until_complete(asyncio.wait(tasks))
     loop.close()
+
+    for i in res:
+        print(i.result())
 
     e = time.time()
     print(e - st)
