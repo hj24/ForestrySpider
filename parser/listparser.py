@@ -1,8 +1,17 @@
 # encoding=utf-8
-from parser import baseparser
 import re
 
+from parser import baseparser
+
+
 class MenuParser(baseparser.MenuBaseParser):
+    """
+    主页解析器
+
+    - 对应中国银杏网每一个专题的第一页
+    - 解析它们的页数并生成每一页的url连接
+    """
+
 
     def __init__(self, content, url=None):
         super().__init__(content, url)
@@ -12,15 +21,32 @@ class MenuParser(baseparser.MenuBaseParser):
         return re.compile('</a>&nbsp;&nbsp;下一页&nbsp;&nbsp;尾页&nbsp;&nbsp;第.*?页/共(.*?)页&nbsp;&nbsp;共.*?条银杏网动态</td>')
 
     def parse_page_nums(self, *args, **kwargs):
+        """
+        解析中国银杏网一个专题有多少页
+        """
+
         nums = re.findall(self.page_num_pattern, self.content)[0]
         return int(nums)
 
     def generate_links(self, nums):
+        """
+        根据 parse_page_nums 方法产生每一页的 url
+
+        参数:
+            nums -  parse_page_nums的返回值，表示页数
+        """
+
         base = self.root_url
         return [base + '&pageno=' + str(i) for i in range(1, nums)]
 
 
 class UrlListParser(baseparser.UrlListBaseParser):
+    """
+    文章url解析器
+
+    - 解析每一页的所有文章的url
+    """
+
 
     def __init__(self, content, url=None):
         super().__init__(content, url)

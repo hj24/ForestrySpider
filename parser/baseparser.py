@@ -1,12 +1,11 @@
 from abc import ABC, abstractmethod
 from bs4 import BeautifulSoup
 
+
 class ArticleBaseParser(ABC):
     """
     文章解析器基类，定义了一些解析器通用的方法
 
-    Todo:
-        1. 该基类要兼容中国知网
     方法:
         parse_author - 从网页中解析出作者
         parse_date   - 解析日期信息
@@ -19,6 +18,8 @@ class ArticleBaseParser(ABC):
         content      - 页面内容
         url          - 可选参数，当前页面的url
     """
+
+
     PARSER_TYPE = 'lxml'
 
     def __init__(self, content, url=None):
@@ -64,6 +65,7 @@ class UrlListBaseParser(ABC):
         content - 页面内容
         url     - 可选参数，当前页面的url
     """
+
 
     PARSER_TYPE = 'lxml'
 

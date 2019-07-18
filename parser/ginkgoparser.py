@@ -90,7 +90,7 @@ class GinkgoParser(baseparser.ArticleBaseParser):
 
         content['summary'] = detail[:summary(detail_length)]
         content['detail'] = detail
-        content['author'] = self.parse_author()
+        content['creator'] = self.parse_author()
         content['source'] = self.parse_source()
         content['date'] = self.parse_date()
         content['link'] = self.parse_link()
