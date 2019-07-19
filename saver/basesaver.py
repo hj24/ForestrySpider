@@ -1,5 +1,11 @@
 from abc import abstractmethod, ABC
 
+from model.articlemodel import Article
+from utils.decorators.db import auto_connect
+from config.db.settings import DATABASE
+
+
+db = DATABASE['mysqldb']
 
 class BaseSaver(ABC):
 
@@ -10,14 +16,15 @@ class BaseSaver(ABC):
     def save(self, *args, **kwargs):
         pass
 
-    @abstractmethod
-    def delete(self, *args, **kwargs):
-        pass
+class Saver(BaseSaver):
 
-    @abstractmethod
-    def update(self, *args, **kwargs):
-        pass
+    def __init__(self, content):
+        super().__init__(content)
 
-    @abstractmethod
-    def query(self, *args, **kwargs):
-        pass
+    @auto_connect(db=db)
+    def save(self, *args, **kwargs):
+
+        title = self.content['title']
+
+        with db.atomic():
+            Article.get_or_create(title=title, defaults={'content': self.content})
