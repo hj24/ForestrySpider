@@ -11,12 +11,16 @@ class ZgzwParser:
     def __init__(self, content):
         """
         参数:
-        content -  字符串型的json数据
+        content -  json数据
         cells   -  json中的所有文章信息
         """
 
         self.content = content
-        self.json_content = eval(content)
+
+        if type(content) == str:
+            self.json_content = eval(content)
+        elif type(content) == dict:
+            self.json_content = content
 
     def __parse_cells(self):
         return self.json_content["cells"]
@@ -25,7 +29,7 @@ class ZgzwParser:
         cells = self.__parse_cells()
         for cell in cells:
             cell['type'] = 2
-            cell = json.dumps(cell)
+            # cell = json.dumps(cell)
         return cells
 
 class ZgzwMainDataParser:
