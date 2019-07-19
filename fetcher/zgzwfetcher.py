@@ -48,6 +48,7 @@ class ZgzwFetcher(GinkgoFetcher):
 
 if __name__ == '__main__':
     from config.urls.zgzwconfig import ZgzwConfig
+    from parser.zgzwparser import ZgzwParser
     z = ZgzwConfig()
     test_url = z.parser()['url']
 
@@ -59,13 +60,28 @@ if __name__ == '__main__':
     import time
     st = time.time()
 
+    def callback(res):
+        from copy import deepcopy
+
+        res = ZgzwParser(res.result()).parse_factory()
+
+        #
+        print(res)
+
+        return res
+
+
     loop = asyncio.get_event_loop()
-    tasks = [zz.fetch(sem) for _ in range(1)]
-    res, _ = loop.run_until_complete(asyncio.wait(tasks))
+    tasks = [asyncio.ensure_future(zz.fetch(sem)) for _ in range(10)]
+
+    for t in tasks:
+        t.add_done_callback(callback)
+
+    res = loop.run_until_complete(asyncio.gather(*tasks))
     loop.close()
 
     for i in res:
-        print(i.result())
+        print(i)
 
     e = time.time()
     print(e - st)
