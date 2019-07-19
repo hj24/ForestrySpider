@@ -1,5 +1,6 @@
 import os
 from peewee import *
+from playhouse.mysql_ext import MySQLConnectorDatabase
 
 from config.db.configer import DBConfiger, read_db_config_file
 
@@ -18,6 +19,7 @@ mysql_db = read_db_config_file(DB, 'mysqldb')
 
 # 在此添加数据库连接配置
 DATABASE = {
-    'mysqldb': MySQLDatabase(mysql_db.name, user=mysql_db.user, password=mysql_db.passw,
+    'mysqldb': MySQLConnectorDatabase(mysql_db.name, user=mysql_db.user, password=mysql_db.passw,
                             host=mysql_db.host, port=mysql_db.port),
 }
+

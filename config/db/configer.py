@@ -2,9 +2,6 @@ import configparser
 from collections import namedtuple
 
 
-"""
-解析数据库配置文件
-"""
 class DBConfiger:
 
     def __init__(self, DB_CONFIG_FILE):
