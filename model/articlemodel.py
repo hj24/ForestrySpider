@@ -21,5 +21,5 @@ class Article(BaseModel):
         content - json格式的内容，包含了文章内容来源等在内的所有信心
     """
     
-    title = CharField(max_length=100)
+    title = CharField(max_length=100, unique=True)
     content = JSONField()
