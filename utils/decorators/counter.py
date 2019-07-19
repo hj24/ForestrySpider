@@ -9,6 +9,7 @@ def counter(func):
         res = func(*args, **kwargs)
 
         end_time = time.time()
+        print(end_time - start_time)
         return res
 
     return inner
