@@ -1,0 +1,50 @@
+version: 1
+formatters:
+  brief:
+    format: "%(asctime)s - %(message)s"
+  simple:
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+handlers:
+  console:
+    class : logging.StreamHandler
+    formatter: brief
+    level   : INFO
+    stream  : ext://sys.stdout
+  file:
+    class : logging.FileHandler
+    formatter: simple
+    level: DEBUG
+    filename: logs/debug.log
+  error:
+    class: logging.handlers.RotatingFileHandler
+    level: ERROR
+    formatter: simple
+    filename: logs/error.log
+    maxBytes: 10485760
+    backupCount: 20
+    encoding: utf8
+loggers:
+  base.fetcher:
+    level: DEBUG
+    handlers: [console, file, error]
+  base.zgzwparser:
+    level: DEBUG
+    handlers: [console, file, error]
+  saver:
+    level: DEBUG
+    handlers: [console, file, error]
+  base.engine:
+    level: DEBUG
+    handlers: [console, file, error]
+  base.utils:
+    level: DEBUG
+    handlers: [console]
+  base.model:
+    level: DEBUG
+    handlers: [console, file]
+  base.config:
+    level: DEBUG
+    handlers: [console, file]
+root:
+  level: DEBUG
+  handlers: [console]

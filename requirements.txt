@@ -4,3 +4,4 @@ PyMySQL==0.9.3
 aiohttp<4
 mysql-connector<=2.2.9
 peewee
+pyyaml
