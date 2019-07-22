@@ -49,8 +49,13 @@ class ZgzwMainDataParser:
         参数:
         content -  知网接口返回的json字符串，由于比较复杂，需要先json.dumps处理成合法字符串
         """
-        json_str = content
-        json_content = eval(json_str)
+
+        json_content = None
+
+        if type(content) == str:
+            json_content = eval(content)
+        elif type(content) == dict:
+            json_content = content
 
         self.TOTAL_NUMS = int(json_content["count"])
         self.ROOT_URL = root

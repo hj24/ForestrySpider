@@ -753,15 +753,15 @@ main_page = """
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<TITLE>银杏网动态-中国银杏网</TITLE>
+<TITLE>银杏新闻-中国银杏网</TITLE>
 <META http-equiv="Content-Type" content="text/html; charset=gb2312">
 <LINK href="http://www.cnyxs.com/images/css.css" type=text/css rel=stylesheet>
 <link rel="icon" href="http://www.cnyxs.com/favicon.ico"/><link rel="shortcut icon" href="http://www.cnyxs.com/favicon.ico" /> 
 <META NAME="copyright" CONTENT="中国银杏网-www.cnyxs.com">
 <META NAME="Author" CONTENT="中国银杏网-www.cnyxs.com">
 <META NAME="Robots" CONTENT="all">
-<META NAME="Keywords" CONTENT="银杏网动态,中国银杏网">
-<META NAME="Description" CONTENT="银杏网动态,,银杏网动态,帮助中心,新手入门,发布信息,常见问题,成功案例,媒体报道,中国银杏网-中国银杏行业门户网站">
+<META NAME="Keywords" CONTENT="银杏新闻,中国银杏网">
+<META NAME="Description" CONTENT="银杏新闻,,银杏新闻,企业动态,市场分析,名企推荐,银杏人物,地方传真,聚焦三农,中国银杏网-中国银杏行业门户网站">
 </head>
 <body bgcolor="#ffffff" leftmargin="0" topmargin="0" marginheight="0" marginwidth="0"><DIV class="topnav">
 <DIV class="site-nav">
@@ -840,7 +840,7 @@ alt="中国银杏网" border="0"></A></DIV>
         <td height="150" align="center" valign="top" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td height="25" align="left" background="images/left_bg1.jpg">　
-	  <a href="http://www.cnyxs.com/xw.asp?lb=银杏网" target="_blank"><font color="#ffffff"><b>银杏网</b></font></a>
+	  <a href="http://www.cnyxs.com/xw.asp?lb=" target="_blank"><font color="#ffffff"><b></b></font></a>
 	   </td>
           </tr>
         </table>
@@ -848,7 +848,7 @@ alt="中国银杏网" border="0"></A></DIV>
               <table width="157" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td width="157" height="25" align="left" background="images/bg_title.jpg">&nbsp;&nbsp;
-                      <a href=http://www.cnyxs.com/news.asp?lb=银杏网动态><font color=#000000><b>银杏网动态</b></font></a></td>
+                      <a href=http://www.cnyxs.com/news.asp?lb=银杏新闻><font color=#000000><b>银杏新闻</b></font></a></td>
                 </tr>
                 <tr>
                   <td height="5"></td>
@@ -858,7 +858,7 @@ alt="中国银杏网" border="0"></A></DIV>
               <table width="157" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td width="157" height="25" align="left" background="images/bg_title.jpg">&nbsp;&nbsp;
-                      <a href=http://www.cnyxs.com/news.asp?lb=帮助中心><font color=#000000><b>帮助中心</b></font></a></td>
+                      <a href=http://www.cnyxs.com/news.asp?lb=银杏新闻><font color=#000000><b>银杏新闻</b></font></a></td>
                 </tr>
                 <tr>
                   <td height="5"></td>
@@ -868,7 +868,7 @@ alt="中国银杏网" border="0"></A></DIV>
               <table width="157" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td width="157" height="25" align="left" background="images/bg_title.jpg">&nbsp;&nbsp;
-                      <a href=http://www.cnyxs.com/news.asp?lb=新手入门><font color=#000000><b>新手入门</b></font></a></td>
+                      <a href=http://www.cnyxs.com/news.asp?lb=企业动态><font color=#000000><b>企业动态</b></font></a></td>
                 </tr>
                 <tr>
                   <td height="5"></td>
@@ -878,7 +878,7 @@ alt="中国银杏网" border="0"></A></DIV>
               <table width="157" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td width="157" height="25" align="left" background="images/bg_title.jpg">&nbsp;&nbsp;
-                      <a href=http://www.cnyxs.com/news.asp?lb=发布信息><font color=#000000><b>发布信息</b></font></a></td>
+                      <a href=http://www.cnyxs.com/news.asp?lb=市场分析><font color=#000000><b>市场分析</b></font></a></td>
                 </tr>
                 <tr>
                   <td height="5"></td>
@@ -888,7 +888,7 @@ alt="中国银杏网" border="0"></A></DIV>
               <table width="157" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td width="157" height="25" align="left" background="images/bg_title.jpg">&nbsp;&nbsp;
-                      <a href=http://www.cnyxs.com/news.asp?lb=常见问题><font color=#000000><b>常见问题</b></font></a></td>
+                      <a href=http://www.cnyxs.com/news.asp?lb=名企推荐><font color=#000000><b>名企推荐</b></font></a></td>
                 </tr>
                 <tr>
                   <td height="5"></td>
@@ -898,7 +898,7 @@ alt="中国银杏网" border="0"></A></DIV>
               <table width="157" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td width="157" height="25" align="left" background="images/bg_title.jpg">&nbsp;&nbsp;
-                      <a href=http://www.cnyxs.com/news.asp?lb=成功案例><font color=#000000><b>成功案例</b></font></a></td>
+                      <a href=http://www.cnyxs.com/news.asp?lb=银杏人物><font color=#000000><b>银杏人物</b></font></a></td>
                 </tr>
                 <tr>
                   <td height="5"></td>
@@ -908,22 +908,23 @@ alt="中国银杏网" border="0"></A></DIV>
               <table width="157" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td width="157" height="25" align="left" background="images/bg_title.jpg">&nbsp;&nbsp;
-                      <a href=http://www.cnyxs.com/news.asp?lb=媒体报道><font color=#000000><b>媒体报道</b></font></a></td>
+                      <a href=http://www.cnyxs.com/news.asp?lb=地方传真><font color=#000000><b>地方传真</b></font></a></td>
                 </tr>
                 <tr>
                   <td height="5"></td>
                 </tr>
               </table>
           
-          <table width="157" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td width="157" height="25" align="left" background="images/bg_title.jpg">&nbsp;&nbsp; <a href="http://www.cnyxs.com/piclb.asp?lb=银杏网图片"><font color="#000000"><b>银杏网图片</b></font></a> </td>
-            </tr>
-            <tr>
-              <td height="5"></td>
-            </tr>
-          </table>
-		  
+              <table width="157" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="157" height="25" align="left" background="images/bg_title.jpg">&nbsp;&nbsp;
+                      <a href=http://www.cnyxs.com/news.asp?lb=聚焦三农><font color=#000000><b>聚焦三农</b></font></a></td>
+                </tr>
+                <tr>
+                  <td height="5"></td>
+                </tr>
+              </table>
+          
           <table width="157" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td width="157" height="25" align="left" background="images/bg_title.jpg">&nbsp;&nbsp; 
@@ -947,7 +948,7 @@ alt="中国银杏网" border="0"></A></DIV>
             <td height="150" align="center" valign="top" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td height="25" align="left" background="images/left_bg1.jpg">　
-	  <a href="http://www.cnyxs.com/xw.asp?lb=银杏网" target="_blank"><font color="#ffffff"><b>银杏网</b></font></a>
+	  <a href="http://www.cnyxs.com/xw.asp?lb=" target="_blank"><font color="#ffffff"><b></b></font></a>
 	   <font color="#ffffff">相关主题</font></td>
                 </tr>
               </table>
@@ -959,363 +960,405 @@ alt="中国银杏网" border="0"></A></DIV>
               
                 <table cellspacing="0" cellpadding="0" width="100%" align="center" 
 border="0">
-                  </td>
+                  
+                  <tr>
+                    <td align="left" valign="top"> · <a href="http://www.cnyxs.com/ztt.asp?id=195" target="_blank">2014年中国银杏产业发展论坛暨第二届中国（郯城）银杏产品交易会</a>
+                        </td>
                   </tr>
-                  </td>
+                  
+                  <tr>
+                    <td align="left" valign="top"> · <a href="http://www.cnyxs.com/ztt.asp?id=194" target="_blank">银杏树风水</a>
+                        </td>
                   </tr>
                   
                   <tr>
                     <td align="left" valign="top"> · <a href="http://www.cnyxs.com/ztt.asp?id=193" target="_blank">中国银杏网银杏供求信息平台</a>
                         </td>
                   </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
-                  </tr>
-                  </td>
+                  
+                  <tr>
+                    <td align="left" valign="top"> · <a href="http://www.cnyxs.com/ztt.asp?id=192" target="_blank">首届中国（郯城）银杏产品交易会</a>
+                        </td>
                   </tr>
                   
                   <tr>
-                    <td align="left" valign="top"> · <a href="http://www.cnyxs.com/ztt.asp?id=12" target="_blank">中国银杏网活动专题</a>
+                    <td align="left" valign="top"> · <a href="http://www.cnyxs.com/ztt.asp?id=191" target="_blank">北京银杏树</a>
                         </td>
+                  </tr>
+                  
+                  <tr>
+                    <td align="left" valign="top"> · <a href="http://www.cnyxs.com/ztt.asp?id=190" target="_blank">辽宁大学银杏树</a>
+                        </td>
+                  </tr>
+                  
+                  <tr>
+                    <td align="left" valign="top"> · <a href="http://www.cnyxs.com/ztt.asp?id=189" target="_blank">家庭禁忌银杏盆景</a>
+                        </td>
+                  </tr>
+                  
+                  <tr>
+                    <td align="left" valign="top"> · <a href="http://www.cnyxs.com/ztt.asp?id=188" target="_blank">银杏果能吃吗 </a>
+                        </td>
+                  </tr>
+                  
+                  <tr>
+                    <td align="left" valign="top"> · <a href="http://www.cnyxs.com/ztt.asp?id=187" target="_blank">银杏果的食用方法</a>
+                        </td>
+                  </tr>
+                  
+                  <tr>
+                    <td align="left" valign="top"> · <a href="http://www.cnyxs.com/ztt.asp?id=186" target="_blank">银杏茶多少钱一盒</a>
+                        </td>
+                  </tr>
+                  
+                  <tr>
+                    <td align="left" valign="top"> · <a href="http://www.cnyxs.com/ztt.asp?id=185" target="_blank">银杏茶哪个牌子好</a>
+                        </td>
+                  </tr>
+                  
+                  <tr>
+                    <td align="left" valign="top"> · <a href="http://www.cnyxs.com/ztt.asp?id=184" target="_blank">银杏叶提取物胶囊</a>
+                        </td>
+                  </tr>
+                  
+                  <tr>
+                    <td align="left" valign="top"> · <a href="http://www.cnyxs.com/ztt.asp?id=183" target="_blank">银杏盆景的鉴赏</a>
+                        </td>
+                  </tr>
+                  
+                  <tr>
+                    <td align="left" valign="top"> · <a href="http://www.cnyxs.com/ztt.asp?id=182" target="_blank">银杏茶的功效与作用</a>
+                        </td>
+                  </tr>
+                  
+                  <tr>
+                    <td align="left" valign="top"> · <a href="http://www.cnyxs.com/ztt.asp?id=181" target="_blank">银杏果怎么去皮</a>
+                        </td>
+                  </tr>
+                  
+                  <tr>
+                    <td align="left" valign="top"> · <a href="http://www.cnyxs.com/ztt.asp?id=180" target="_blank">银杏果什么时候成熟</a>
+                        </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
+                  </tr>
+                  </td>
                   </tr>
                   </td>
                   </tr>
@@ -1337,48 +1380,48 @@ border="0">
           <tr>
             <td height="150" valign="top" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td height="25" align="left" background="images/left_bg1.jpg">　<a href="http://www.cnyxs.com/photo.asp" target="_blank"><font color="#ffffff"><b>银杏网图片</b></font></a></td>
+                  <td height="25" align="left" background="images/left_bg1.jpg">　<a href="http://www.cnyxs.com/photo.asp" target="_blank"><font color="#ffffff"><b>银杏图片</b></font></a></td>
                 </tr>
               </table>
                 
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td><a href="http://www.cnyxs.com/news_type.asp?id=30816" target="_blank"><img src="ginkgo/" width="100" height="85" hspace="2" vspace="4" border="0" 
+                    <td><a href="http://www.cnyxs.com/news_type.asp?id=30839" target="_blank"><img src="ginkgo/edit/UploadFile/2015410144315664.jpg" width="100" height="85" hspace="2" vspace="4" border="0" 
                   align="absmiddle" /></a><br />
-                        <a href="news_type.asp?id=30816" target="_blank">银杏大苗的培育</a>
+                        <a href="news_type.asp?id=30839" target="_blank">贺：邳州市王季</a>
                         </td>
                     <td>
-                        <a href="http://www.cnyxs.com/news_type.asp?id=30185" target="_blank"><img src="ginkgo/edit/UploadFile/2014101793438.jpg" width="100" height="85" hspace="2" vspace="4" border="0" 
+                        <a href="http://www.cnyxs.com/news_type.asp?id=30578" target="_blank"><img src="ginkgo/edit/UploadFile/2015116134642270.jpg" width="100" height="85" hspace="2" vspace="4" border="0" 
                   align="absmiddle" /></a><br />
-                        <a href="http://www.cnyxs.com/news_type.asp?id=30185" target="_blank">祝贺：邳州市大</a>
+                        <a href="http://www.cnyxs.com/news_type.asp?id=30578" target="_blank">贺：邳州市大观</a>
                         </td>
                   </tr>
                 </table>
               
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td><a href="http://www.cnyxs.com/news_type.asp?id=30184" target="_blank"><img src="ginkgo/edit/UploadFile/2014101793340.jpg" width="100" height="85" hspace="2" vspace="4" border="0" 
+                    <td><a href="http://www.cnyxs.com/news_type.asp?id=30549" target="_blank"><img src="ginkgo/edit/UploadFile/20151993755443.jpg" width="100" height="85" hspace="2" vspace="4" border="0" 
                   align="absmiddle" /></a><br />
-                        <a href="news_type.asp?id=30184" target="_blank">祝贺：江苏省邳</a>
+                        <a href="news_type.asp?id=30549" target="_blank">贺：邳州市锦鸿</a>
                         </td>
                     <td>
-                        <a href="http://www.cnyxs.com/news_type.asp?id=29943" target="_blank"><img src="ginkgo/edit/UploadFile/2014827162344634.jpg" width="100" height="85" hspace="2" vspace="4" border="0" 
+                        <a href="http://www.cnyxs.com/news_type.asp?id=30529" target="_blank"><img src="ginkgo/edit/UploadFile/201515141840900.jpg" width="100" height="85" hspace="2" vspace="4" border="0" 
                   align="absmiddle" /></a><br />
-                        <a href="http://www.cnyxs.com/news_type.asp?id=29943" target="_blank">中国新闻社江苏</a>
+                        <a href="http://www.cnyxs.com/news_type.asp?id=30529" target="_blank">贺：硕阳洋绿化</a>
                         </td>
                   </tr>
                 </table>
               
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td><a href="http://www.cnyxs.com/news_type.asp?id=29844" target="_blank"><img src="ginkgo/" width="100" height="85" hspace="2" vspace="4" border="0" 
+                    <td><a href="http://www.cnyxs.com/news_type.asp?id=30377" target="_blank"><img src="ginkgo/edit/UploadFile/20141124172231147.jpg" width="100" height="85" hspace="2" vspace="4" border="0" 
                   align="absmiddle" /></a><br />
-                        <a href="news_type.asp?id=29844" target="_blank">白果可入药，价</a>
+                        <a href="news_type.asp?id=30377" target="_blank">贺：邳州市尚林</a>
                         </td>
                     <td>
-                        <a href="http://www.cnyxs.com/news_type.asp?id=29299" target="_blank"><img src="ginkgo/edit/UploadFile/2014523102555.jpg" width="100" height="85" hspace="2" vspace="4" border="0" 
+                        <a href="http://www.cnyxs.com/news_type.asp?id=30235" target="_blank"><img src="ginkgo/edit/UploadFile/2014102410531670.jpg" width="100" height="85" hspace="2" vspace="4" border="0" 
                   align="absmiddle" /></a><br />
-                        <a href="http://www.cnyxs.com/news_type.asp?id=29299" target="_blank">祝贺邳州市恒昌</a>
+                        <a href="http://www.cnyxs.com/news_type.asp?id=30235" target="_blank">贺：江苏3E苗</a>
                         </td>
                   </tr>
                 </table>
@@ -1398,19 +1441,19 @@ border="0">
                 </tr>
               </table>
               
+·<a href="http://www.cnyxs.com/news_type.asp?id=34953" title="银杏叶保健食品市场未来可期" target="_blank">银杏叶保健食品市场未来可期</a><br />
+
+·<a href="http://www.cnyxs.com/news_type.asp?id=34952" title="世界上最美的几种树，银杏树被称为植物界的活化石，寿命极长" target="_blank">世界上最美的几种树，银杏树</a><br />
+
+·<a href="http://www.cnyxs.com/news_type.asp?id=34951" title="揭开银杏家世之谜" target="_blank">揭开银杏家世之谜</a><br />
+
+·<a href="http://www.cnyxs.com/news_type.asp?id=34950" title="想要银杏树尽快结果，这些知识得记牢！" target="_blank">想要银杏树尽快结果，这些知</a><br />
+
 ·<a href="http://www.cnyxs.com/news_type.asp?id=34949" title="银杏树价格按什么计算?怎么计算银杏树价格?" target="_blank">银杏树价格按什么计算?怎么</a><br />
 
 ·<a href="http://www.cnyxs.com/news_type.asp?id=34948" title="银杏叶也能做枕头了？好处还不少" target="_blank">银杏叶也能做枕头了？好处还</a><br />
 
 ·<a href="http://www.cnyxs.com/news_type.asp?id=34947" title="银杏树的几种繁殖方法，你知道多少？" target="_blank">银杏树的几种繁殖方法，你知</a><br />
-
-·<a href="http://www.cnyxs.com/news_type.asp?id=34946" title="银杏果的功效与作用" target="_blank">银杏果的功效与作用</a><br />
-
-·<a href="http://www.cnyxs.com/news_type.asp?id=34945" title="如何购买银杏树，银杏树价格怎么样?" target="_blank">如何购买银杏树，银杏树价格</a><br />
-
-·<a href="http://www.cnyxs.com/news_type.asp?id=34944" title="银杏树在哪里风水好，屋后和院子内能栽种吗" target="_blank">银杏树在哪里风水好，屋后和</a><br />
-
-·<a href="http://www.cnyxs.com/news_type.asp?id=34943" title="银杏树市场价格今年怎么样？" target="_blank">银杏树市场价格今年怎么样？</a><br />
 </td>
           </tr>
         </table>
@@ -1425,13 +1468,13 @@ border="0">
         <td width="738" height="29"><img src="images/detail_c1_02.jpg" width="12" height="12" hspace="6" />
             
           你当前的位置：<a href="http://www.cnyxs.com"><b>中国银杏网</b></a><a href="http://www.cnyxs.com">银杏</a>&gt;&gt;
-	  <a href="http://www.cnyxs.com/xw.asp?lb=银杏网" target="_blank"><b>银杏网</b></a>
-	    &gt;&gt; <a href="http://www.cnyxs.com/news.asp?lb=银杏网动态"><b>银杏网动态</b></a> </td>
+	  <a href="http://www.cnyxs.com/xw.asp?lb=" target="_blank"><b></b></a>
+	    &gt;&gt; <a href="http://www.cnyxs.com/news.asp?lb=银杏新闻"><b>银杏新闻</b></a> </td>
       </tr>
     </table>
       <table width="650" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
-          <td height="30" align="center"><a class=Black href=http://www.cnyxs.com/news.asp?lb=银杏网动态&gjz=>首页</a>&nbsp;&nbsp;<a class=Black href=http://www.cnyxs.com/news.asp?lb=银杏网动态&pageno=8&gjz=>上一页</a>&nbsp;&nbsp;下一页&nbsp;&nbsp;尾页&nbsp;&nbsp;第9页/共9页&nbsp;&nbsp;共373条银杏网动态</td>
+          <td height="30" align="center"><a class=Black href=http://www.cnyxs.com/news.asp?lb=银杏新闻&gjz=>首页</a>&nbsp;&nbsp;<a class=Black href=http://www.cnyxs.com/news.asp?lb=银杏新闻&pageno=87&gjz=>上一页</a>&nbsp;&nbsp;<a class=Black href=http://www.cnyxs.com/news.asp?lb=银杏新闻&pageno=89&gjz=>下一页</a>&nbsp;&nbsp;<a href=http://www.cnyxs.com/news.asp?lb=银杏新闻&pageno=182&gjz=>尾页</a>&nbsp;&nbsp;第88页/共182页&nbsp;&nbsp;共8164条银杏新闻</td>
         </tr>
       </table>
       
@@ -1439,74 +1482,234 @@ border="0">
 	  
         <tr>
           <td width="1%" align="right" valign="top">&nbsp;</td>
-          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏网动态" target="_blank">银杏网动态</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=1762" target="_blank">中国银杏网贺江苏景园银杏基地网站全新上线</a></td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=11003" target="_blank">寻找今冬最美银杏路 成都郊外更冷先变色(图)</a></td>
         </tr>
 		
         <tr>
           <td width="1%" align="right" valign="top">&nbsp;</td>
-          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏网动态" target="_blank">银杏网动态</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=1761" target="_blank">中国银杏网贺山东郯城银杏酒业有限责任公司网站全新上线</a></td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=11002" target="_blank">北京西山卧佛寺银杏节正式拉开帷幕</a></td>
         </tr>
 		
         <tr>
           <td width="1%" align="right" valign="top">&nbsp;</td>
-          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏网动态" target="_blank">银杏网动态</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=1760" target="_blank">中国银杏网贺江苏邳州诚信银杏树苗木基地网站全新上线</a></td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=11001" target="_blank">银杏道旁立养眼又洗肺</a></td>
         </tr>
 		
         <tr>
           <td width="1%" align="right" valign="top">&nbsp;</td>
-          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏网动态" target="_blank">银杏网动态</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=1758" target="_blank">中国银杏网贺邳州市益都银杏苗木发展公司网站全新上线</a></td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=11000" target="_blank">秋色浓郁的古银杏村</a></td>
         </tr>
 		
         <tr>
           <td width="1%" align="right" valign="top">&nbsp;</td>
-          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏网动态" target="_blank">银杏网动态</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=1756" target="_blank">中国银杏网贺苏鲁银杏园林苗圃场网站全新上线</a></td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10999" target="_blank">百年古树突然一夜消失 换来五年牢狱</a></td>
         </tr>
 		
         <tr>
           <td width="1%" align="right" valign="top">&nbsp;</td>
-          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏网动态" target="_blank">银杏网动态</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=1752" target="_blank">中国银杏网贺邳州宝联苗木有限公司网站全新上线</a></td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10998" target="_blank">都江堰市大观镇宿仙村现在生态好转，导致松鼠增多，危害银杏树，损失惨重</a></td>
         </tr>
 		
         <tr>
           <td width="1%" align="right" valign="top">&nbsp;</td>
-          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏网动态" target="_blank">银杏网动态</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=1749" target="_blank">中国银杏网贺邳州市苏林银杏苗圃网站全新上线</a></td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10997" target="_blank">上塘路将多一片金灿灿的美景　要种一千多棵银杏</a></td>
         </tr>
 		
         <tr>
           <td width="1%" align="right" valign="top">&nbsp;</td>
-          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏网动态" target="_blank">银杏网动态</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=1739" target="_blank">中国银杏网贺邳州市银丰生物科技有限公司网站全新上线</a></td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10996" target="_blank">上塘路（大关路—登云路段）银杏林荫道打造工程已开始</a></td>
         </tr>
 		
         <tr>
           <td width="1%" align="right" valign="top">&nbsp;</td>
-          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏网动态" target="_blank">银杏网动态</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=1733" target="_blank">中国银杏网贺邳州市绿苑银杏苗木基地网站全新上线</a></td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10994" target="_blank">诱人无数 网友拍电子科大银杏美景</a></td>
         </tr>
 		
         <tr>
           <td width="1%" align="right" valign="top">&nbsp;</td>
-          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏网动态" target="_blank">银杏网动态</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=1730" target="_blank">中国银杏网贺邳州市尊胜银杏苗木基地网站全新上线</a></td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10993" target="_blank">北京的银杏叶黄了</a></td>
         </tr>
 		
         <tr>
           <td width="1%" align="right" valign="top">&nbsp;</td>
-          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏网动态" target="_blank">银杏网动态</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=1726" target="_blank">中国银杏网贺邳州市银杏森林苗木基地网站全新上线</a></td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10992" target="_blank">深秋，小浦八都岕观银杏</a></td>
         </tr>
 		
         <tr>
           <td width="1%" align="right" valign="top">&nbsp;</td>
-          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏网动态" target="_blank">银杏网动态</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=1716" target="_blank">银杏网贺邳州银杏缘酒业有限公司网站全新上线</a></td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10991" target="_blank">看银杏金黄 赏枫叶火红</a></td>
         </tr>
 		
         <tr>
           <td width="1%" align="right" valign="top">&nbsp;</td>
-          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏网动态" target="_blank">银杏网动态</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=963" target="_blank">【警 报】警防不明人士冒充本站骗取会员账号密码</a></td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10990" target="_blank">走马古银杏长廊体验原生态美景</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10989" target="_blank">霜染银杏秋色浓</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10988" target="_blank">石家庄：长安公园银杏林尽显斑斓秋色（图）</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10987" target="_blank">太原：迎泽公园内银杏树进入最佳观赏期(图)</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10986" target="_blank">古银杏旅游节亮点纷呈成效突出</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10985" target="_blank">神仙树大院拉锯战 规划局建议宣传广告要谨慎</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10984" target="_blank">护肤品推陈出新 银杏叶极度滋养膏喜得桂冠</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10983" target="_blank">北京西山卧佛寺银杏节正式拉开序幕</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10982" target="_blank">都江堰一座826户村庄种植银杏年销售额亿元</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10981" target="_blank">成都推行银杏等落叶只拣不扫为市民留美景(图)</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10979" target="_blank">四问长兴银杏林 村民为您讲解美丽背后的奥秘</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10978" target="_blank">"金秋美景"——大觉寺银杏迎四方宾客</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10977" target="_blank">节庆搭台 经贸唱戏</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10976" target="_blank">走进临安指南村 探访华东最美古村</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10975" target="_blank">聚焦神仙树大院会所变餐馆 业主维权进行时</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10974" target="_blank">银杏树下的别样风景</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10973" target="_blank">量价齐飞 花木市场“欣欣向荣” </a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10972" target="_blank">长寿之乡的千年银杏树:五六个成年人才能合抱(图)</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10971" target="_blank">肥胖者的福音：奥露娜左旋肉碱倡导健康减肥</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10970" target="_blank">城市绿了苗木俏了银杏香樟半年价翻番</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10969" target="_blank">山东郯城为3000岁"银杏王"庆功</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10968" target="_blank">千米银杏大道，非资本不足以如此奢华</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10967" target="_blank">苏城三条道路试点保留落叶景观</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10965" target="_blank">山东郯城:古郯金秋美如画</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10964" target="_blank">天目银杏知秋早 大树王国迎森博</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10963" target="_blank">叩访山村 探华东最美五大赏秋线--银杏</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10962" target="_blank">河西河旁银杏树被绑？ 原来是养护期必要手段</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10961" target="_blank">嵩县第二届千年银杏节隆重开幕</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10960" target="_blank">滁城两株千年古银杏树挂上“身份证”</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10959" target="_blank">城市绿了苗木俏了银杏香樟半年价</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10958" target="_blank">四川：城市绿了苗木俏了银杏香樟半年价</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10956" target="_blank">选用珍贵银杏树苗 "龙的传人故乡林"落户北京</a></td>
+        </tr>
+		
+        <tr>
+          <td width="1%" align="right" valign="top">&nbsp;</td>
+          <td width="99%" height="26">[<a href="http://www.cnyxs.com/news.asp?lb=银杏新闻" target="_blank">银杏新闻</a>]&nbsp;<a href="http://www.cnyxs.com/news_type.asp?id=10955" target="_blank">农家遇拆迁难舍古银杏</a></td>
         </tr>
 		
       </table>
       
       <table width="650" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
-          <td height="30" align="center"><a class=Black href=http://www.cnyxs.com/news.asp?lb=银杏网动态&gjz=>首页</a>&nbsp;&nbsp;<a class=Black href=http://www.cnyxs.com/news.asp?lb=银杏网动态&pageno=8&gjz=>上一页</a>&nbsp;&nbsp;下一页&nbsp;&nbsp;尾页&nbsp;&nbsp;第9页/共9页&nbsp;&nbsp;共373条银杏网动态</td>
+          <td height="30" align="center"><a class=Black href=http://www.cnyxs.com/news.asp?lb=银杏新闻&gjz=>首页</a>&nbsp;&nbsp;<a class=Black href=http://www.cnyxs.com/news.asp?lb=银杏新闻&pageno=87&gjz=>上一页</a>&nbsp;&nbsp;<a class=Black href=http://www.cnyxs.com/news.asp?lb=银杏新闻&pageno=89&gjz=>下一页</a>&nbsp;&nbsp;<a href=http://www.cnyxs.com/news.asp?lb=银杏新闻&pageno=182&gjz=>尾页</a>&nbsp;&nbsp;第88页/共182页&nbsp;&nbsp;共8164条银杏新闻</td>
         </tr>
       </table></td>
   </tr>
@@ -1546,21 +1749,4 @@ PAGE_NUMS_PATTERN = '</a>&nbsp;&nbsp;下一页&nbsp;&nbsp;尾页&nbsp;&nbsp;第.
 url = '<td.*?width="99%".*?height="26">\[.*?\]&nbsp;<a.*?href="(.*?)".*?target="_blank">.*?</a>.*?</td>'
 _ = 'http://www.cnyxs.com/news_type.asp?id=34946'
 
-pattern = re.compile(PAGE_NUMS_PATTERN)
-# print(re.findall(pattern, content))
-#
-# g = ginkgoparser.GinkgoParser(content)
-#
-# #print(g.soup.find_all('p')[0].text)
-#
-# g.parse_body()
-#
-# print(g.parse_title())
 
-
-
-# print(re.findall(pattern, main_page))
-
-page_num_pattern = re.compile('</a>&nbsp;&nbsp;下一页&nbsp;&nbsp;尾页&nbsp;&nbsp;第.*?页/共(.*?)页&nbsp;&nbsp;共.*?条银杏网动态</td>')
-nums = re.findall(page_num_pattern, main_page)[0]
-#print(nums)

@@ -22,7 +22,7 @@ class TotalUrlNumberFetcher(GinkgoFetcher):
 
 class ZgzwFetcher(GinkgoFetcher):
     """
-    中国知网银杏主题论文下载器
+    中国知网 银杏主题论文下载器
     """
 
     def __init__(self, url):

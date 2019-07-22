@@ -14,4 +14,4 @@ class GinkgoConfig(configer.ParseConfig):
 if __name__ == '__main__':
 
     p = GinkgoConfig()
-    print(type(p.parser()))
+    print(p.parser())

@@ -21,7 +21,7 @@ LOGGING = {
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
-            'formatter': 'brief',
+            'formatter': 'simple',
             'level': 'INFO',
             'stream': 'ext://sys.stdout'
         },

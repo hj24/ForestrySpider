@@ -17,11 +17,11 @@ class GinkgoFetcher(basefetcher.BaseFetcher):
 
     async def get(self, session, url):
         # 获取网页内容，按状态码不同进行相应处理
-        async with session.get(url) as response:
+        async with session.get(url, timeout=60) as response:
             # res = await response.text()
             # return res
             if response.status == 200:
-                res = await response.text()
+                res = await response.text(encoding='gb18030')
                 return res
             elif response.status == 404:
                 raise web.HTTPNotFound()
@@ -42,9 +42,9 @@ class GinkgoFetcher(basefetcher.BaseFetcher):
                 async with aiohttp.ClientSession() as session:
                     html = await self.get(session, url)
         except web.HTTPNotFound as notfound:
-            logger.info(notfound)
+            logger.debug(notfound)
         except Exception as e:
-            logger.info(e)
+            logger.info('fetcher:', e)
         else:
             return html
 
