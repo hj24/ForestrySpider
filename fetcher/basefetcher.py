@@ -1,5 +1,11 @@
 from abc import ABC, abstractmethod
-import asyncio
+import logging.config
+
+from config.log.settings import LOGGING
+
+
+logging.config.dictConfig(LOGGING)
+logger = logging.getLogger('fetcher')
 
 class BaseFetcher(ABC):
     """

@@ -3,6 +3,7 @@ from aiohttp import web
 import asyncio
 
 from fetcher.ginkgofetcher import GinkgoFetcher
+from fetcher.basefetcher import logger
 
 
 class TotalUrlNumberFetcher(GinkgoFetcher):

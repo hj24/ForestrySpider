@@ -3,6 +3,7 @@ from aiohttp import web
 import asyncio
 
 from fetcher import basefetcher
+from fetcher.basefetcher import logger
 
 
 class GinkgoFetcher(basefetcher.BaseFetcher):
@@ -41,9 +42,9 @@ class GinkgoFetcher(basefetcher.BaseFetcher):
                 async with aiohttp.ClientSession() as session:
                     html = await self.get(session, url)
         except web.HTTPNotFound as notfound:
-            print(notfound)
+            logger.info(notfound)
         except Exception as e:
-            print(e)
+            logger.info(e)
         else:
             return html
 
@@ -71,7 +72,7 @@ if __name__ == '__main__':
     def callback():
         pass
 
-    tasks = [asyncio.ensure_future(s.fetch(sem)) for _ in range(100)]
+    tasks = [asyncio.ensure_future(s.fetch(sem)) for _ in range(1)]
 
     res, _ = loop.run_until_complete(asyncio.wait(tasks))
 
@@ -81,4 +82,4 @@ if __name__ == '__main__':
     #     print(i.result())
 
     e = time.time()
-    print(e - st)
+    logger.info(e - st)

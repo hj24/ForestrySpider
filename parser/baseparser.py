@@ -1,5 +1,12 @@
 from abc import ABC, abstractmethod
 from bs4 import BeautifulSoup
+import logging.config
+
+from config.log.settings import LOGGING
+
+
+logging.config.dictConfig(LOGGING)
+logger = logging.getLogger('parser')
 
 
 class ArticleBaseParser(ABC):

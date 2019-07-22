@@ -1,12 +1,7 @@
-import json
 import re
-import logging
-import logging.config
-from config.log.settings import LOGGING
 
+from parser.baseparser import logger
 
-logging.config.dictConfig(LOGGING)
-logger = logging.getLogger('fetcher')
 
 class ZgzwParser:
     """
@@ -83,6 +78,7 @@ class ZgzwMainDataParser:
 
 
 if __name__ == '__main__':
+
 
     logger.info('xixixiixixixix')
     # from utils.zgzw_test_utils import json_obj, url

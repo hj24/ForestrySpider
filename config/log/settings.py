@@ -1,44 +1,18 @@
 import os
-import yaml
 
 
-# 日志模块名
-LOGGER = 'logger/logs'
-# 配置文件名
-NAME = 'log.yaml'
-# 根目录文件位置
+# 根目录名
 PARENT_PATH = os.path.abspath(os.path.dirname(__file__))
-# 配置文件位置
-CONFIG_PATH = os.path.join(PARENT_PATH, 'conf')
-# 项目根目录
-ROOT_FILE = os.path.abspath(os.path.dirname( os.path.dirname(os.getcwd())))
-print(ROOT_FILE)
-# 日志文件地址
-LOG_FILE = os.path.join(ROOT_FILE, LOGGER)
-# Debug日志
-DEBUG_FILE = os.path.abspath(os.path.join(LOG_FILE, 'debug.log'))
-# ERROR日志
-ERROR_FILE = os.path.abspath(os.path.join(LOG_FILE, 'error.log'))
-# log配置文件
-LOGGING_CONFIG_FILE = os.path.join(CONFIG_PATH, NAME)
 
-print(DEBUG_FILE)
+# 日志模块名, 不存在就创建
+LOGGER_PATH = os.path.abspath(os.path.join(PARENT_PATH, 'logs'))
+if not os.path.exists(LOGGER_PATH):
+    os.makedirs(LOGGER_PATH)
+# 日志文件
+DEBUG_FILE = os.path.join(LOGGER_PATH, 'debug.log')
+ERROR_FILE = os.path.join(LOGGER_PATH, 'error.log')
 
-# 导入配置
-with open(LOGGING_CONFIG_FILE, 'r', encoding='utf-8') as f:
-    config = yaml.load(f, Loader=yaml.FullLoader)
-
-# format
-FORMATTER = config['formatters']
-# handlers
-handlers = config['handlers']
-# 控制台handler
-CONSOLE_HANDLER = handlers['console']
-FILE_HANDLER = handlers['file']
-ERROR_HANDLER = handlers['error']
-
-
-
+# 配置
 LOGGING = {
     'version': 1,
     'formatters': {
@@ -72,9 +46,33 @@ LOGGING = {
             'level': 'DEBUG',
             'handlers': ['console', 'file', 'error']
         },
+        'parser': {
+            'level': 'DEBUG',
+            'handlers': ['console', 'file', 'error']
+        },
+        'saver': {
+            'level': 'DEBUG',
+            'handlers': ['console', 'file', 'error']
+        },
+        'engine': {
+            'level': 'DEBUG',
+            'handlers': ['console', 'file', 'error']
+        },
+        'config': {
+            'level': 'INFO',
+            'handlers': ['console', 'file']
+        },
+        'model': {
+            'level': 'DEBUG',
+            'handlers': ['console', 'file', 'error']
+        },
+        'utils': {
+            'level': 'INFO',
+            'handlers': ['console']
+        },
+        'single': {
+            'level': 'DEBUG',
+            'handlers': ['console', 'file', 'error']
+        },
     },
-    'root': {
-        'level': 'DEBUG',
-        'handlers': ['console']
-    }
 }

@@ -1,12 +1,19 @@
 from abc import abstractmethod, ABC
+import logging.config
 
+from config.log.settings import LOGGING
 from model.articlemodel import Article
 from utils.decorators.db import auto_connect
 from config.db.settings import DATABASE
+
+logging.config.dictConfig(LOGGING)
+logger = logging.getLogger('saver')
+
 try:
-    from utils.webutils.savers import django_saver as ext_saver
-except ImportError:
+    from utils.webutils.savers import ext_saver
+except ImportError as ie:
     ext_saver = None
+    logger.error(ie)
 
 
 db = DATABASE['mysqldb']
