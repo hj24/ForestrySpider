@@ -6,6 +6,7 @@ from config.urls.ginkgoconfig import GinkgoConfig
 from config.urls.zgzwconfig import ZgzwConfig
 from parser import listparser
 from parser import zgzwparser
+from parser import ginkgoparser
 from fetcher import ginkgofetcher
 from fetcher import zgzwfetcher
 
@@ -14,6 +15,9 @@ logging.config.dictConfig(LOGGING)
 logger = logging.getLogger('engine')
 
 URL_POOL = asyncio.Queue()
+
+GINKGO_TYPE = 1
+ZGZW_TYPE = 2
 
 def load_url_config():
     init_list = GinkgoConfig().parser()
@@ -71,17 +75,45 @@ class App:
 
         await URL_POOL.join()
 
+    def judge_url(self, url):
+        if url.startswith('http://w') or url.startswith('https://w'):
+            return GINKGO_TYPE
+        if url.startswith('http://m') or url.startswith('https://m'):
+            return ZGZW_TYPE
 
     async def consume_url(self):
-        i = 0
+
         while True:
             url = await URL_POOL.get()
-            logger.info(url)
-            i += 1
-            URL_POOL.task_done()
             if url is None:
                 break
-        logger.info(i)
+
+            logger.info(url)
+
+            try:
+                response = None
+                choice = None
+                if self.judge_url(url) == GINKGO_TYPE:
+                    response = await ginkgofetcher.GinkgoFetcher(url).fetch(self.semaphore)
+                    choice = GINKGO_TYPE
+                elif self.judge_url(url) == ZGZW_TYPE:
+                    response = await zgzwfetcher.ZgzwFetcher(url).fetch(self.semaphore)
+                    choice = ZGZW_TYPE
+                if response is None:
+                    raise IOError
+            except IOError:
+                logger.info('url:' + url + '内容获取失败')
+            else:
+                json_response = None
+                if choice == GINKGO_TYPE:
+                    json_response = ginkgoparser.GinkgoParser(response).parse_factory()
+                elif choice == ZGZW_TYPE:
+                    json_response = zgzwparser.ZgzwParser(response).parse_factory()
+
+                print(json_response)
+
+
+            URL_POOL.task_done()
 
     def run(self):
         loop = asyncio.get_event_loop()
