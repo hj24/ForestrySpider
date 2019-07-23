@@ -61,6 +61,10 @@ class ArticleBaseParser(ABC):
     def parse_link(self, *args, **kwargs):
         pass
 
+    @abstractmethod
+    def parse_tag(self, *args, **kwargs):
+        pass
+
 class UrlListBaseParser(ABC):
     """
     url解析器

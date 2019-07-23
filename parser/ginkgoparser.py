@@ -24,8 +24,11 @@ class GinkgoParser(baseparser.ArticleBaseParser):
         fonts = self.soup.find_all('font')
         infos = []
         for i, f in enumerate(fonts):
-            if f['color'] == '#990000' and i < 4:
-                infos.append(f)
+            try:
+                if i < 5 and f['color'] == '#990000':
+                    infos.append(f)
+            except KeyError:
+                continue
         return infos
 
     @property
@@ -43,6 +46,9 @@ class GinkgoParser(baseparser.ArticleBaseParser):
 
     def parse_date(self, *args, **kwargs):
         return self.info[2].string
+
+    def parse_tag(self, *args, **kwargs):
+        return self.info[3].string
 
     def parse_body(self, *args, **kwargs):
         """
@@ -72,6 +78,7 @@ class GinkgoParser(baseparser.ArticleBaseParser):
             author  -   作者
             source  -   出处
             date    -   日期
+            tag     -   文章标签
             link    -   原文地址
         匿名函数:
             summary -   截取做摘要的部分，默认取原文的1/20
@@ -93,6 +100,7 @@ class GinkgoParser(baseparser.ArticleBaseParser):
         content['creator'] = self.parse_author()
         content['source'] = self.parse_source()
         content['date'] = self.parse_date()
+        content['tag'] = self.parse_tag()
         content['link'] = self.parse_link()
 
         return json.dumps(content, ensure_ascii=False)
@@ -101,4 +109,4 @@ class GinkgoParser(baseparser.ArticleBaseParser):
 if __name__ == '__main__':
     from utils.test import content
     parser = GinkgoParser(content)
-    print(parser.parse_factory())
+    print(parser.info)
