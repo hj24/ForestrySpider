@@ -75,13 +75,13 @@ class App:
 
         await URL_POOL.join()
 
-    def judge_url(self, url):
+    def __judge_url(self, url):
         if url.startswith('http://w') or url.startswith('https://w'):
             return GINKGO_TYPE
         if url.startswith('http://m') or url.startswith('https://m'):
             return ZGZW_TYPE
 
-    async def consume_url(self):
+    async def consume_url(self, data_to_store):
 
         while True:
             url = await URL_POOL.get()
@@ -93,29 +93,33 @@ class App:
             try:
                 response = None
                 choice = None
-                if self.judge_url(url) == GINKGO_TYPE:
+                if self.__judge_url(url) == GINKGO_TYPE:
                     response = await ginkgofetcher.GinkgoFetcher(url).fetch(self.semaphore)
                     choice = GINKGO_TYPE
-                elif self.judge_url(url) == ZGZW_TYPE:
+                elif self.__judge_url(url) == ZGZW_TYPE:
                     response = await zgzwfetcher.ZgzwFetcher(url).fetch(self.semaphore)
                     choice = ZGZW_TYPE
                 if response is None:
                     raise IOError
             except IOError:
-                logger.info('url:' + url + '内容获取失败')
+                logger.error('url:' + url + '内容获取失败')
             else:
                 json_response = None
+
+
                 if choice == GINKGO_TYPE:
                     json_response = ginkgoparser.GinkgoParser(response).parse_factory()
                 elif choice == ZGZW_TYPE:
                     json_response = zgzwparser.ZgzwParser(response).parse_factory()
 
-                print(json_response)
-
+                logger.info(json_response)
 
             URL_POOL.task_done()
 
     def run(self):
+
+        data_to_store = []
+
         loop = asyncio.get_event_loop()
 
         producers = asyncio.ensure_future(self.produce_url())
