@@ -1,16 +1,13 @@
-import time
+import gc
 import functools
 
 
-def counter(func):
+def disable_gc(func):
+
     @functools.wraps(func)
     def inner(*args, **kwargs):
-        start_time = time.time()
-
+        gc.disable()
         res = func(*args, **kwargs)
-
-        end_time = time.time()
-        print(end_time - start_time)
+        gc.enable()
         return res
-
     return inner

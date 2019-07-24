@@ -17,12 +17,28 @@ class Test3(Model):
 #     with db:
 #         db.create_tables([Test2])
 
-auto_connect(db=db)
-def save():
-    Test3.create_table()
-    person, created = Test3.get_or_create(name='hj', defaults={'content': json_obj})
-    person1, created1 = Test3.get_or_create(name='爸爸', defaults={'content': json_obj})
-    print(person, created)
+@auto_connect(db=db)
+def save(json_obj):
+    # Test3.create_table()
+    person, created = Test3.get_or_create(name='嘿嘿', defaults={'content': json_obj})
+    # person1, created1 = Test3.get_or_create(name='爸爸', defaults={'content': json_obj})
+    data = [
+        {
+            'name': 'hj',
+            'content': json_obj,
+        },
+        {
+            'name': '爸爸',
+            'content': json_obj,
+        },
+        {
+            'name': 'mmm',
+            'content': json_obj,
+        },
+    ]
+    Test3.insert_many(data).on_conflict_ignore().execute()
+
+
 
 if __name__ == '__main__':
 
@@ -31,11 +47,10 @@ if __name__ == '__main__':
     zg = ZgzwConfig()
 
     json_obj = zg.parser()
-
     # db.connect()
     # Test3.create_table()
     # # create_table()
     # Test3.create(name='hj', content=json_obj)
     # Test3.create(name='ynm', content=json_obj)
     # db.close()
-    save()
+    save(json_obj)
