@@ -94,10 +94,10 @@ class GinkgoParser(baseparser.ArticleBaseParser):
         匿名函数:
             summary -   截取做摘要的部分，默认取原文的1/20
         返回:
-            namedtuple - 数据库的ttitle和content字段
+            response - 数据库的title和content字段组成的json对象
         """
 
-        response = namedtuple('response', 'title content')
+        response = {}
         content = {}
 
         content['type'] = 1
@@ -115,10 +115,9 @@ class GinkgoParser(baseparser.ArticleBaseParser):
         content['tag'] = self.parse_tag()
         content['link'] = self.parse_link()
 
-        return json.dumps(content, ensure_ascii=False)
+        return {'title': content['title'], 'content': json.dumps(content, ensure_ascii=False)}
 
 
 if __name__ == '__main__':
     from utils.test import content
     parser = GinkgoParser(content)
-    print(parser.info)

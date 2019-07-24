@@ -1,6 +1,5 @@
 import aiohttp
 from aiohttp import web
-import asyncio
 
 from fetcher.ginkgofetcher import GinkgoFetcher
 from fetcher.basefetcher import logger
@@ -48,41 +47,4 @@ class ZgzwFetcher(GinkgoFetcher):
         return response
 
 if __name__ == '__main__':
-    from config.urls.zgzwconfig import ZgzwConfig
-    from parser.zgzwparser import ZgzwParser
-    z = ZgzwConfig()
-    # test_url = z.parser()['url']
-    test_url = 'http://m.cnki.net/mcnki/LiteratureSearchHandler?t=07002008538&do=getliterature&tid=Literature{CJFD,CDFD,CMFD,CPFD}&kw=%E9%93%B6%E6%9D%8F&sf=Subject&orf=Subject&or=0&astime=undefined&start=1140&len=10&otherparam='
-
-    sem = asyncio.Semaphore(20)
-    t = TotalUrlNumberFetcher(test_url)
-    zz = ZgzwFetcher(test_url)
-
-    import time
-    st = time.time()
-
-    def callback(res):
-        from copy import deepcopy
-
-        res = ZgzwParser(res.result()).parse_factory()
-
-        #
-        print(res)
-
-        return res
-
-
-    loop = asyncio.get_event_loop()
-    tasks = [asyncio.ensure_future(zz.fetch(sem)) for _ in range(10)]
-
-    for t in tasks:
-        t.add_done_callback(callback)
-
-    res = loop.run_until_complete(asyncio.gather(*tasks))
-    loop.close()
-
-    for i in res:
-        print(i)
-
-    e = time.time()
-    print(e - st)
+    pass

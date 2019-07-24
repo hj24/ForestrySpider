@@ -12,6 +12,4 @@ loop = asyncio.get_event_loop()
 
 res = loop.run_until_complete(test())
 
-print(res)
-
 loop.close()

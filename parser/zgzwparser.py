@@ -1,4 +1,5 @@
 import re
+import json
 
 from parser.baseparser import logger
 
@@ -30,7 +31,7 @@ class ZgzwParser:
         wrap = {}
         wrap['title'] = cell['title']
         cell['type'] = 2
-        wrap['content'] = cell
+        wrap['content'] = json.dumps(cell, ensure_ascii=False)
         return wrap
 
     def parse_factory(self):
@@ -89,7 +90,7 @@ class ZgzwMainDataParser:
         return_urls = [re.sub(parttern, replace_parttern(i * self.CUT), self.ROOT_URL)
                        for i in range(pages(self.TOTAL_NUMS))]
 
-        return return_urls
+        return return_urls[400:]
 
 
 if __name__ == '__main__':

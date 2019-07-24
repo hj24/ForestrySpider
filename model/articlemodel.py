@@ -23,3 +23,6 @@ class Article(BaseModel):
     
     title = CharField(max_length=100, unique=True)
     content = JSONField()
+
+if not Article.table_exists():
+    Article.create_table()

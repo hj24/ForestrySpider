@@ -9,6 +9,8 @@ from parser import zgzwparser
 from parser import ginkgoparser
 from fetcher import ginkgofetcher
 from fetcher import zgzwfetcher
+from saver.basesaver import Saver
+from utils.decorators.memory import disable_gc
 
 
 logging.config.dictConfig(LOGGING)
@@ -20,7 +22,8 @@ GINKGO_TYPE = 1
 ZGZW_TYPE = 2
 
 def load_url_config():
-    init_list = GinkgoConfig().parser()
+    #init_list = GinkgoConfig().parser()
+    init_list = []
     zgzw_result = ZgzwConfig().parser()
     if type(zgzw_result) == dict:
         init_list.append(zgzw_result)
@@ -33,6 +36,7 @@ class App:
     def __init__(self, init_urls):
         self.init_url_list = init_urls
         self.semaphore = asyncio.Semaphore(20)
+        self.lock = asyncio.Lock()
 
     async def produce_url(self):
         for url_dict in self.init_url_list:
@@ -41,9 +45,7 @@ class App:
                 # 爬取每个专题的主页
                 main_page_fetcher = ginkgofetcher.MainPageFetcher(url_dict['url'])
                 main_page = await main_page_fetcher.fetch(self.semaphore)
-                # print(main_page)
                 # 解析每个专题下有多少页以及每一页的文章url
-
                 try:
                     main_page_parser = listparser.MenuParser(main_page, url=url_dict['url'])
                     all_pages = main_page_parser.generate_links(main_page_parser.parse_page_nums())
@@ -73,7 +75,9 @@ class App:
 
         await URL_POOL.put(None)
 
-        await URL_POOL.join()
+        logger.info('server: %s', '所有url产生完毕')
+
+        #await URL_POOL.join()
 
     def __judge_url(self, url):
         if url.startswith('http://w') or url.startswith('https://w'):
@@ -81,14 +85,23 @@ class App:
         if url.startswith('http://m') or url.startswith('https://m'):
             return ZGZW_TYPE
 
+    @disable_gc
+    async def __pre_process_data(self, data_to_store, response, type):
+        with await self.lock:
+            if type == GINKGO_TYPE:
+                data_to_store.append(response)
+            elif type == ZGZW_TYPE and response is not None:
+                data_to_store.extend(response)
+
     async def consume_url(self, data_to_store):
 
         while True:
             url = await URL_POOL.get()
+            logger.info(url)
             if url is None:
                 break
 
-            logger.info(url)
+
 
             try:
                 response = None
@@ -106,15 +119,18 @@ class App:
             else:
                 json_response = None
 
-
                 if choice == GINKGO_TYPE:
                     json_response = ginkgoparser.GinkgoParser(response).parse_factory()
+                    await self.__pre_process_data(data_to_store, json_response, GINKGO_TYPE)
                 elif choice == ZGZW_TYPE:
                     json_response = zgzwparser.ZgzwParser(response).parse_factory()
+                    await self.__pre_process_data(data_to_store, json_response, ZGZW_TYPE)
 
                 logger.info(json_response)
 
-            URL_POOL.task_done()
+                URL_POOL.task_done()
+
+        logger.info(URL_POOL.qsize())
 
     def run(self):
 
@@ -123,10 +139,14 @@ class App:
         loop = asyncio.get_event_loop()
 
         producers = asyncio.ensure_future(self.produce_url())
-        consumers = asyncio.ensure_future(self.consume_url())
+        consumers = asyncio.ensure_future(self.consume_url(data_to_store))
         tasks = [producers] + [consumers]
 
         loop.run_until_complete(asyncio.gather(*tasks))
+
+        logger.info('队列完毕？')
+
+        Saver(data_to_store).save_many()
 
         loop.close()
 

@@ -11,7 +11,7 @@ logging.config.dictConfig(LOGGING)
 logger = logging.getLogger('saver')
 
 try:
-    from utils.webutils.savers import ext_saver
+    from utils.extension.savers import ext_saver
 except ImportError as ie:
     ext_saver = None
     logger.error(ie)
@@ -43,15 +43,26 @@ class Saver(BaseSaver):
 
     @auto_connect(db=db)
     def save(self, *args, **kwargs):
+        try:
+            title = self.content['title']
+            with db.atomic():
+                Article.get_or_create(title=title, defaults={'content': self.content})
+        except Exception as e:
+            logger.error(e)
+        else:
+            logger.info('save success!')
 
-        title = self.content['title']
-
-        with db.atomic():
-            Article.get_or_create(title=title, defaults={'content': self.content})
-
-    @auto_connect(db=db)
+    @db.atomic()
     def save_many(self, *args, **kwargs):
-        pass
+        try:
+            #with db.atomic():
+            res = Article.insert_many(self.content).on_conflict_ignore().execute()
+        except Exception as e:
+            logger.info(e)
+            db.rollback()
+        else:
+            logger.info('save: %s records success!', len(self.content))
+            logger.info(res)
 
     def ext_save(self, *args, **kwargs):
         """

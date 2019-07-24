@@ -60,10 +60,6 @@ if __name__ == '__main__':
     test_url = 'http://www.cnyxs.com/news_type.asp?id=34946'
     sem = asyncio.Semaphore(20)
     s = GinkgoFetcher(test_url)
-    # m = MainPageFetcher()
-    # res = m.send_requests_get('http://www.cnyxs.com/news_type.asp?id=34946', sem)
-    # print(res)
-    # s.send_requests_get('http://www.cnyxs.com/news_type.asp?id=34946')
     import time
     st = time.time()
 
@@ -77,9 +73,6 @@ if __name__ == '__main__':
     res, _ = loop.run_until_complete(asyncio.wait(tasks))
 
     loop.close()
-
-    # for i in res:
-    #     print(i.result())
 
     e = time.time()
     logger.info(e - st)
