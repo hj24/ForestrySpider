@@ -26,12 +26,22 @@ class ZgzwParser:
     def __parse_cells(self):
         return self.json_content["cells"]
 
+    def __wrap_cells(self, cell):
+        wrap = {}
+        wrap['title'] = cell['title']
+        cell['type'] = 2
+        wrap['content'] = cell
+        return wrap
+
     def parse_factory(self):
-        cells = self.__parse_cells()
-        for cell in cells:
-            cell['type'] = 2
-            # cell = json.dumps(cell)
-        return cells
+        try:
+            cells = self.__parse_cells()
+        except KeyError:
+            logger.error('no cells found')
+        except Exception as e:
+            logger.info(e)
+        else:
+            return [self.__wrap_cells(cell) for cell in cells]
 
 class ZgzwMainDataParser:
     """
@@ -83,13 +93,10 @@ class ZgzwMainDataParser:
 
 
 if __name__ == '__main__':
+    from utils.test_utils import zgzw_json_obj
 
+    zgzw = ZgzwParser(zgzw_json_obj)
+    print(zgzw.parse_factory())
 
-    logger.info('xixixiixixixix')
-    # from utils.zgzw_test_utils import json_obj, url
-    #
-    # zgzw = ZgzwParser(json_obj)
-    # print(zgzw.parse_factory())
-    #
     # res = ZgzwMainDataParser(json_obj, url).generate_all_links()
     # print(len(res))

@@ -6,6 +6,7 @@ from model.articlemodel import Article
 from utils.decorators.db import auto_connect
 from config.db.settings import DATABASE
 
+
 logging.config.dictConfig(LOGGING)
 logger = logging.getLogger('saver')
 
@@ -28,6 +29,10 @@ class BaseSaver(ABC):
         pass
 
     @abstractmethod
+    def save_many(self, *args, **kwargs):
+        pass
+
+    @abstractmethod
     def ext_save(self, *args, **kwargs):
         pass
 
@@ -44,6 +49,10 @@ class Saver(BaseSaver):
         with db.atomic():
             Article.get_or_create(title=title, defaults={'content': self.content})
 
+    @auto_connect(db=db)
+    def save_many(self, *args, **kwargs):
+        pass
+
     def ext_save(self, *args, **kwargs):
         """
         扩展存储器
@@ -53,6 +62,7 @@ class Saver(BaseSaver):
         - 如果为None则抛出异常
         - 此功能待具体优化
         """
+
         if ext_saver:
             ext_saver.save(self.content, *args, **kwargs)
         else:

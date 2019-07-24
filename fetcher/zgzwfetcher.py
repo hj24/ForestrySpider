@@ -51,8 +51,8 @@ if __name__ == '__main__':
     from config.urls.zgzwconfig import ZgzwConfig
     from parser.zgzwparser import ZgzwParser
     z = ZgzwConfig()
-    test_url = z.parser()['url']
-
+    # test_url = z.parser()['url']
+    test_url = 'http://m.cnki.net/mcnki/LiteratureSearchHandler?t=07002008538&do=getliterature&tid=Literature{CJFD,CDFD,CMFD,CPFD}&kw=%E9%93%B6%E6%9D%8F&sf=Subject&orf=Subject&or=0&astime=undefined&start=1140&len=10&otherparam='
 
     sem = asyncio.Semaphore(20)
     t = TotalUrlNumberFetcher(test_url)

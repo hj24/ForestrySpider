@@ -1,8 +1,10 @@
 # coding=utf-8
 import re
 import json
+from collections import namedtuple
 
 from parser import baseparser
+from parser.baseparser import logger
 
 
 class GinkgoParser(baseparser.ArticleBaseParser):
@@ -29,6 +31,8 @@ class GinkgoParser(baseparser.ArticleBaseParser):
                     infos.append(f)
             except KeyError:
                 continue
+            except Exception:
+                continue
         return infos
 
     @property
@@ -36,7 +40,14 @@ class GinkgoParser(baseparser.ArticleBaseParser):
         return re.compile('.*?本文地址:<a.*?href="(.*?)">.*?</a>')
 
     def parse_title(self):
-        return self.soup.find(self.TITLE).string
+        title = None
+        try:
+            title = self.soup.find(self.TITLE).string
+        except Exception as e:
+            logger.info(e)
+            title = 'N/A'
+        finally:
+            return title
 
     def parse_author(self, *args, **kwargs):
         return self.info[0].string
@@ -83,9 +94,10 @@ class GinkgoParser(baseparser.ArticleBaseParser):
         匿名函数:
             summary -   截取做摘要的部分，默认取原文的1/20
         返回:
-            json对象
+            namedtuple - 数据库的ttitle和content字段
         """
 
+        response = namedtuple('response', 'title content')
         content = {}
 
         content['type'] = 1
