@@ -29,6 +29,7 @@ def load_url_config():
     """
 
     init_list = GinkgoConfig().parser()
+    # init_list = []
     zgzw_result = ZgzwConfig().parser()
     if type(zgzw_result) == dict:
         init_list.append(zgzw_result)
@@ -180,7 +181,7 @@ class App:
 
         logger.info('队列任务执行完毕')
 
-        Saver(data_to_store).save_many(batch=4000)
+        Saver(data_to_store).save_many(batch=1000)
 
         loop.close()
 

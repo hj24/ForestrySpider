@@ -118,5 +118,6 @@ class GinkgoParser(baseparser.ArticleBaseParser):
 
 if __name__ == '__main__':
     from utils.test import content
+    url = ' http://www.cnyxs.com/news_type.asp?id=12070'
     parser = GinkgoParser(content)
     print(type(parser.parse_tag()))
