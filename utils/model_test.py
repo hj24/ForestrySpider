@@ -35,8 +35,17 @@ def save(json_obj):
             'name': 'mmm',
             'content': json_obj,
         },
+        {
+            'name': 'hj',
+            'content': json_obj,
+        },
+        {
+            'name': 'kb',
+            'content': json_obj,
+        },
     ]
-    Test3.insert_many(data).on_conflict_ignore().execute()
+    res = Test3.insert_many(data).on_conflict_ignore().execute()
+    print(res)
 
 
 

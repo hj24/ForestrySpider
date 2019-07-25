@@ -1,9 +1,9 @@
 from abc import abstractmethod, ABC
 import logging.config
+from peewee import chunked
 
 from config.log.settings import LOGGING
 from model.articlemodel import Article
-from utils.decorators.db import auto_connect
 from config.db.settings import DATABASE
 
 
@@ -41,28 +41,29 @@ class Saver(BaseSaver):
     def __init__(self, content):
         super().__init__(content)
 
-    @auto_connect(db=db)
+    @db.atomic()
     def save(self, *args, **kwargs):
         try:
             title = self.content['title']
-            with db.atomic():
-                Article.get_or_create(title=title, defaults={'content': self.content})
+            Article.get_or_create(title=title, defaults={'content': self.content})
         except Exception as e:
             logger.error(e)
         else:
             logger.info('save success!')
 
     @db.atomic()
-    def save_many(self, *args, **kwargs):
+    def save_many(self, *, batch=None):
         try:
-            #with db.atomic():
-            res = Article.insert_many(self.content).on_conflict_ignore().execute()
+            if batch is None:
+                Article.insert_many(self.content).on_conflict_ignore().execute()
+            else:
+                for bat in chunked(self.content, batch):
+                    Article.insert_many(bat).on_conflict_ignore().execute()
         except Exception as e:
             logger.info(e)
             db.rollback()
         else:
             logger.info('save: %s records success!', len(self.content))
-            logger.info(res)
 
     def ext_save(self, *args, **kwargs):
         """

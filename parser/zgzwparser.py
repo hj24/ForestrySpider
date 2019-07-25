@@ -30,7 +30,8 @@ class ZgzwParser:
     def __wrap_cells(self, cell):
         wrap = {}
         wrap['title'] = cell['title']
-        cell['type'] = 2
+        wrap['type'] = 2
+        wrap['tag'] = None
         wrap['content'] = json.dumps(cell, ensure_ascii=False)
         return wrap
 
@@ -90,7 +91,7 @@ class ZgzwMainDataParser:
         return_urls = [re.sub(parttern, replace_parttern(i * self.CUT), self.ROOT_URL)
                        for i in range(pages(self.TOTAL_NUMS))]
 
-        return return_urls[400:]
+        return return_urls
 
 
 if __name__ == '__main__':
@@ -98,6 +99,3 @@ if __name__ == '__main__':
 
     zgzw = ZgzwParser(zgzw_json_obj)
     print(zgzw.parse_factory())
-
-    # res = ZgzwMainDataParser(json_obj, url).generate_all_links()
-    # print(len(res))

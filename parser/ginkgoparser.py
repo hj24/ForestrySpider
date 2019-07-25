@@ -1,7 +1,6 @@
 # coding=utf-8
 import re
 import json
-from collections import namedtuple
 
 from parser import baseparser
 from parser.baseparser import logger
@@ -42,7 +41,7 @@ class GinkgoParser(baseparser.ArticleBaseParser):
     def parse_title(self):
         title = None
         try:
-            title = self.soup.find(self.TITLE).string
+            title = str(self.soup.find(self.TITLE).string)
         except Exception as e:
             logger.info(e)
             title = 'N/A'
@@ -50,16 +49,16 @@ class GinkgoParser(baseparser.ArticleBaseParser):
             return title
 
     def parse_author(self, *args, **kwargs):
-        return self.info[0].string
+        return str(self.info[0].string)
 
     def parse_source(self, *args, **kwargs):
-        return self.info[1].string
+        return str(self.info[1].string)
 
     def parse_date(self, *args, **kwargs):
-        return self.info[2].string
+        return str(self.info[2].string)
 
     def parse_tag(self, *args, **kwargs):
-        return self.info[3].string
+        return str(self.info[3].string)
 
     def parse_body(self, *args, **kwargs):
         """
@@ -70,12 +69,12 @@ class GinkgoParser(baseparser.ArticleBaseParser):
         """
         body = []
         for p in self.soup.find_all('p'):
-            body.append(p.text.strip())
+            body.append(str(p.text.strip()))
         return body
 
     def parse_link(self, *args, **kwargs):
         # 返回值是一个只含一个元素的列表，arr[0]取出
-        return re.findall(self.link_pattern, self.content)[0]
+        return str(re.findall(self.link_pattern, self.content)[0])
 
     def parse_factory(self, *args, **kwargs):
         """
@@ -97,27 +96,27 @@ class GinkgoParser(baseparser.ArticleBaseParser):
             response - 数据库的title和content字段组成的json对象
         """
 
-        response = {}
         content = {}
-
-        content['type'] = 1
-        content['title'] = self.parse_title()
 
         detail = self.parse_body()
         detail_length = len(detail)
         summary = lambda x: x - 19 * x // 20
 
+        content['title'] = self.parse_title()
         content['summary'] = detail[:summary(detail_length)]
         content['detail'] = detail
         content['creator'] = self.parse_author()
         content['source'] = self.parse_source()
         content['date'] = self.parse_date()
-        content['tag'] = self.parse_tag()
+        # content['tag'] = self.parse_tag()
         content['link'] = self.parse_link()
 
-        return {'title': content['title'], 'content': json.dumps(content, ensure_ascii=False)}
-
+        return {'title': content['title'],
+                'type': 1,
+                'tag': self.parse_tag(),
+                'content': json.dumps(content, ensure_ascii=False)}
 
 if __name__ == '__main__':
     from utils.test import content
     parser = GinkgoParser(content)
+    print(type(parser.parse_tag()))
