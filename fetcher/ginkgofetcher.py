@@ -4,6 +4,7 @@ import asyncio
 
 from fetcher import basefetcher
 from fetcher.basefetcher import logger
+from config.urls.settings import GINKGO_HEADERS
 
 
 class GinkgoFetcher(basefetcher.BaseFetcher):
@@ -17,7 +18,7 @@ class GinkgoFetcher(basefetcher.BaseFetcher):
 
     async def get(self, session, url):
         # 获取网页内容，按状态码不同进行相应处理
-        async with session.get(url, timeout=60) as response:
+        async with session.get(url, timeout=60, headers=GINKGO_HEADERS) as response:
             # res = await response.text()
             # return res
             if response.status == 200:
@@ -57,9 +58,11 @@ class MainPageFetcher(GinkgoFetcher):
 
 
 if __name__ == '__main__':
-    test_url = 'http://www.cnyxs.com/news_type.asp?id=34946'
+    test_url = 'http://m.cnyxs.com/news_type.asp?id=34946'
+    link = 'http://m.cnyxs.com/news.asp?lb=%D2%F8%D0%D3%D0%C2%CE%C5'
     sem = asyncio.Semaphore(20)
     s = GinkgoFetcher(test_url)
+    m = MainPageFetcher(link)
     import time
     st = time.time()
 
@@ -68,11 +71,13 @@ if __name__ == '__main__':
     def callback():
         pass
 
-    tasks = [asyncio.ensure_future(s.fetch(sem)) for _ in range(1)]
+    tasks = asyncio.ensure_future(m.fetch(sem))
 
-    res, _ = loop.run_until_complete(asyncio.wait(tasks))
+    res = loop.run_until_complete(tasks)
 
     loop.close()
+
+    logger.info(res)
 
     e = time.time()
     logger.info(e - st)

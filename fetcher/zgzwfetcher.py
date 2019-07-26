@@ -3,6 +3,7 @@ from aiohttp import web
 
 from fetcher.ginkgofetcher import GinkgoFetcher
 from fetcher.basefetcher import logger
+from config.urls.settings import ZGZW_HEADERS
 
 
 class TotalUrlNumberFetcher(GinkgoFetcher):
@@ -29,7 +30,7 @@ class ZgzwFetcher(GinkgoFetcher):
 
     async def get(self, session, url):
         # 获取响应结果，按状态码不同进行相应处理
-        async with session.get(url) as response:
+        async with session.get(url, timeout=60, headers=ZGZW_HEADERS) as response:
             if response.status == 200:
                 res = await response.text()
                 return eval(res)
