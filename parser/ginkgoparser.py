@@ -1,5 +1,4 @@
 # coding=utf-8
-import re
 import json
 
 from parser import baseparser
@@ -8,40 +7,19 @@ from parser.baseparser import logger
 
 class GinkgoParser(baseparser.ArticleBaseParser):
 
-    TITLE = 'h1'
+    TITLE = {'class': 'news_detailtitle'}
+    DATE = {'class': 'news_time01'}
+    CONTENT = {'class': 'news_detailinfo'}
+    AUTHOR = {'class': 'news_author'}
 
-    def __init__(self, content):
+    def __init__(self, content, *, url=None):
         super().__init__(content)
-
-    @property
-    def info(self):
-        """
-        根据字体颜色，提取标题下一栏信息内容，供各个解析器使用
-        只需前 4 个
-
-        返回:
-            infos - 标题下一栏信息的列表
-        """
-        fonts = self.soup.find_all('font')
-        infos = []
-        for i, f in enumerate(fonts):
-            try:
-                if i < 5 and f['color'] == '#990000':
-                    infos.append(f)
-            except KeyError:
-                continue
-            except Exception:
-                continue
-        return infos
-
-    @property
-    def link_pattern(self):
-        return re.compile('.*?本文地址:<a.*?href="(.*?)">.*?</a>')
+        self.url = 'N/A' if url is None else url
 
     def parse_title(self):
         title = None
         try:
-            title = str(self.soup.find(self.TITLE).string)
+            title = str(self.soup.find(name='div', attrs=self.TITLE).string)
         except Exception as e:
             logger.info(e)
             title = 'N/A'
@@ -49,32 +27,43 @@ class GinkgoParser(baseparser.ArticleBaseParser):
             return title
 
     def parse_author(self, *args, **kwargs):
-        return str(self.info[0].string)
-
-    def parse_source(self, *args, **kwargs):
-        return str(self.info[1].string)
+        try:
+            return str(self.soup.find(name='span', attrs=self.AUTHOR).string)
+        except Exception as e:
+            logger.error(e)
+            return 'N/A'
 
     def parse_date(self, *args, **kwargs):
-        return str(self.info[2].string)
+        try:
+            return str(self.soup.find(name='span', attrs=self.DATE).string)
+        except Exception as e:
+            logger.error(e)
+            return 'N/A'
 
     def parse_tag(self, *args, **kwargs):
-        return str(self.info[3].string)
+        try:
+            return self.parse_author()[5:]
+        except Exception as e:
+            logger.error(e)
+            return '佚名'
 
     def parse_body(self, *args, **kwargs):
         """
         解析文章内容
 
         返回:
-            body - 文章的内容，列表中每一项代表一段
+            body - 文章的内容，字符串形式，保留html标签
         """
-        body = []
-        for p in self.soup.find_all('p'):
-            body.append(str(p.text.strip()))
-        return body
+        try:
+            content = self.soup.find(name='div', attrs=self.CONTENT).contents
+        except Exception as e:
+            logger.error(e)
+            return '文章为空'
+        else:
+            return ''.join([str(c) for c in content])
 
     def parse_link(self, *args, **kwargs):
-        # 返回值是一个只含一个元素的列表，arr[0]取出
-        return str(re.findall(self.link_pattern, self.content)[0])
+        return self.url
 
     def parse_factory(self, *args, **kwargs):
         """
@@ -106,9 +95,7 @@ class GinkgoParser(baseparser.ArticleBaseParser):
         content['summary'] = detail[:summary(detail_length)]
         content['detail'] = detail
         content['creator'] = self.parse_author()
-        content['source'] = self.parse_source()
         content['date'] = self.parse_date()
-        # content['tag'] = self.parse_tag()
         content['link'] = self.parse_link()
 
         return {'title': content['title'],
@@ -119,5 +106,5 @@ class GinkgoParser(baseparser.ArticleBaseParser):
 if __name__ == '__main__':
     from utils.test import content
     url = ' http://www.cnyxs.com/news_type.asp?id=12070'
-    parser = GinkgoParser(content)
-    print(type(parser.parse_tag()))
+    parser = GinkgoParser(content, url=url)
+    logger.info(parser.parse_factory())

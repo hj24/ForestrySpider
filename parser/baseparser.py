@@ -50,10 +50,6 @@ class ArticleBaseParser(ABC):
         pass
 
     @abstractmethod
-    def parse_source(self, *args, **kwargs):
-        pass
-
-    @abstractmethod
     def parse_body(self, *args, **kwargs):
         pass
 
