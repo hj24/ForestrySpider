@@ -95,7 +95,12 @@ class ZgzwMainDataParser:
 
 
 if __name__ == '__main__':
-    from utils.test_utils import zgzw_json_obj
+    from fetcher.zgzwfetcher import ZgzwFetcher
+    import asyncio
 
-    zgzw = ZgzwParser(zgzw_json_obj)
+    loop = asyncio.get_event_loop()
+    sem = asyncio.Semaphore(10)
+    task = asyncio.ensure_future(ZgzwFetcher('http://m.cnki.net/mcnki/LiteratureSearchHandler?t=07002008538&do=getliterature&tid=Literature{CJFD,CDFD,CMFD,CPFD}&kw=%E9%93%B6%E6%9D%8F&sf=Subject&orf=Subject&or=0&astime=undefined&start=1140&len=10&otherparam=').fetch(sem))
+    res = loop.run_until_complete(task)
+    zgzw = ZgzwParser(res)
     print(zgzw.parse_factory())
