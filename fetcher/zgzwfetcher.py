@@ -1,6 +1,7 @@
 import aiohttp
 from aiohttp import web
 from aiohttp import (ClientHttpProxyError, ClientProxyConnectionError)
+from aiohttp.http_exceptions import HttpProcessingError
 
 from fetcher.ginkgofetcher import GinkgoFetcher
 from fetcher.basefetcher import logger
@@ -30,34 +31,34 @@ class ZgzwFetcher(GinkgoFetcher):
     def __init__(self, url):
         super().__init__(url)
 
+    async def __procrss_response(self, response):
+        if response.status == 200:
+            res = await response.text()
+            return eval(res)
+        elif response.status == 404:
+            raise web.HTTPNotFound()
+        else:
+            raise aiohttp.http.HttpProcessingError(
+                code=response.status,
+                message=response.reason,
+            )
+
     async def get(self, session, url):
-
-        response = None
-
         try:
             if not PROXY:
                 raise ModuleNotFoundError
             conn = aiohttp.TCPConnector(verify_ssl=False)
             async with aiohttp.ClientSession(headers=proxy_headers, connector=conn) as sess:
                 async with sess.get(url, timeout=60, proxy=proxy_server) as resp:
-                    response = resp
-                    await response.read()
-        except (ModuleNotFoundError, ClientHttpProxyError, ClientProxyConnectionError, Exception):
-            # 获取响应结果，按状态码不同进行相应处理
+                    await resp.read()
+                    return await self.__procrss_response(resp)
+        except (ModuleNotFoundError, HttpProcessingError, Exception):
             async with session.get(url, timeout=60, headers=ZGZW_HEADERS) as resp:
-                response = resp
-                await response.read()
-        finally:
-            if response.status == 200:
-                res = await response.text()
-                return eval(res)
-            elif response.status == 404:
-                raise web.HTTPNotFound()
-            else:
-                raise aiohttp.http.HttpProcessingError(
-                    code=response.status,
-                    message=response.reason,
-                )
+                await resp.read()
+                try:
+                    return await self.__procrss_response(resp)
+                except Exception as e:
+                    logger.error(e)
 
     async def fetch(self, semaphore):
         response = await self.send_requests_get(self.url, semaphore)

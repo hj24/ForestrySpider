@@ -1,5 +1,6 @@
 import logging.config
 import asyncio
+import random
 
 from config.log.settings import LOGGING
 from config.urls.ginkgoconfig import GinkgoConfig
@@ -29,7 +30,7 @@ def load_url_config():
     """
 
     init_list = GinkgoConfig().parser()
-    #init_list = []
+    # init_list = []
     # zgzw_result = None
     zgzw_result = ZgzwConfig().parser()
 
@@ -50,7 +51,7 @@ class App:
         """
 
         self.init_url_list = init_urls
-        self.semaphore = asyncio.Semaphore(3)
+        self.semaphore = asyncio.Semaphore(2)
         self.lock = asyncio.Lock()
 
     async def produce_url(self):
@@ -135,9 +136,15 @@ class App:
              - json_response: 用解析器解析response, 并生产相应的符合数据库模型的字典存入data_to_store
         """
 
+        sleep_count = 1
+
         while True:
             url = await URL_POOL.get()
-            logger.info(url)
+            logger.info('times: %s - url: %s', sleep_count, url)
+
+            await asyncio.sleep(random.uniform(0, 1.0))
+
+            sleep_count += 1
 
             if url is None:
                 break
@@ -159,7 +166,7 @@ class App:
                 json_response = None
 
                 if choice == GINKGO_TYPE:
-                    json_response = ginkgoparser.GinkgoParser(response).parse_factory()
+                    json_response = ginkgoparser.GinkgoParser(response, url=url).parse_factory()
                     await self.__pre_process_data(data_to_store, json_response, GINKGO_TYPE)
                 elif choice == ZGZW_TYPE:
                     json_response = zgzwparser.ZgzwParser(response).parse_factory()

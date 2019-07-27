@@ -2,6 +2,7 @@ import aiohttp
 from aiohttp import web
 import asyncio
 from aiohttp import (ClientHttpProxyError, ClientProxyConnectionError)
+from aiohttp import http_exceptions
 
 from fetcher import basefetcher
 from fetcher.basefetcher import logger
@@ -18,37 +19,39 @@ class GinkgoFetcher(basefetcher.BaseFetcher):
         super().__init__()
         self.url = url
 
+    async def __process_response(self, response):
+        if response.status == 200:
+            res = await response.text(encoding='gb18030')
+            return res
+        elif response.status == 404:
+            raise web.HTTPNotFound()
+        else:
+            raise aiohttp.http.HttpProcessingError(
+                code=response.status,
+                message=response.reason,
+            )
+
     async def get(self, session, url):
         """
         如果有代理就用代理，没有就用本机IP爬
         """
 
-        response = None
-
         try:
-            PROXY = False
+            # PROXY = False
             if not PROXY:
                 raise ModuleNotFoundError
             conn = aiohttp.TCPConnector(verify_ssl=False)
             async with aiohttp.ClientSession(headers=proxy_headers, connector=conn) as sess:
                 async with sess.get(url, timeout=60, proxy=proxy_server) as resp:
-                    response = resp
-                    await response.read()
-        except (ModuleNotFoundError, ClientHttpProxyError, ClientProxyConnectionError, Exception):
+                    await resp.read()
+                    return await self.__process_response(resp)
+        except (ModuleNotFoundError, aiohttp.http.HttpProcessingError, Exception):
             async with session.get(url, timeout=60, headers=GINKGO_HEADERS) as resp:
-                response = resp
-                await response.read()
-        finally:
-            if response.status == 200:
-                res = await response.text(encoding='gb18030')
-                return res
-            elif response.status == 404:
-                raise web.HTTPNotFound()
-            else:
-                raise aiohttp.http.HttpProcessingError(
-                    code=response.status,
-                    message=response.reason,
-                )
+                await resp.read()
+                try:
+                    return await self.__process_response(resp)
+                except Exception as e:
+                    logger.error(e)
 
     async def fetch(self, semaphore):
         response =  await self.send_requests_get(self.url, semaphore)
@@ -77,9 +80,10 @@ class MainPageFetcher(GinkgoFetcher):
 if __name__ == '__main__':
     test_url = 'http://m.cnyxs.com/news_type.asp?id=34946'
     link = 'http://m.cnyxs.com/news.asp?lb=%D2%F8%D0%D3%D0%C2%CE%C5'
+    ip_test = 'http://httpbin.org/ip'
     sem = asyncio.Semaphore(20)
     s = GinkgoFetcher(test_url)
-    m = MainPageFetcher(link)
+    m = MainPageFetcher(ip_test)
     import time
     st = time.time()
 
