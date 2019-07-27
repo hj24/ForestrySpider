@@ -1,10 +1,12 @@
 import aiohttp
 from aiohttp import web
 import asyncio
+from aiohttp import (ClientHttpProxyError, ClientProxyConnectionError)
 
 from fetcher import basefetcher
 from fetcher.basefetcher import logger
 from config.urls.settings import GINKGO_HEADERS
+from fetcher.basefetcher import (PROXY, proxy_server, proxy_headers)
 
 
 class GinkgoFetcher(basefetcher.BaseFetcher):
@@ -17,10 +19,26 @@ class GinkgoFetcher(basefetcher.BaseFetcher):
         self.url = url
 
     async def get(self, session, url):
-        # 获取网页内容，按状态码不同进行相应处理
-        async with session.get(url, timeout=60, headers=GINKGO_HEADERS) as response:
-            # res = await response.text()
-            # return res
+        """
+        如果有代理就用代理，没有就用本机IP爬
+        """
+
+        response = None
+
+        try:
+            PROXY = False
+            if not PROXY:
+                raise ModuleNotFoundError
+            conn = aiohttp.TCPConnector(verify_ssl=False)
+            async with aiohttp.ClientSession(headers=proxy_headers, connector=conn) as sess:
+                async with sess.get(url, timeout=60, proxy=proxy_server) as resp:
+                    response = resp
+                    await response.read()
+        except (ModuleNotFoundError, ClientHttpProxyError, ClientProxyConnectionError, Exception):
+            async with session.get(url, timeout=60, headers=GINKGO_HEADERS) as resp:
+                response = resp
+                await response.read()
+        finally:
             if response.status == 200:
                 res = await response.text(encoding='gb18030')
                 return res
@@ -30,7 +48,6 @@ class GinkgoFetcher(basefetcher.BaseFetcher):
                 raise aiohttp.http.HttpProcessingError(
                     code=response.status,
                     message=response.reason,
-                    headers=response.headers
                 )
 
     async def fetch(self, semaphore):
@@ -77,7 +94,7 @@ if __name__ == '__main__':
 
     loop.close()
 
-    logger.info(res)
+    logger.info('answer:\n %s',res)
 
     e = time.time()
     logger.info(e - st)

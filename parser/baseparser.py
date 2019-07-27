@@ -80,15 +80,25 @@ class UrlListBaseParser(ABC):
         self.content = content
         self.root_url = url
 
+    @property
+    def soup(self):
+        return BeautifulSoup(self.content, self.PARSER_TYPE)
+
     @abstractmethod
     def parse_all_links(self, *args, **kwargs):
         pass
 
 class MenuBaseParser(ABC):
 
+    PARSER_TYPE = 'lxml'
+
     def __init__(self, content, url=None):
         self.content = content
         self.root_url = url
+
+    @property
+    def soup(self):
+        return BeautifulSoup(self.content, self.PARSER_TYPE)
 
     @abstractmethod
     def parse_page_nums(self, *args, **kwargs):

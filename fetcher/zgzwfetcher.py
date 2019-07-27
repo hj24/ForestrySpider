@@ -1,9 +1,11 @@
 import aiohttp
 from aiohttp import web
+from aiohttp import (ClientHttpProxyError, ClientProxyConnectionError)
 
 from fetcher.ginkgofetcher import GinkgoFetcher
 from fetcher.basefetcher import logger
 from config.urls.settings import ZGZW_HEADERS
+from fetcher.basefetcher import (PROXY, proxy_server, proxy_headers)
 
 
 class TotalUrlNumberFetcher(GinkgoFetcher):
@@ -29,8 +31,23 @@ class ZgzwFetcher(GinkgoFetcher):
         super().__init__(url)
 
     async def get(self, session, url):
-        # 获取响应结果，按状态码不同进行相应处理
-        async with session.get(url, timeout=60, headers=ZGZW_HEADERS) as response:
+
+        response = None
+
+        try:
+            if not PROXY:
+                raise ModuleNotFoundError
+            conn = aiohttp.TCPConnector(verify_ssl=False)
+            async with aiohttp.ClientSession(headers=proxy_headers, connector=conn) as sess:
+                async with sess.get(url, timeout=60, proxy=proxy_server) as resp:
+                    response = resp
+                    await response.read()
+        except (ModuleNotFoundError, ClientHttpProxyError, ClientProxyConnectionError, Exception):
+            # 获取响应结果，按状态码不同进行相应处理
+            async with session.get(url, timeout=60, headers=ZGZW_HEADERS) as resp:
+                response = resp
+                await response.read()
+        finally:
             if response.status == 200:
                 res = await response.text()
                 return eval(res)
@@ -40,7 +57,6 @@ class ZgzwFetcher(GinkgoFetcher):
                 raise aiohttp.http.HttpProcessingError(
                     code=response.status,
                     message=response.reason,
-                    headers=response.headers
                 )
 
     async def fetch(self, semaphore):

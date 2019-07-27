@@ -3,9 +3,21 @@ import logging.config
 
 from config.log.settings import LOGGING
 
-
 logging.config.dictConfig(LOGGING)
 logger = logging.getLogger('fetcher')
+
+PROXY = True
+proxy_server = None
+try:
+    from config.proxy.settings import (proxy_host, proxy_port, proxy_user, proxy_pass, proxy_headers)
+    if proxy_host is None or proxy_port is None or proxy_user is None or proxy_pass is None:
+        raise ImportError
+except ImportError:
+    logger.error('请检查代理配置')
+    PROXY = False
+else:
+    proxy_server = f"http://{proxy_user}:{proxy_pass}@{proxy_host}:{proxy_port}"
+
 
 class BaseFetcher(ABC):
     """
