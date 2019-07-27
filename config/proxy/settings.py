@@ -27,3 +27,5 @@ else:
     proxy_port = configer.get(proxy_section, 'port')
     proxy_user = configer.get(proxy_section, 'user')
     proxy_pass = configer.get(proxy_section, 'pass')
+
+proxy_headers = {'User-Agent': 'curl/7.x/line'}
