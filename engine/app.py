@@ -29,7 +29,7 @@ def load_url_config():
     """
 
     init_list = GinkgoConfig().parser()
-    # init_list = []
+    #init_list = []
     # zgzw_result = None
     zgzw_result = ZgzwConfig().parser()
 
@@ -50,7 +50,7 @@ class App:
         """
 
         self.init_url_list = init_urls
-        self.semaphore = asyncio.Semaphore(20)
+        self.semaphore = asyncio.Semaphore(3)
         self.lock = asyncio.Lock()
 
     async def produce_url(self):
@@ -105,9 +105,9 @@ class App:
         ToDo: 其实此处设计有一点不合理，但是没有影响
         """
 
-        if url.startswith('http://w') or url.startswith('https://w'):
+        if url.startswith('http://m.cnyxs') or url.startswith('https://m.cnyxs'):
             return GINKGO_TYPE
-        if url.startswith('http://m') or url.startswith('https://m'):
+        if url.startswith('http://m.cnki') or url.startswith('https://m.cnki'):
             return ZGZW_TYPE
 
     @disable_gc
@@ -191,8 +191,8 @@ class App:
 
 def run():
     init_urls = load_url_config()
-    # app = App(init_urls)
-    # app.run()
+    app = App(init_urls)
+    app.run()
 
 if __name__ == '__main__':
     run()
