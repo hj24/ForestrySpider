@@ -1,6 +1,5 @@
 import aiohttp
 from aiohttp import web
-from aiohttp import (ClientHttpProxyError, ClientProxyConnectionError)
 from aiohttp.http_exceptions import HttpProcessingError
 
 from fetcher.ginkgofetcher import GinkgoFetcher

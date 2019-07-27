@@ -1,8 +1,6 @@
 import aiohttp
 from aiohttp import web
 import asyncio
-from aiohttp import (ClientHttpProxyError, ClientProxyConnectionError)
-from aiohttp import http_exceptions
 
 from fetcher import basefetcher
 from fetcher.basefetcher import logger
