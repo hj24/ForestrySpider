@@ -12,6 +12,7 @@ from fetcher import ginkgofetcher
 from fetcher import zgzwfetcher
 from saver.basesaver import Saver
 from utils.decorators.memory import disable_gc
+from engine import settings
 
 
 logging.config.dictConfig(LOGGING)
@@ -42,7 +43,7 @@ def load_url_config():
 
 class App:
 
-    def __init__(self, init_urls):
+    def __init__(self, init_urls, parallels):
         """
         参数:
             init_urls - 初始化的urls
@@ -51,7 +52,7 @@ class App:
         """
 
         self.init_url_list = init_urls
-        self.semaphore = asyncio.Semaphore(2)
+        self.semaphore = asyncio.Semaphore(parallels)
         self.lock = asyncio.Lock()
 
     async def produce_url(self):
@@ -142,7 +143,7 @@ class App:
             url = await URL_POOL.get()
             logger.info('times: %s - url: %s', sleep_count, url)
 
-            await asyncio.sleep(random.uniform(0, 1.0))
+            await asyncio.sleep(random.uniform(settings.BOTTOM_SLEEP_TIME, settings.TOP_SLEEP_TIME))
 
             sleep_count += 1
 
@@ -190,15 +191,13 @@ class App:
 
         logger.info('队列任务执行完毕')
 
-        # Saver(data_to_store).save_many(batch=1000)
-        for data in data_to_store:
-            logger.info('***: %s', data)
+        Saver(data_to_store).save_many(batch=settings.DATA_BATCH)
 
         loop.close()
 
 def run():
     init_urls = load_url_config()
-    app = App(init_urls)
+    app = App(init_urls, settings.PARALLELS)
     app.run()
 
 if __name__ == '__main__':
