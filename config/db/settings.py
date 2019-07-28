@@ -1,6 +1,7 @@
 import os
 from peewee import *
 from playhouse.mysql_ext import MySQLConnectorDatabase
+from playhouse.pool import PooledMySQLDatabase
 
 from config.db.configer import DBConfiger, read_db_config_file
 
@@ -19,7 +20,9 @@ mysql_db = read_db_config_file(DB, 'mysqldb')
 
 # 在此添加数据库连接配置
 DATABASE = {
-    'mysqldb': MySQLConnectorDatabase(mysql_db.name, user=mysql_db.user, password=mysql_db.passw,
-                            host=mysql_db.host, port=mysql_db.port),
+    'mysqldb': PooledMySQLDatabase(mysql_db.name, user=mysql_db.user, password=mysql_db.passw,
+                                   host=mysql_db.host, max_connections=8, stale_timeout=300)
+    # 'mysqldb': MySQLConnectorDatabase(mysql_db.name, user=mysql_db.user, password=mysql_db.passw,
+    #                         host=mysql_db.host, port=mysql_db.port),
 }
 
