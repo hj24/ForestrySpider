@@ -1,6 +1,4 @@
 import os
-from peewee import *
-from playhouse.mysql_ext import MySQLConnectorDatabase
 from playhouse.pool import PooledMySQLDatabase
 
 from config.db.configer import DBConfiger, read_db_config_file
