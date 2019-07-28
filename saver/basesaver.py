@@ -1,6 +1,7 @@
 from abc import abstractmethod, ABC
 import logging.config
 from peewee import chunked
+from pymysql import IntegrityError
 
 from config.log.settings import LOGGING
 from model.articlemodel import Article
@@ -38,27 +39,37 @@ class BaseSaver(ABC):
 
 class Saver(BaseSaver):
 
-    def __init__(self, content):
+    def __init__(self, content=None):
         super().__init__(content)
 
     @db.atomic()
-    def save(self, *args, **kwargs):
+    def save(self, data):
         try:
-            title = self.content['title']
-            Article.get_or_create(title=title, defaults={'content': self.content})
+            title = data['title']
+            info, flag = Article.get_or_create(title=title, defaults={'content': self.content})
         except Exception as e:
             logger.error(e)
         else:
-            logger.info('save success!')
+            return flag
 
     @db.atomic()
+    def __save_many_without_batch(self):
+        Article.insert_many(self.content).on_conflict_ignore().execute()
+
+    @db.atomic()
+    def __save_many_with_batch(self, batch):
+        for bat in chunked(self.content, batch):
+            Article.insert_many(bat).on_conflict_ignore().execute()
+
     def save_many(self, *, batch=None):
+        if self.content is None:
+            logger.error('data not found!')
+            return
         try:
             if batch is None:
-                Article.insert_many(self.content).on_conflict_ignore().execute()
+                self.__save_many_without_batch()
             else:
-                for bat in chunked(self.content, batch):
-                    Article.insert_many(bat).on_conflict_ignore().execute()
+                self.__save_many_with_batch(batch=batch)
         except Exception as e:
             logger.error(e)
             db.rollback()
