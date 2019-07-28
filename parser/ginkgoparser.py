@@ -91,12 +91,8 @@ class GinkgoParser(baseparser.ArticleBaseParser):
         detail_length = len(detail)
         summary = lambda x: x - 19 * x // 20
 
-        content['title'] = self.parse_title()
-        content['summary'] = detail[:summary(detail_length)]
-        content['detail'] = detail
-        content['creator'] = self.parse_author()
-        content['date'] = self.parse_date()
-        content['link'] = self.parse_link()
+        content['title'], content['summary'], content['detail'] = self.parse_title(), detail[:summary(detail_length)], detail
+        content['creator'], content['date'], content['link'] = self.parse_author(), self.parse_date(), self.parse_link()
 
         return {'title': content['title'],
                 'type': 1,

@@ -29,10 +29,7 @@ class ZgzwParser:
 
     def __wrap_cells(self, cell):
         wrap = {}
-        wrap['title'] = cell['title']
-        wrap['type'] = 2
-        wrap['tag'] = None
-        wrap['content'] = json.dumps(cell, ensure_ascii=False)
+        wrap['title'], wrap['type'], wrap['tag'], wrap['content'] = cell['title'], 2, '知网', json.dumps(cell, ensure_ascii=False)
         return wrap
 
     def parse_factory(self):
