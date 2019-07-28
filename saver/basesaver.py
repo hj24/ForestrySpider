@@ -1,7 +1,6 @@
 from abc import abstractmethod, ABC
 import logging.config
 from peewee import chunked
-from pymysql import IntegrityError
 
 from config.log.settings import LOGGING
 from model.articlemodel import Article

@@ -14,6 +14,6 @@ def counter(func):
         start_time = time.time()
         res = func(*args, **kwargs)
         end_time = time.time()
-        logger.info('用时: %s', end_time - start_time)
+        logger.info('%s 用时: %s', func.__name__, end_time - start_time)
         return res
     return inner
