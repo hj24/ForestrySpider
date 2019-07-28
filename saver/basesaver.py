@@ -60,7 +60,7 @@ class Saver(BaseSaver):
                 for bat in chunked(self.content, batch):
                     Article.insert_many(bat).on_conflict_ignore().execute()
         except Exception as e:
-            logger.info(e)
+            logger.error(e)
             db.rollback()
         else:
             logger.info('save: %s records success!', len(self.content))
