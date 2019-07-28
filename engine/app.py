@@ -12,6 +12,7 @@ from fetcher import ginkgofetcher
 from fetcher import zgzwfetcher
 from saver.basesaver import Saver
 from utils.decorators.memory import disable_gc
+from utils.decorators.counter import counter
 from engine import settings
 
 
@@ -30,7 +31,7 @@ def load_url_config():
     - 从配置中加载初始数据的函数
     """
 
-    init_list = GinkgoConfig().parser()
+    init_list = GinkgoConfig().parser()[:2]
     # init_list = []
     # zgzw_result = None
     zgzw_result = ZgzwConfig().parser()
@@ -177,6 +178,15 @@ class App:
 
                 URL_POOL.task_done()
 
+    @counter
+    def save(self, data_to_store):
+        statistics = 0
+        for data in data_to_store:
+            if Saver().save(data):
+                statistics += 1
+        return statistics
+
+
     def run(self):
 
         data_to_store = []
@@ -191,7 +201,8 @@ class App:
 
         logger.info('队列任务执行完毕')
 
-        Saver(data_to_store).save_many(batch=settings.DATA_BATCH)
+        success_records = self.save(data_to_store)
+        logger.info('save %s datas success', success_records)
 
         loop.close()
 
