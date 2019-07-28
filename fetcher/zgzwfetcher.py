@@ -51,7 +51,8 @@ class ZgzwFetcher(GinkgoFetcher):
                 async with sess.get(url, timeout=60, proxy=proxy_server) as resp:
                     await resp.read()
                     return await self.__procrss_response(resp)
-        except (ModuleNotFoundError, HttpProcessingError, Exception):
+        except (ModuleNotFoundError, HttpProcessingError, Exception) as e:
+            logger.error('%s - 转为本机爬取', e)
             async with session.get(url, timeout=60, headers=ZGZW_HEADERS) as resp:
                 await resp.read()
                 try:

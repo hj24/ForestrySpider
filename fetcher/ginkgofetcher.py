@@ -35,15 +35,16 @@ class GinkgoFetcher(basefetcher.BaseFetcher):
         """
 
         try:
-            # PROXY = False
             if not PROXY:
                 raise ModuleNotFoundError
             conn = aiohttp.TCPConnector(verify_ssl=False)
             async with aiohttp.ClientSession(headers=proxy_headers, connector=conn) as sess:
                 async with sess.get(url, timeout=60, proxy=proxy_server) as resp:
                     await resp.read()
+
                     return await self.__process_response(resp)
-        except (ModuleNotFoundError, aiohttp.http.HttpProcessingError, Exception):
+        except (ModuleNotFoundError, aiohttp.http.HttpProcessingError, Exception) as e:
+            logger.error('%s - 转为本机爬取', e)
             async with session.get(url, timeout=60, headers=GINKGO_HEADERS) as resp:
                 await resp.read()
                 try:
