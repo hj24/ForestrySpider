@@ -25,7 +25,7 @@ class Article(BaseModel):
     
     title = CharField(max_length=100, unique=True)
     type = IntegerField()
-    tag = CharField(max_length=20, unique=False)
+    tag = CharField(max_length=20, default=None)
     content = JSONField()
 
 if not Article.table_exists():

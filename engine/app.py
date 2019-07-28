@@ -31,16 +31,16 @@ def load_url_config():
     - 从配置中加载初始数据的函数
     """
 
-    init_list = GinkgoConfig().parser()[:2]
+    init_list = GinkgoConfig().parser()
     # init_list = []
-    # zgzw_result = None
-    zgzw_result = ZgzwConfig().parser()
+    zgzw_result = None
+    # zgzw_result = ZgzwConfig().parser()
 
     if type(zgzw_result) == dict:
         init_list.append(zgzw_result)
     elif type(zgzw_result) == list:
         init_list.extend(zgzw_result)
-    return init_list
+    return init_list[:1]
 
 class App:
 
@@ -200,7 +200,6 @@ class App:
         loop.run_until_complete(asyncio.gather(*tasks))
 
         logger.info('队列任务执行完毕')
-
         success_records = self.save(data_to_store)
         logger.info('save %s datas success', success_records)
 

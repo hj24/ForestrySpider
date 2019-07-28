@@ -45,8 +45,8 @@ class Saver(BaseSaver):
     @db.atomic()
     def save(self, data):
         try:
-            title = data['title']
-            info, flag = Article.get_or_create(title=title, defaults={'content': self.content})
+            title, type, tag, content = data['title'], data['type'], data['tag'], data['content']
+            info, flag = Article.get_or_create(title=title, defaults={'type': type, 'tag': tag, 'content': content})
         except Exception as e:
             logger.error(e)
         else:
