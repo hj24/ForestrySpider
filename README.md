@@ -33,6 +33,36 @@ ORM:
 
 > aiohttp
 
+## 使用
+
+两种方式：
+
+1. 直接运行 `engine.app` 模块
+
+2. 命令行进入项目目录
+
+    `python manage.py -r runserver` 开启爬虫
+    
+    `python manage.py -d num` num为行数，打印末尾num行debug日志
+    
+    `python manage.py -e num` num为行数，打印末尾num行error日志
+    
+## 代理配置
+
+- 为了爬虫的稳定运行，本项目使用了阿布云的动态IP代理
+
+- 同时也实现了当阿布云账户余额不足时自动切换到本机爬取模式
+
+- 如需使用代理，请在`config/proxy/conf/proxy.ini`文件中替换你自己的阿布云账号
+
+关于阿布云，请看这里: https://www.abuyun.com/http-proxy/dyn-manual.html
+
+PS: 个人觉得阿布云按小时收费一小时一元不算贵，随用随停，很方便。不建议自己搭建IP代理池，耗时且效果不大
+
+## 数据库配置
+
+- 将`config/db/conf/info.ini`中对应选项修改为自己的配置即可
+
 ## Bug 记录
 
 1. (2013, 'Lost connection to MySQL server during query ([Errno 54] Connection reset by peer)')
