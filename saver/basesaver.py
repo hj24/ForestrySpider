@@ -15,7 +15,6 @@ try:
     from utils.extension.savers import ext_saver
 except ImportError as ie:
     ext_saver = None
-    logger.error(ie)
 
 
 db = DATABASE['mysqldb']
