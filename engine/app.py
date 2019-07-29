@@ -32,15 +32,13 @@ def load_url_config():
     """
 
     init_list = GinkgoConfig().parser()
-    # init_list = []
-    zgzw_result = None
-    # zgzw_result = ZgzwConfig().parser()
+    zgzw_result = ZgzwConfig().parser()
 
     if type(zgzw_result) == dict:
         init_list.append(zgzw_result)
     elif type(zgzw_result) == list:
         init_list.extend(zgzw_result)
-    return init_list[:1]
+    return init_list
 
 class App:
 
@@ -55,6 +53,7 @@ class App:
         self.init_url_list = init_urls
         self.semaphore = asyncio.Semaphore(parallels)
         self.lock = asyncio.Lock()
+        self.statistics = 0
 
     async def produce_url(self):
         """
@@ -114,7 +113,7 @@ class App:
             return ZGZW_TYPE
 
     @disable_gc
-    async def __pre_process_data(self, data_to_store, response, type):
+    async def __process_data(self, data_to_store, response, type):
         """
         - 将所有结果存入data_to_store列表中
         - 为了防止列表的append操作效率过低，因此采用装饰器暂时关闭python的垃圾回收机制
@@ -122,9 +121,10 @@ class App:
 
         with await self.lock:
             if type == GINKGO_TYPE:
-                data_to_store.append(response)
+                self.save(response)
             elif type == ZGZW_TYPE and response is not None:
-                data_to_store.extend(response)
+                for res in response:
+                    self.save(res)
 
     async def consume_url(self, data_to_store):
         """
@@ -138,15 +138,15 @@ class App:
              - json_response: 用解析器解析response, 并生产相应的符合数据库模型的字典存入data_to_store
         """
 
-        sleep_count = 1
+        record_count = 1
 
         while True:
             url = await URL_POOL.get()
-            logger.info('times: %s - url: %s', sleep_count, url)
+            logger.info('times: %s - url: %s', record_count, url)
 
             await asyncio.sleep(random.uniform(settings.BOTTOM_SLEEP_TIME, settings.TOP_SLEEP_TIME))
 
-            sleep_count += 1
+            record_count += 1
 
             if url is None:
                 break
@@ -169,23 +169,24 @@ class App:
 
                 if choice == GINKGO_TYPE:
                     json_response = ginkgoparser.GinkgoParser(response, url=url).parse_factory()
-                    await self.__pre_process_data(data_to_store, json_response, GINKGO_TYPE)
+                    await self.__process_data(data_to_store, json_response, GINKGO_TYPE)
                 elif choice == ZGZW_TYPE:
                     json_response = zgzwparser.ZgzwParser(response).parse_factory()
-                    await self.__pre_process_data(data_to_store, json_response, ZGZW_TYPE)
+                    await self.__process_data(data_to_store, json_response, ZGZW_TYPE)
 
                 logger.info(json_response)
 
                 URL_POOL.task_done()
 
-    @counter
-    def save(self, data_to_store):
-        statistics = 0
-        for data in data_to_store:
+    def save(self, data):
+        try:
             if Saver().save(data):
-                statistics += 1
-        return statistics
-
+                logger.info('save success!')
+                self.statistics += 1
+            else:
+                logger.info('save failed, duplicate data')
+        except Exception as e:
+            logger.error('save failed for: %s', e)
 
     def run(self):
 
@@ -200,11 +201,11 @@ class App:
         loop.run_until_complete(asyncio.gather(*tasks))
 
         logger.info('队列任务执行完毕')
-        success_records = self.save(data_to_store)
-        logger.info('save %s datas success', success_records)
+        logger.info('save %s datas success', self.statistics)
 
         loop.close()
 
+@counter
 def run():
     init_urls = load_url_config()
     app = App(init_urls, settings.PARALLELS)
