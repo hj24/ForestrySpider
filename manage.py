@@ -32,7 +32,7 @@ def main():
     parser = argparse.ArgumentParser(description=__usage__)
 
     group = parser.add_mutually_exclusive_group()
-    
+
     group.add_argument("-d", "--debug", type=int,
                        help="查看debug日志, 接一个整数表示查看日志末尾行数, 为-1则查看全部")
     group.add_argument("-e", "--error", type=int,
