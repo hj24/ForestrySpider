@@ -77,27 +77,4 @@ class MainPageFetcher(GinkgoFetcher):
 
 
 if __name__ == '__main__':
-    test_url = 'http://m.cnyxs.com/news_type.asp?id=34946'
-    link = 'http://m.cnyxs.com/news.asp?lb=%D2%F8%D0%D3%D0%C2%CE%C5'
-    ip_test = 'http://httpbin.org/ip'
-    sem = asyncio.Semaphore(20)
-    s = GinkgoFetcher(test_url)
-    m = MainPageFetcher(ip_test)
-    import time
-    st = time.time()
-
-    loop = asyncio.get_event_loop()
-
-    def callback():
-        pass
-
-    tasks = asyncio.ensure_future(m.fetch(sem))
-
-    res = loop.run_until_complete(tasks)
-
-    loop.close()
-
-    logger.info('answer:\n %s',res)
-
-    e = time.time()
-    logger.info(e - st)
+    pass

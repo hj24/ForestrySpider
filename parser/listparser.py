@@ -58,30 +58,4 @@ class UrlListParser(baseparser.UrlListBaseParser):
         return ['http://m.cnyxs.com/' + str(t.get('href')) for t in tags]
 
 if __name__ == '__main__':
-    from utils.test import main_page
-    from fetcher.ginkgofetcher import MainPageFetcher
-    import asyncio
-
-    root_url = 'http://m.cnyxs.com/news.asp?lb=%D2%F8%D0%D3%D0%C2%CE%C5'
-    #
-    # loop = asyncio.get_event_loop()
-    #
-    # sem = asyncio.Semaphore(10)
-    #
-    # task = asyncio.ensure_future(MainPageFetcher(root_url).fetch(sem))
-    #
-    # res = loop.run_until_complete(task)
-    #
-    # loop.close()
-    #
-    # print(res)
-
-
-
-
-    m = MenuParser(main_page, root_url)
-    logger.info(m.parse_page_nums())
-    print(m.generate_links(m.parse_page_nums()))
-    #
-    u = UrlListParser(main_page, root_url)
-    print(u.parse_all_links())
+    pass
