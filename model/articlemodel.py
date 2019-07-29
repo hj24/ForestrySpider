@@ -2,6 +2,7 @@ from peewee import *
 from playhouse.mysql_ext import JSONField
 
 from config.db.settings import DATABASE
+from utils.decorators.db import auto_connect
 
 
 db = DATABASE['mysqldb']
@@ -28,5 +29,9 @@ class Article(BaseModel):
     tag = CharField(max_length=20, default=None)
     content = JSONField()
 
-if not Article.table_exists():
-    Article.create_table()
+@auto_connect(db=db)
+def create():
+    if not Article.table_exists():
+        Article.create_table()
+
+create()

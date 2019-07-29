@@ -5,6 +5,7 @@ from peewee import chunked
 from config.log.settings import LOGGING
 from model.articlemodel import Article
 from config.db.settings import DATABASE
+from utils.decorators.db import auto_connect
 
 
 logging.config.dictConfig(LOGGING)
@@ -41,6 +42,7 @@ class Saver(BaseSaver):
     def __init__(self, content=None):
         super().__init__(content)
 
+    @auto_connect(db=db)
     @db.atomic()
     def save(self, data):
         try:
