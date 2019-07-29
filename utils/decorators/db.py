@@ -1,4 +1,5 @@
 import functools
+from peewee import *
 
 from config.db.settings import DATABASE
 
@@ -10,9 +11,15 @@ def auto_connect(*, db):
     def decorate(func):
         @functools.wraps(func)
         def inner(*args, **kwargs):
-            db.connect()
+            try:
+                db.connect()
+            except (OperationalError, Exception):
+                pass
             res = func(*args, **kwargs)
-            db.close()
+            try:
+                db.close()
+            except (OperationalError, Exception):
+                pass
             return res
         return inner
 
